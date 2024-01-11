@@ -23,3 +23,7 @@ test
 test2
 about
 linear-regression
+introduction
+least-squares-linear-regression
+terminology
+least-squares-estimation
