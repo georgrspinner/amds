@@ -19,3 +19,4 @@ compatibility-with-existing-systems
 add-a-hyperlink
 embed-the-whole-book
 license-your-gitbook
+test
