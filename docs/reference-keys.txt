@@ -20,3 +20,6 @@ add-a-hyperlink
 embed-the-whole-book
 license-your-gitbook
 test
+test2
+about
+linear-regression
