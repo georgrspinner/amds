@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Applied Medical Data Science</title>
+  <title>Chapter 3 Univariate Linear Regression | Applied Medical Data Science</title>
   <meta name="description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Applied Medical Data Science" />
+  <meta property="og:title" content="Chapter 3 Univariate Linear Regression | Applied Medical Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
   <meta name="github-repo" content="georgrspinner/amds" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Applied Medical Data Science" />
+  <meta name="twitter:title" content="Chapter 3 Univariate Linear Regression | Applied Medical Data Science" />
   
   <meta name="twitter:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="basic-concepts-of-descriptive-statistics.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -93,17 +93,6 @@
 <li class="chapter" data-level="3.4" data-path="univariate-linear-regression.html"><a href="univariate-linear-regression.html#assumptions"><i class="fa fa-check"></i><b>3.4</b> Assumptions</a></li>
 <li class="chapter" data-level="3.5" data-path="univariate-linear-regression.html"><a href="univariate-linear-regression.html#goodness-of-fit-r-squared-r²"><i class="fa fa-check"></i><b>3.5</b> Goodness-of-Fit: R-squared (R²)</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html"><i class="fa fa-check"></i><b>4</b> Multiple Linear Regression Extended</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html#key-concepts-1"><i class="fa fa-check"></i><b>4.1</b> Key Concepts</a>
-<ul>
-<li class="chapter" data-level="4.1.1" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html#intercept-beta_0"><i class="fa fa-check"></i><b>4.1.1</b> Intercept (<span class="math inline">\(\beta_0\)</span>)</a></li>
-<li class="chapter" data-level="4.1.2" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html#coefficients-beta_1-beta_2-...-beta_n"><i class="fa fa-check"></i><b>4.1.2</b> Coefficients (<span class="math inline">\(\beta_1, \beta_2, ..., \beta_n\)</span>)</a></li>
-<li class="chapter" data-level="4.1.3" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html#error-term-epsilon-1"><i class="fa fa-check"></i><b>4.1.3</b> Error Term (<span class="math inline">\(\epsilon\)</span>)</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html#assumptions-1"><i class="fa fa-check"></i><b>4.2</b> Assumptions</a></li>
-<li class="chapter" data-level="4.3" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html#goodness-of-fit-r-squared-r²-1"><i class="fa fa-check"></i><b>4.3</b> Goodness-of-Fit: R-squared (R²)</a></li>
-</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -125,19 +114,61 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="univariate-linear-regression" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Univariate Linear Regression<a href="univariate-linear-regression.html#univariate-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Univariate linear regression is a statistical technique used to model and analyze the relationship between a single independent variable and a dependent variable. It is based on the linear equation:</p>
+<p><span class="math display">\[ y = \beta_0 + \beta_1x + \epsilon \]</span></p>
+<p>where: - <span class="math inline">\(y\)</span> is the dependent variable. - <span class="math inline">\(x\)</span> is the independent variable. - <span class="math inline">\(\beta_0\)</span> is the y-intercept. - <span class="math inline">\(\beta_1\)</span> is the slope of the line. - <span class="math inline">\(\epsilon\)</span> represents the error term.</p>
+<div id="key-concepts" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Key Concepts<a href="univariate-linear-regression.html#key-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="slope-beta_1" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Slope (<span class="math inline">\(\beta_1\)</span>)<a href="univariate-linear-regression.html#slope-beta_1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The slope indicates the change in the dependent variable for each unit change in the independent variable.</p>
+</div>
+<div id="y-intercept-beta_0" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Y-intercept (<span class="math inline">\(\beta_0\)</span>)<a href="univariate-linear-regression.html#y-intercept-beta_0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The y-intercept is the value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> is zero, representing the starting point of the line in the regression model.</p>
+</div>
+<div id="error-term-epsilon" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Error Term (<span class="math inline">\(\epsilon\)</span>)<a href="univariate-linear-regression.html#error-term-epsilon" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The error term accounts for the variability in <span class="math inline">\(y\)</span> that cannot be explained by the linear relationship with <span class="math inline">\(x\)</span>.</p>
+</div>
+</div>
+<div id="model-estimation" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Model Estimation<a href="univariate-linear-regression.html#model-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The coefficients <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are estimated using least squares method, which minimizes the sum of squared differences between observed and predicted values.</p>
+</div>
+<div id="interpretation" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Interpretation<a href="univariate-linear-regression.html#interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Interpreting the results involves examining the estimated coefficients and assessing the model’s fit and predictive power.</p>
+</div>
+<div id="assumptions" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Assumptions<a href="univariate-linear-regression.html#assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The application of linear regression relies on several key assumptions:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Linearity</strong>: The relationship between the independent and dependent variable is linear.</p></li>
+<li><p><strong>Independence</strong>: Observations are independent of each other.</p></li>
+<li><p><strong>Homoscedasticity</strong>: The residuals (differences between observed and predicted values) have constant variance across all levels of the independent variable.</p></li>
+<li><p><strong>Normality</strong>: The residuals are normally distributed.</p></li>
+</ol>
+<p>Understanding these aspects of univariate linear regression is crucial for correctly applying the method and interpreting its results.</p>
+</div>
+<div id="goodness-of-fit-r-squared-r²" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Goodness-of-Fit: R-squared (R²)<a href="univariate-linear-regression.html#goodness-of-fit-r-squared-r²" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R-squared is a statistical measure that quantifies the proportion of the variance in the dependent variable that is predictable from the independent variable. It ranges from 0 to 1, where higher values indicate a better fit of the model.</p>
+<p><span class="math display">\[ R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2} \]</span></p>
+<p>where <span class="math inline">\(\hat{y}_i\)</span> is the predicted value and <span class="math inline">\(\bar{y}\)</span> is the mean of <span class="math inline">\(y\)</span>.</p>
+<p>Univariate linear regression provides a simple yet powerful way to understand and predict relationships between two variables.</p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="basic-concepts-of-descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -168,7 +199,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/cjvanlissa/gitbook-demo/edit/master/%s",
+"link": "https://github.com/cjvanlissa/gitbook-demo/edit/master/linear-regression.Rmd",
 "text": "Edit"
 },
 "history": {

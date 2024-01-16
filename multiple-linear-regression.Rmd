@@ -1,0 +1,37 @@
+# Multiple Linear Regression Extended
+
+Multiple linear regression is a statistical method for modeling the relationship between one dependent variable and two or more independent variables.
+
+$$ y = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_nx_n + \epsilon $$
+
+where:
+- \( y \) is the dependent variable.
+- \( x_1, x_2, ..., x_n \) are independent variables.
+- \( \beta_0 \) is the intercept.
+- \( \beta_1, \beta_2, ..., \beta_n \) are the coefficients representing the effect of each independent variable.
+- \( \epsilon \) is the error term.
+
+## Key Concepts
+
+### Intercept (\( \beta_0 \))
+The intercept is the expected value of \( y \) when all independent variables are zero.
+
+### Coefficients (\( \beta_1, \beta_2, ..., \beta_n \))
+These coefficients represent the change in the dependent variable for a one-unit change in the corresponding independent variable, assuming other variables are held constant.
+
+### Error Term (\( \epsilon \))
+The error term accounts for the difference between the observed and predicted values of the dependent variable.
+
+## Assumptions
+1. **Linearity**: The relationship between the dependent and independent variables is linear.
+2. **No Multicollinearity**: Independent variables should not be highly correlated with each other.
+3. **Independence**: Observations are independent.
+4. **Homoscedasticity**: Residuals have constant variance at every level of the independent variables.
+5. **Normality of Residuals**: Residuals are normally distributed.
+
+## Goodness-of-Fit: R-squared (R²)
+R-squared indicates the proportion of the variance in the dependent variable that is predictable from the independent variables.
+
+$$ R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2} $$
+
+Multiple linear regression is particularly useful in scenarios where multiple factors influence the outcome.

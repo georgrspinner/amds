@@ -1,0 +1,31 @@
+# Basic Concepts of Descriptive Statistics
+
+Understanding fundamental statistical concepts is crucial for data analysis in various fields. This section provides a theoretical overview of key concepts.
+
+## Mean (Average)
+
+The mean, often referred to as the average, is a measure of central tendency. It is calculated as the sum of all values divided by the number of values.
+
+$$ \text{Mean} = \frac{\sum_{i=1}^{n} x_i}{n} $$
+
+where $x_i$ represents each value and $n$ is the number of values.
+
+## Standard Deviation
+
+Standard deviation is a measure of the amount of variation or dispersion in a set of values. A low standard deviation indicates that the values tend to be close to the mean, while a high standard deviation indicates that the values are spread out over a wider range.
+
+$$ \text{Standard Deviation} = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \text{Mean})^2}{n-1}} $$
+
+## Correlation
+
+Correlation measures the strength and direction of the relationship between two variables. It ranges from -1 to 1, where 1 indicates a perfect positive correlation, -1 indicates a perfect negative correlation, and 0 indicates no correlation.
+
+$$ \text{Correlation} = \frac{\sum_{i=1}^{n} (x_i - \text{Mean}_x)(y_i - \text{Mean}_y)}{\sqrt{\sum_{i=1}^{n} (x_i - \text{Mean}_x)^2 \sum_{i=1}^{n} (y_i - \text{Mean}_y)^2}} $$
+
+## Root Mean Square Error (RMSE)
+
+RMSE is a frequently used measure of the differences between values predicted by a model and the values actually observed. It is particularly useful in regression analysis to validate model performance.
+
+$$ \text{RMSE} = \sqrt{\frac{\sum_{i=1}^{n} (y_{i,\text{observed}} - y_{i,\text{predicted}})^2}{n}} $$
+
+These theoretical foundations are essential for understanding and applying statistical methods in data analysis.

@@ -1,17 +1,53 @@
-# Linear regression
+# Univariate Linear Regression
 
-## Introduction
-Linear regression predicts a real-valued output $y \in \mathbb{R}$ given input $x \in \mathbb{R}^D$. Key property: $E[y|x] = w^Tx$.
+Univariate linear regression is a statistical technique used to model and analyze the relationship between a single independent variable and a dependent variable. It is based on the linear equation:
 
-## Least Squares Linear Regression
-### Terminology
-- Model: $p(y|x, \theta) = \mathcal{N}(y|w_0 + w^Tx, \sigma^2)$
-- Parameters: $\theta = (w_0, w, \sigma^2)$
-- $w_0$: Offset/bias term.
-- $w$: Weights or regression coefficients.
+$$ y = \beta_0 + \beta_1x + \epsilon $$
 
-### Least Squares Estimation
-- Objective: Minimize negative log-likelihood.
-- Residual Sum of Squares (RSS): $RSS(w) = \frac{1}{2} \sum_{n=1}^{N} (y_n - w^Tx_n)^2$
+where: - $y$ is the dependent variable. - $x$ is the independent variable. - $\beta_0$ is the y-intercept. - $\beta_1$ is the slope of the line. - $\epsilon$ represents the error term.
 
+## Key Concepts
 
+### Slope ($\beta_1$)
+
+The slope indicates the change in the dependent variable for each unit change in the independent variable.
+
+### Y-intercept ($\beta_0$)
+
+The y-intercept is the value of $y$ when $x$ is zero, representing the starting point of the line in the regression model.
+
+### Error Term ($\epsilon$)
+
+The error term accounts for the variability in $y$ that cannot be explained by the linear relationship with $x$.
+
+## Model Estimation
+
+The coefficients $\beta_0$ and $\beta_1$ are estimated using least squares method, which minimizes the sum of squared differences between observed and predicted values.
+
+## Interpretation
+
+Interpreting the results involves examining the estimated coefficients and assessing the model's fit and predictive power.
+
+## Assumptions
+
+The application of linear regression relies on several key assumptions:
+
+1.  **Linearity**: The relationship between the independent and dependent variable is linear.
+
+2.  **Independence**: Observations are independent of each other.
+
+3.  **Homoscedasticity**: The residuals (differences between observed and predicted values) have constant variance across all levels of the independent variable.
+
+4.  **Normality**: The residuals are normally distributed.
+
+Understanding these aspects of univariate linear regression is crucial for correctly applying the method and interpreting its results.
+
+## Goodness-of-Fit: R-squared (R²)
+
+R-squared is a statistical measure that quantifies the proportion of the variance in the dependent variable that is predictable from the independent variable. It ranges from 0 to 1, where higher values indicate a better fit of the model.
+
+$$ R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2} $$
+
+where $\hat{y}_i$ is the predicted value and $\bar{y}$ is the mean of $y$.
+
+Univariate linear regression provides a simple yet powerful way to understand and predict relationships between two variables.

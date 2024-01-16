@@ -1,0 +1,19 @@
+# Linear regression
+
+## Introduction
+
+Linear regression predicts a real-valued output $y \in \mathbb{R}$ given input $x \in \mathbb{R}^D$. Key property: $E[y|x] = w^Tx$.
+
+## Least Squares Linear Regression
+
+### Terminology
+
+-   Model: $p(y|x, \theta) = \mathcal{N}(y|w_0 + w^Tx, \sigma^2)$
+-   Parameters: $\theta = (w_0, w, \sigma^2)$
+-   $w_0$: Offset/bias term.
+-   $w$: Weights or regression coefficients.
+
+### Least Squares Estimation
+
+-   Objective: Minimize negative log-likelihood.
+-   Residual Sum of Squares (RSS): $RSS(w) = \frac{1}{2} \sum_{n=1}^{N} (y_n - w^Tx_n)^2$

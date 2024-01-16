@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Linear regression | Applied Medical Data Science</title>
+  <title>Chapter 2 Basic Concepts of Descriptive Statistics | Applied Medical Data Science</title>
   <meta name="description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Linear regression | Applied Medical Data Science" />
+  <meta property="og:title" content="Chapter 2 Basic Concepts of Descriptive Statistics | Applied Medical Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
   <meta name="github-repo" content="georgrspinner/amds" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Linear regression | Applied Medical Data Science" />
+  <meta name="twitter:title" content="Chapter 2 Basic Concepts of Descriptive Statistics | Applied Medical Data Science" />
   
   <meta name="twitter:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="basic-concepts-of-descriptive-statistics.html"/>
-<link rel="next" href="references.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="linear-regression.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -110,31 +110,31 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="linear-regression" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Linear regression<a href="linear-regression.html#linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="introduction" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Introduction<a href="linear-regression.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Linear regression predicts a real-valued output <span class="math inline">\(y \in \mathbb{R}\)</span> given input <span class="math inline">\(x \in \mathbb{R}^D\)</span>. Key property: <span class="math inline">\(E[y|x] = w^Tx\)</span>.</p>
+<div id="basic-concepts-of-descriptive-statistics" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Basic Concepts of Descriptive Statistics<a href="basic-concepts-of-descriptive-statistics.html#basic-concepts-of-descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Understanding fundamental statistical concepts is crucial for data analysis in various fields. This section provides a theoretical overview of key concepts.</p>
+<div id="mean-average" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Mean (Average)<a href="basic-concepts-of-descriptive-statistics.html#mean-average" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The mean, often referred to as the average, is a measure of central tendency. It is calculated as the sum of all values divided by the number of values.</p>
+<p><span class="math display">\[ \text{Mean} = \frac{\sum_{i=1}^{n} x_i}{n} \]</span></p>
+<p>where <span class="math inline">\(x_i\)</span> represents each value and <span class="math inline">\(n\)</span> is the number of values.</p>
 </div>
-<div id="least-squares-linear-regression" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Least Squares Linear Regression<a href="linear-regression.html#least-squares-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="terminology" class="section level3 hasAnchor" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> Terminology<a href="linear-regression.html#terminology" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>Model: <span class="math inline">\(p(y|x, \theta) = \mathcal{N}(y|w_0 + w^Tx, \sigma^2)\)</span></li>
-<li>Parameters: <span class="math inline">\(\theta = (w_0, w, \sigma^2)\)</span></li>
-<li><span class="math inline">\(w_0\)</span>: Offset/bias term.</li>
-<li><span class="math inline">\(w\)</span>: Weights or regression coefficients.</li>
-</ul>
+<div id="standard-deviation" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Standard Deviation<a href="basic-concepts-of-descriptive-statistics.html#standard-deviation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Standard deviation is a measure of the amount of variation or dispersion in a set of values. A low standard deviation indicates that the values tend to be close to the mean, while a high standard deviation indicates that the values are spread out over a wider range.</p>
+<p><span class="math display">\[ \text{Standard Deviation} = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \text{Mean})^2}{n-1}} \]</span></p>
 </div>
-<div id="least-squares-estimation" class="section level3 hasAnchor" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Least Squares Estimation<a href="linear-regression.html#least-squares-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>Objective: Minimize negative log-likelihood.</li>
-<li>Residual Sum of Squares (RSS): <span class="math inline">\(RSS(w) = \frac{1}{2} \sum_{n=1}^{N} (y_n - w^Tx_n)^2\)</span></li>
-</ul>
+<div id="correlation" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Correlation<a href="basic-concepts-of-descriptive-statistics.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Correlation measures the strength and direction of the relationship between two variables. It ranges from -1 to 1, where 1 indicates a perfect positive correlation, -1 indicates a perfect negative correlation, and 0 indicates no correlation.</p>
+<p><span class="math display">\[ \text{Correlation} = \frac{\sum_{i=1}^{n} (x_i - \text{Mean}_x)(y_i - \text{Mean}_y)}{\sqrt{\sum_{i=1}^{n} (x_i - \text{Mean}_x)^2 \sum_{i=1}^{n} (y_i - \text{Mean}_y)^2}} \]</span></p>
+</div>
+<div id="root-mean-square-error-rmse" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Root Mean Square Error (RMSE)<a href="basic-concepts-of-descriptive-statistics.html#root-mean-square-error-rmse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>RMSE is a frequently used measure of the differences between values predicted by a model and the values actually observed. It is particularly useful in regression analysis to validate model performance.</p>
+<p><span class="math display">\[ \text{RMSE} = \sqrt{\frac{\sum_{i=1}^{n} (y_{i,\text{observed}} - y_{i,\text{predicted}})^2}{n}} \]</span></p>
+<p>These theoretical foundations are essential for understanding and applying statistical methods in data analysis.</p>
 
-</div>
 </div>
 </div>
             </section>
@@ -142,8 +142,8 @@
           </div>
         </div>
       </div>
-<a href="basic-concepts-of-descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -174,7 +174,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/cjvanlissa/gitbook-demo/edit/master/linear-regression.Rmd",
+"link": "https://github.com/cjvanlissa/gitbook-demo/edit/master/descriptive-statistics.Rmd",
 "text": "Edit"
 },
 "history": {

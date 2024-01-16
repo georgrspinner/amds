@@ -1,6 +1,8 @@
 book_filename: "gitbook-demo"
 rmd_files: ["index.Rmd",
+            "descriptive-statistics.Rmd",
             "linear-regression.Rmd",
+            "multiple-linear-regression.Rmd",
             "references.Rmd"]
 output_dir: "docs"
 language:
