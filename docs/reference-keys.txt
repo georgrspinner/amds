@@ -48,3 +48,14 @@ coefficients-beta_1-beta_2-...-beta_n
 error-term-epsilon-1
 assumptions-1
 goodness-of-fit-r-squared-r²-1
+logistic-regression
+logistic-regression-model
+univariate-logistic-regression
+multivariate-logistic-regression
+meaning-of-coefficients
+roc-and-auc-in-logistic-regression
+bootstrapping
+resampling-in-bootstrapping
+use-in-internal-validation
+nagelkerkes-r²
+external-validation-using-hold-out-data

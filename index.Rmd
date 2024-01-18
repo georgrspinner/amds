@@ -1,4 +1,4 @@
---- 
+---
 title: "Applied Medical Data Science"
 author: "[Dr. sc. ETH Dr. med Georg Ralph Spinner](https://www.zhaw.ch/en/about-us/person/spnn/)"
 date: "`r Sys.Date()`"
@@ -14,10 +14,11 @@ biblio-style: apalike
 ---
 
 <!--"Using GitBooks to create Open course materials"-->
+
 # About
+
 A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods.
 
+The content was created with the help of chatGPT (GPT 4), but checked by the author.
+
 Zurich University of Applied Sciences (ZHAW)
-
-
-
