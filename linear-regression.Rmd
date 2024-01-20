@@ -1,34 +1,48 @@
-# Univariate Linear Regression
+# Linear Regression
 
-Univariate linear regression is a statistical technique used to model and analyze the relationship between a single independent variable and a dependent variable. It is based on the linear equation:
+## Univariate Linear Regression
+
+[![Example of linear regression. Note that the square of the errors (green) is minimized. Source: https://commons.wikimedia.org/wiki/File:Linear_least_squares_example2.svg](images/279px-Linear_least_squares_example2.svg.png)](https://commons.wikimedia.org/wiki/File:Linear_least_squares_example2.svg)
+
+Univariate linear regression provides a simple yet powerful way to understand and predict relationships between two variables.
+
+More precisely, it is a statistical technique used to model and analyze the relationship between a single independent variable and a dependent variable. It is based on the linear equation:
 
 $$ y = \beta_0 + \beta_1x + \epsilon $$
 
 where: - $y$ is the dependent variable. - $x$ is the independent variable. - $\beta_0$ is the y-intercept. - $\beta_1$ is the slope of the line. - $\epsilon$ represents the error term.
 
-## Key Concepts
+### Variables
 
-### Slope ($\beta_1$)
+-   Slope ($\beta_1$): The slope indicates the change in the dependent variable for each unit change in the independent variable.
 
-The slope indicates the change in the dependent variable for each unit change in the independent variable.
+-   Y-intercept ($\beta_0$): The y-intercept is the value of $y$ when $x$ is zero, representing the starting point of the line in the regression model.
 
-### Y-intercept ($\beta_0$)
+-   Error Term ($\epsilon$): The error term accounts for the variability in $y$ that cannot be explained by the linear relationship with $x$.
 
-The y-intercept is the value of $y$ when $x$ is zero, representing the starting point of the line in the regression model.
+## Multiple Linear Regression
 
-### Error Term ($\epsilon$)
+Multiple linear regression is a statistical method for modeling the relationship between one dependent variable and two or more independent variables.
 
-The error term accounts for the variability in $y$ that cannot be explained by the linear relationship with $x$.
+$$ y = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_nx_n + \epsilon $$
 
-## Model Estimation
+where: - $y$ is the dependent variable. - $x_1, x_2, ..., x_n$ are independent variables. - $\beta_0$ is the intercept. - $\beta_1, \beta_2, ..., \beta_n$ are the coefficients representing the effect of each independent variable. - $\epsilon$ is the error term.
 
-The coefficients $\beta_0$ and $\beta_1$ are estimated using least squares method, which minimizes the sum of squared differences between observed and predicted values.
+### Variables
 
-## Interpretation
+The variables are the same as in the univariate case, but there are multiple coefficients instead of only one:
+
+-   Coefficients ($\beta_1, \beta_2, ..., \beta_n$): These coefficients represent the change in the dependent variable for a one-unit change in the corresponding independent variable, assuming other variables are held constant.
+
+### Model Estimation
+
+The coefficients $\beta_0$ and $\beta_1 (...\beta_n)$ are estimated using least squares method, which minimizes the sum of squared differences between observed and predicted values.
+
+### Interpretation
 
 Interpreting the results involves examining the estimated coefficients and assessing the model's fit and predictive power.
 
-## Assumptions
+### Assumptions
 
 The application of linear regression relies on several key assumptions:
 
@@ -36,18 +50,16 @@ The application of linear regression relies on several key assumptions:
 
 2.  **Independence**: Observations are independent of each other.
 
-3.  **Homoscedasticity**: The residuals (differences between observed and predicted values) have constant variance across all levels of the independent variable.
+3.  **Normality**: The residuals are normally distributed.
 
-4.  **Normality**: The residuals are normally distributed.
+4.  **Homoscedasticity**: The residuals (differences between observed and predicted values) have constant variance across all levels of the independent variable.
 
-Understanding these aspects of univariate linear regression is crucial for correctly applying the method and interpreting its results.
+Although not being a necessary assumption, there should be no multicollinearity, i.e.independent variables should not be highly correlated with each other.
 
-## Goodness-of-Fit: R-squared (R²)
+### Goodness-of-Fit: R-squared (R²)
 
 R-squared is a statistical measure that quantifies the proportion of the variance in the dependent variable that is predictable from the independent variable. It ranges from 0 to 1, where higher values indicate a better fit of the model.
 
 $$ R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2} $$
 
 where $\hat{y}_i$ is the predicted value and $\bar{y}$ is the mean of $y$.
-
-Univariate linear regression provides a simple yet powerful way to understand and predict relationships between two variables.

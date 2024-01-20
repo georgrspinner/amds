@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Linear regression | Applied Medical Data Science</title>
+  <title>Chapter 3 Linear Regression | Applied Medical Data Science</title>
   <meta name="description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Linear regression | Applied Medical Data Science" />
+  <meta property="og:title" content="Chapter 3 Linear Regression | Applied Medical Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
   <meta name="github-repo" content="georgrspinner/amds" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Linear regression | Applied Medical Data Science" />
+  <meta name="twitter:title" content="Chapter 3 Linear Regression | Applied Medical Data Science" />
   
   <meta name="twitter:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. sc. ETH Dr. med Georg Ralph Spinner" />
 
 
-<meta name="date" content="2024-01-16" />
+<meta name="date" content="2024-01-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="basic-concepts-of-descriptive-statistics.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="logistic-regression.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -80,14 +80,37 @@
 <li class="chapter" data-level="2.3" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#correlation"><i class="fa fa-check"></i><b>2.3</b> Correlation</a></li>
 <li class="chapter" data-level="2.4" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#root-mean-square-error-rmse"><i class="fa fa-check"></i><b>2.4</b> Root Mean Square Error (RMSE)</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>3</b> Linear regression</a>
+<li class="chapter" data-level="3" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>3</b> Linear Regression</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="linear-regression.html"><a href="linear-regression.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
-<li class="chapter" data-level="3.2" data-path="linear-regression.html"><a href="linear-regression.html#least-squares-linear-regression"><i class="fa fa-check"></i><b>3.2</b> Least Squares Linear Regression</a>
+<li class="chapter" data-level="3.1" data-path="linear-regression.html"><a href="linear-regression.html#univariate-linear-regression"><i class="fa fa-check"></i><b>3.1</b> Univariate Linear Regression</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="linear-regression.html"><a href="linear-regression.html#terminology"><i class="fa fa-check"></i><b>3.2.1</b> Terminology</a></li>
-<li class="chapter" data-level="3.2.2" data-path="linear-regression.html"><a href="linear-regression.html#least-squares-estimation"><i class="fa fa-check"></i><b>3.2.2</b> Least Squares Estimation</a></li>
+<li class="chapter" data-level="3.1.1" data-path="linear-regression.html"><a href="linear-regression.html#variables"><i class="fa fa-check"></i><b>3.1.1</b> Variables</a></li>
 </ul></li>
+<li class="chapter" data-level="3.2" data-path="linear-regression.html"><a href="linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>3.2</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="linear-regression.html"><a href="linear-regression.html#variables-1"><i class="fa fa-check"></i><b>3.2.1</b> Variables</a></li>
+<li class="chapter" data-level="3.2.2" data-path="linear-regression.html"><a href="linear-regression.html#model-estimation"><i class="fa fa-check"></i><b>3.2.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="linear-regression.html"><a href="linear-regression.html#interpretation"><i class="fa fa-check"></i><b>3.2.3</b> Interpretation</a></li>
+<li class="chapter" data-level="3.2.4" data-path="linear-regression.html"><a href="linear-regression.html#assumptions"><i class="fa fa-check"></i><b>3.2.4</b> Assumptions</a></li>
+<li class="chapter" data-level="3.2.5" data-path="linear-regression.html"><a href="linear-regression.html#goodness-of-fit-r-squared-r²"><i class="fa fa-check"></i><b>3.2.5</b> Goodness-of-Fit: R-squared (R²)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-model"><i class="fa fa-check"></i><b>4.1</b> Logistic Regression Model</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#univariate-logistic-regression"><i class="fa fa-check"></i><b>4.1.1</b> Univariate Logistic Regression</a></li>
+<li class="chapter" data-level="4.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#multivariate-logistic-regression"><i class="fa fa-check"></i><b>4.1.2</b> Multivariate Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#meaning-of-coefficients"><i class="fa fa-check"></i><b>4.2</b> Meaning of Coefficients</a></li>
+<li class="chapter" data-level="4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#roc-and-auc-in-logistic-regression"><i class="fa fa-check"></i><b>4.3</b> ROC and AUC in Logistic Regression</a></li>
+<li class="chapter" data-level="4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#bootstrapping"><i class="fa fa-check"></i><b>4.4</b> Bootstrapping</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#resampling-in-bootstrapping"><i class="fa fa-check"></i><b>4.4.1</b> Resampling in Bootstrapping</a></li>
+<li class="chapter" data-level="4.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#use-in-internal-validation"><i class="fa fa-check"></i><b>4.4.2</b> Use in Internal Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="logistic-regression.html"><a href="logistic-regression.html#nagelkerkes-r²"><i class="fa fa-check"></i><b>4.5</b> Nagelkerke’s R²</a></li>
+<li class="chapter" data-level="4.6" data-path="logistic-regression.html"><a href="logistic-regression.html#external-validation-using-hold-out-data"><i class="fa fa-check"></i><b>4.6</b> External Validation Using Hold-Out Data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -111,28 +134,59 @@
 
             <section class="normal" id="section-">
 <div id="linear-regression" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Linear regression<a href="linear-regression.html#linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="introduction" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Introduction<a href="linear-regression.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Linear regression predicts a real-valued output <span class="math inline">\(y \in \mathbb{R}\)</span> given input <span class="math inline">\(x \in \mathbb{R}^D\)</span>. Key property: <span class="math inline">\(E[y|x] = w^Tx\)</span>.</p>
-</div>
-<div id="least-squares-linear-regression" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Least Squares Linear Regression<a href="linear-regression.html#least-squares-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="terminology" class="section level3 hasAnchor" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> Terminology<a href="linear-regression.html#terminology" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h1><span class="header-section-number">Chapter 3</span> Linear Regression<a href="linear-regression.html#linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="univariate-linear-regression" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Univariate Linear Regression<a href="linear-regression.html#univariate-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://commons.wikimedia.org/wiki/File:Linear_least_squares_example2.svg"><img src="images/279px-Linear_least_squares_example2.svg.png" alt="Example of linear regression. Note that the square of the errors (green) is minimized. Source: https://commons.wikimedia.org/wiki/File:Linear_least_squares_example2.svg" /></a></p>
+<p>Univariate linear regression provides a simple yet powerful way to understand and predict relationships between two variables.</p>
+<p>More precisely, it is a statistical technique used to model and analyze the relationship between a single independent variable and a dependent variable. It is based on the linear equation:</p>
+<p><span class="math display">\[ y = \beta_0 + \beta_1x + \epsilon \]</span></p>
+<p>where: - <span class="math inline">\(y\)</span> is the dependent variable. - <span class="math inline">\(x\)</span> is the independent variable. - <span class="math inline">\(\beta_0\)</span> is the y-intercept. - <span class="math inline">\(\beta_1\)</span> is the slope of the line. - <span class="math inline">\(\epsilon\)</span> represents the error term.</p>
+<div id="variables" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Variables<a href="linear-regression.html#variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Model: <span class="math inline">\(p(y|x, \theta) = \mathcal{N}(y|w_0 + w^Tx, \sigma^2)\)</span></li>
-<li>Parameters: <span class="math inline">\(\theta = (w_0, w, \sigma^2)\)</span></li>
-<li><span class="math inline">\(w_0\)</span>: Offset/bias term.</li>
-<li><span class="math inline">\(w\)</span>: Weights or regression coefficients.</li>
+<li><p>Slope (<span class="math inline">\(\beta_1\)</span>): The slope indicates the change in the dependent variable for each unit change in the independent variable.</p></li>
+<li><p>Y-intercept (<span class="math inline">\(\beta_0\)</span>): The y-intercept is the value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> is zero, representing the starting point of the line in the regression model.</p></li>
+<li><p>Error Term (<span class="math inline">\(\epsilon\)</span>): The error term accounts for the variability in <span class="math inline">\(y\)</span> that cannot be explained by the linear relationship with <span class="math inline">\(x\)</span>.</p></li>
 </ul>
 </div>
-<div id="least-squares-estimation" class="section level3 hasAnchor" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Least Squares Estimation<a href="linear-regression.html#least-squares-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="multiple-linear-regression" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Multiple Linear Regression<a href="linear-regression.html#multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Multiple linear regression is a statistical method for modeling the relationship between one dependent variable and two or more independent variables.</p>
+<p><span class="math display">\[ y = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_nx_n + \epsilon \]</span></p>
+<p>where: - <span class="math inline">\(y\)</span> is the dependent variable. - <span class="math inline">\(x_1, x_2, ..., x_n\)</span> are independent variables. - <span class="math inline">\(\beta_0\)</span> is the intercept. - <span class="math inline">\(\beta_1, \beta_2, ..., \beta_n\)</span> are the coefficients representing the effect of each independent variable. - <span class="math inline">\(\epsilon\)</span> is the error term.</p>
+<div id="variables-1" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Variables<a href="linear-regression.html#variables-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The variables are the same as in the univariate case, but there are multiple coefficients instead of only one:</p>
 <ul>
-<li>Objective: Minimize negative log-likelihood.</li>
-<li>Residual Sum of Squares (RSS): <span class="math inline">\(RSS(w) = \frac{1}{2} \sum_{n=1}^{N} (y_n - w^Tx_n)^2\)</span></li>
+<li>Coefficients (<span class="math inline">\(\beta_1, \beta_2, ..., \beta_n\)</span>): These coefficients represent the change in the dependent variable for a one-unit change in the corresponding independent variable, assuming other variables are held constant.</li>
 </ul>
+</div>
+<div id="model-estimation" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Model Estimation<a href="linear-regression.html#model-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The coefficients <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1 (...\beta_n)\)</span> are estimated using least squares method, which minimizes the sum of squared differences between observed and predicted values.</p>
+</div>
+<div id="interpretation" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Interpretation<a href="linear-regression.html#interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Interpreting the results involves examining the estimated coefficients and assessing the model’s fit and predictive power.</p>
+</div>
+<div id="assumptions" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Assumptions<a href="linear-regression.html#assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The application of linear regression relies on several key assumptions:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Linearity</strong>: The relationship between the independent and dependent variable is linear.</p></li>
+<li><p><strong>Independence</strong>: Observations are independent of each other.</p></li>
+<li><p><strong>Normality</strong>: The residuals are normally distributed.</p></li>
+<li><p><strong>Homoscedasticity</strong>: The residuals (differences between observed and predicted values) have constant variance across all levels of the independent variable.</p></li>
+</ol>
+<p>Although not being a necessary assumption, there should be no multicollinearity, i.e.independent variables should not be highly correlated with each other.</p>
+</div>
+<div id="goodness-of-fit-r-squared-r²" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Goodness-of-Fit: R-squared (R²)<a href="linear-regression.html#goodness-of-fit-r-squared-r²" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R-squared is a statistical measure that quantifies the proportion of the variance in the dependent variable that is predictable from the independent variable. It ranges from 0 to 1, where higher values indicate a better fit of the model.</p>
+<p><span class="math display">\[ R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2} \]</span></p>
+<p>where <span class="math inline">\(\hat{y}_i\)</span> is the predicted value and <span class="math inline">\(\bar{y}\)</span> is the mean of <span class="math inline">\(y\)</span>.</p>
 
 </div>
 </div>
@@ -143,7 +197,7 @@
         </div>
       </div>
 <a href="basic-concepts-of-descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="logistic-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

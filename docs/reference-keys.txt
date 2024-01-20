@@ -59,3 +59,6 @@ resampling-in-bootstrapping
 use-in-internal-validation
 nagelkerkes-r²
 external-validation-using-hold-out-data
+variables
+multiple-linear-regression
+variables-1

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Logistic Regression | Applied Medical Data Science</title>
+  <title>Chapter 4 Logistic Regression | Applied Medical Data Science</title>
   <meta name="description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Logistic Regression | Applied Medical Data Science" />
+  <meta property="og:title" content="Chapter 4 Logistic Regression | Applied Medical Data Science" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
   <meta name="github-repo" content="georgrspinner/amds" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Logistic Regression | Applied Medical Data Science" />
+  <meta name="twitter:title" content="Chapter 4 Logistic Regression | Applied Medical Data Science" />
   
   <meta name="twitter:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
   
@@ -23,14 +23,14 @@
 <meta name="author" content="Dr. sc. ETH Dr. med Georg Ralph Spinner" />
 
 
-<meta name="date" content="2024-01-18" />
+<meta name="date" content="2024-01-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="multiple-linear-regression-extended.html"/>
+<link rel="prev" href="linear-regression.html"/>
 <link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -80,46 +80,37 @@
 <li class="chapter" data-level="2.3" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#correlation"><i class="fa fa-check"></i><b>2.3</b> Correlation</a></li>
 <li class="chapter" data-level="2.4" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#root-mean-square-error-rmse"><i class="fa fa-check"></i><b>2.4</b> Root Mean Square Error (RMSE)</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="univariate-linear-regression.html"><a href="univariate-linear-regression.html"><i class="fa fa-check"></i><b>3</b> Univariate Linear Regression</a>
+<li class="chapter" data-level="3" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>3</b> Linear Regression</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="univariate-linear-regression.html"><a href="univariate-linear-regression.html#key-concepts"><i class="fa fa-check"></i><b>3.1</b> Key Concepts</a>
+<li class="chapter" data-level="3.1" data-path="linear-regression.html"><a href="linear-regression.html#univariate-linear-regression"><i class="fa fa-check"></i><b>3.1</b> Univariate Linear Regression</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="univariate-linear-regression.html"><a href="univariate-linear-regression.html#slope-beta_1"><i class="fa fa-check"></i><b>3.1.1</b> Slope (<span class="math inline">\(\beta_1\)</span>)</a></li>
-<li class="chapter" data-level="3.1.2" data-path="univariate-linear-regression.html"><a href="univariate-linear-regression.html#y-intercept-beta_0"><i class="fa fa-check"></i><b>3.1.2</b> Y-intercept (<span class="math inline">\(\beta_0\)</span>)</a></li>
-<li class="chapter" data-level="3.1.3" data-path="univariate-linear-regression.html"><a href="univariate-linear-regression.html#error-term-epsilon"><i class="fa fa-check"></i><b>3.1.3</b> Error Term (<span class="math inline">\(\epsilon\)</span>)</a></li>
+<li class="chapter" data-level="3.1.1" data-path="linear-regression.html"><a href="linear-regression.html#variables"><i class="fa fa-check"></i><b>3.1.1</b> Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="univariate-linear-regression.html"><a href="univariate-linear-regression.html#model-estimation"><i class="fa fa-check"></i><b>3.2</b> Model Estimation</a></li>
-<li class="chapter" data-level="3.3" data-path="univariate-linear-regression.html"><a href="univariate-linear-regression.html#interpretation"><i class="fa fa-check"></i><b>3.3</b> Interpretation</a></li>
-<li class="chapter" data-level="3.4" data-path="univariate-linear-regression.html"><a href="univariate-linear-regression.html#assumptions"><i class="fa fa-check"></i><b>3.4</b> Assumptions</a></li>
-<li class="chapter" data-level="3.5" data-path="univariate-linear-regression.html"><a href="univariate-linear-regression.html#goodness-of-fit-r-squared-r²"><i class="fa fa-check"></i><b>3.5</b> Goodness-of-Fit: R-squared (R²)</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html"><i class="fa fa-check"></i><b>4</b> Multiple Linear Regression Extended</a>
+<li class="chapter" data-level="3.2" data-path="linear-regression.html"><a href="linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>3.2</b> Multiple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html#key-concepts-1"><i class="fa fa-check"></i><b>4.1</b> Key Concepts</a>
-<ul>
-<li class="chapter" data-level="4.1.1" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html#intercept-beta_0"><i class="fa fa-check"></i><b>4.1.1</b> Intercept (<span class="math inline">\(\beta_0\)</span>)</a></li>
-<li class="chapter" data-level="4.1.2" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html#coefficients-beta_1-beta_2-...-beta_n"><i class="fa fa-check"></i><b>4.1.2</b> Coefficients (<span class="math inline">\(\beta_1, \beta_2, ..., \beta_n\)</span>)</a></li>
-<li class="chapter" data-level="4.1.3" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html#error-term-epsilon-1"><i class="fa fa-check"></i><b>4.1.3</b> Error Term (<span class="math inline">\(\epsilon\)</span>)</a></li>
+<li class="chapter" data-level="3.2.1" data-path="linear-regression.html"><a href="linear-regression.html#variables-1"><i class="fa fa-check"></i><b>3.2.1</b> Variables</a></li>
+<li class="chapter" data-level="3.2.2" data-path="linear-regression.html"><a href="linear-regression.html#model-estimation"><i class="fa fa-check"></i><b>3.2.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="linear-regression.html"><a href="linear-regression.html#interpretation"><i class="fa fa-check"></i><b>3.2.3</b> Interpretation</a></li>
+<li class="chapter" data-level="3.2.4" data-path="linear-regression.html"><a href="linear-regression.html#assumptions"><i class="fa fa-check"></i><b>3.2.4</b> Assumptions</a></li>
+<li class="chapter" data-level="3.2.5" data-path="linear-regression.html"><a href="linear-regression.html#goodness-of-fit-r-squared-r²"><i class="fa fa-check"></i><b>3.2.5</b> Goodness-of-Fit: R-squared (R²)</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html#assumptions-1"><i class="fa fa-check"></i><b>4.2</b> Assumptions</a></li>
-<li class="chapter" data-level="4.3" data-path="multiple-linear-regression-extended.html"><a href="multiple-linear-regression-extended.html#goodness-of-fit-r-squared-r²-1"><i class="fa fa-check"></i><b>4.3</b> Goodness-of-Fit: R-squared (R²)</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>5</b> Logistic Regression</a>
+<li class="chapter" data-level="4" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-model"><i class="fa fa-check"></i><b>5.1</b> Logistic Regression Model</a>
+<li class="chapter" data-level="4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-model"><i class="fa fa-check"></i><b>4.1</b> Logistic Regression Model</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#univariate-logistic-regression"><i class="fa fa-check"></i><b>5.1.1</b> Univariate Logistic Regression</a></li>
-<li class="chapter" data-level="5.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#multivariate-logistic-regression"><i class="fa fa-check"></i><b>5.1.2</b> Multivariate Logistic Regression</a></li>
+<li class="chapter" data-level="4.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#univariate-logistic-regression"><i class="fa fa-check"></i><b>4.1.1</b> Univariate Logistic Regression</a></li>
+<li class="chapter" data-level="4.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#multivariate-logistic-regression"><i class="fa fa-check"></i><b>4.1.2</b> Multivariate Logistic Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="logistic-regression.html"><a href="logistic-regression.html#meaning-of-coefficients"><i class="fa fa-check"></i><b>5.2</b> Meaning of Coefficients</a></li>
-<li class="chapter" data-level="5.3" data-path="logistic-regression.html"><a href="logistic-regression.html#roc-and-auc-in-logistic-regression"><i class="fa fa-check"></i><b>5.3</b> ROC and AUC in Logistic Regression</a></li>
-<li class="chapter" data-level="5.4" data-path="logistic-regression.html"><a href="logistic-regression.html#bootstrapping"><i class="fa fa-check"></i><b>5.4</b> Bootstrapping</a>
+<li class="chapter" data-level="4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#meaning-of-coefficients"><i class="fa fa-check"></i><b>4.2</b> Meaning of Coefficients</a></li>
+<li class="chapter" data-level="4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#roc-and-auc-in-logistic-regression"><i class="fa fa-check"></i><b>4.3</b> ROC and AUC in Logistic Regression</a></li>
+<li class="chapter" data-level="4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#bootstrapping"><i class="fa fa-check"></i><b>4.4</b> Bootstrapping</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#resampling-in-bootstrapping"><i class="fa fa-check"></i><b>5.4.1</b> Resampling in Bootstrapping</a></li>
-<li class="chapter" data-level="5.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#use-in-internal-validation"><i class="fa fa-check"></i><b>5.4.2</b> Use in Internal Validation</a></li>
+<li class="chapter" data-level="4.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#resampling-in-bootstrapping"><i class="fa fa-check"></i><b>4.4.1</b> Resampling in Bootstrapping</a></li>
+<li class="chapter" data-level="4.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#use-in-internal-validation"><i class="fa fa-check"></i><b>4.4.2</b> Use in Internal Validation</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="logistic-regression.html"><a href="logistic-regression.html#nagelkerkes-r²"><i class="fa fa-check"></i><b>5.5</b> Nagelkerke’s R²</a></li>
-<li class="chapter" data-level="5.6" data-path="logistic-regression.html"><a href="logistic-regression.html#external-validation-using-hold-out-data"><i class="fa fa-check"></i><b>5.6</b> External Validation Using Hold-Out Data</a></li>
+<li class="chapter" data-level="4.5" data-path="logistic-regression.html"><a href="logistic-regression.html#nagelkerkes-r²"><i class="fa fa-check"></i><b>4.5</b> Nagelkerke’s R²</a></li>
+<li class="chapter" data-level="4.6" data-path="logistic-regression.html"><a href="logistic-regression.html#external-validation-using-hold-out-data"><i class="fa fa-check"></i><b>4.6</b> External Validation Using Hold-Out Data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -142,20 +133,20 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="logistic-regression" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Logistic Regression<a href="logistic-regression.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="logistic-regression" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Logistic Regression<a href="logistic-regression.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Logistic regression is used for binary classification problems—predicting outcomes that have two possible values. It is hence particularly useful for binary classification tasks.</p>
 <p>Logistic regression is a powerful tool for classification problems, especially in fields like medical data science and social sciences.</p>
 <p>The extension for discrete (categorical) outcomes (i.e. more than two) is called multinomial logistic regression.</p>
 <p><a href="https://en.wikipedia.org/wiki/File:Exam_pass_logistic_curve.svg"><img src="images/Exam_pass_logistic_curve.svg.png" alt="Logistic regression plot example: data-points (black) and fitted logistic regression curve (blue). Source: https://en.wikipedia.org/wiki/File:Exam_pass_logistic_curve.svg" /></a></p>
-<div id="logistic-regression-model" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Logistic Regression Model<a href="logistic-regression.html#logistic-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="logistic-regression-model" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Logistic Regression Model<a href="logistic-regression.html#logistic-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In logistic regression, the probability of the target variable being true is modeled as a function of the independent variables. The logistic function transforms linear regression output into probabilities:</p>
 <p><span class="math display">\[ \log\left(\frac{p}{1 - p}\right) = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_nx_n \]</span></p>
 <p>where <span class="math inline">\(p\)</span> is the probability of the dependent variable equaling a case (often denoted as 1). Note that <span class="math inline">\(p\)</span> itself is a value between 0 and 1.</p>
 <p>Logistic regression hence models the log-odds <span class="math inline">\(\frac{p}{1 - p}\)</span> of the probability <span class="math inline">\(p\)</span> of an event occurring.</p>
-<div id="univariate-logistic-regression" class="section level3 hasAnchor" number="5.1.1">
-<h3><span class="header-section-number">5.1.1</span> Univariate Logistic Regression<a href="logistic-regression.html#univariate-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="univariate-logistic-regression" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Univariate Logistic Regression<a href="logistic-regression.html#univariate-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Involves a single independent variable <span class="math inline">\(x\)</span>. Univariate logistic regression models the relationship between a predictor variable and the probability of a particular outcome. The model is expressed as:</p>
 <p><span class="math display">\[ \log\left(\frac{p}{1 - p}\right) = \beta_0 + \beta_1x \]</span></p>
 <ul>
@@ -165,13 +156,13 @@
 <li><span class="math inline">\(x\)</span> is the predictor variable (e.g., blood pressure).</li>
 </ul>
 </div>
-<div id="multivariate-logistic-regression" class="section level3 hasAnchor" number="5.1.2">
-<h3><span class="header-section-number">5.1.2</span> Multivariate Logistic Regression<a href="logistic-regression.html#multivariate-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="multivariate-logistic-regression" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Multivariate Logistic Regression<a href="logistic-regression.html#multivariate-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Involves not olny one predictor <span class="math inline">\(x\)</span>, but multiple independent variables <span class="math inline">\(x_1, x_2, …\)</span></p>
 </div>
 </div>
-<div id="meaning-of-coefficients" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Meaning of Coefficients<a href="logistic-regression.html#meaning-of-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="meaning-of-coefficients" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Meaning of Coefficients<a href="logistic-regression.html#meaning-of-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Each coefficient in the model represents the change in the log-odds of the dependent variable per unit change in the predictor. For a positive coefficient, as the predictor increases, the log-odds of the outcome occurring increase, and thus the probability of the outcome occurring also increases.</p>
 <div style="color: gray;">
 <p><strong>Example: Impact of Coefficients in Logistic Regression by Doubling of Odds</strong></p>
@@ -182,8 +173,8 @@
 <p>In order to calculate the odds, the exponential function is used on both sides of the equation. When <span class="math inline">\(x\)</span> increases by 1, the log-odds increase by <span class="math inline">\(\log(2)\)</span>, and the odds are thus multiplied by <span class="math inline">\(e^{\log(2)} = 2\)</span>. Thus, the probability of the event occurring becomes twice as high for each unit increase in the predictor variable.</p>
 </div>
 </div>
-<div id="roc-and-auc-in-logistic-regression" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> ROC and AUC in Logistic Regression<a href="logistic-regression.html#roc-and-auc-in-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="roc-and-auc-in-logistic-regression" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> ROC and AUC in Logistic Regression<a href="logistic-regression.html#roc-and-auc-in-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic#/media/File:Roccurves.png"><img src="images/Roccurves.png" alt="Receiver-operator-characteristic (ROC) curve example: three different models are compared. Soruce: https://en.wikipedia.org/wiki/Receiver_operating_characteristic#/media/File:Roccurves.png" /></a></p>
 <p>The Receiver Operating Characteristic (ROC) curve is a graphical representation of a classification model’s diagnostic ability. ROC curve plots the True Positive Rate (Sensitivity) against the False Positive Rate (1 - Specificity) for different threshold values.</p>
 <p>More specifically, in logistic regression, ROC curve is created by plotting the True Positive Rate (TPR) against the False Positive Rate (FPR) at various threshold settings. The TPR is the proportion of positive cases correctly identified, while the FPR is the proportion of negative cases incorrectly identified as positive.</p>
@@ -196,19 +187,19 @@
 </ol>
 <p>Area Under the Curve (AUC) provides a single measure of a model’s performance, quantifying the overall ability of the test to discriminate between positive and negative cases. The AUC can theoretically be 0, but a random classifier would achieve a AUC of 0.5 The maximum (and hence ideal) AUC is 1.</p>
 </div>
-<div id="bootstrapping" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Bootstrapping<a href="logistic-regression.html#bootstrapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bootstrapping" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Bootstrapping<a href="logistic-regression.html#bootstrapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Bootstrapping is a resampling technique used to estimate the distribution of a statistic (like the mean or median) by repeatedly sampling with replacement from the data set. In logistic regression, it’s often used for internal validation, to assess the stability and reliability of the model.</p>
-<div id="resampling-in-bootstrapping" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Resampling in Bootstrapping<a href="logistic-regression.html#resampling-in-bootstrapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="resampling-in-bootstrapping" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Resampling in Bootstrapping<a href="logistic-regression.html#resampling-in-bootstrapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Resampling in bootstrapping involves repeatedly drawing samples (with replacement, i.e. the same data-point can be selected several times) from the original dataset and calculating the statistic of interest for each sample. This process creates a distribution of the statistic, allowing for estimation of its variance and confidence intervals.</p>
 <div style="color: gray;">
 <p><strong>Example: Bootstrapping</strong></p>
 <p>Imagine a dataset with 100 observations. In bootstrapping, you might randomly select 100 observations from this dataset, with replacement (i.e. there are duplicates), to form a new sample. This process is repeated many times (e.g., 1000 times) to create many bootstrap samples.</p>
 </div>
 </div>
-<div id="use-in-internal-validation" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Use in Internal Validation<a href="logistic-regression.html#use-in-internal-validation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="use-in-internal-validation" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Use in Internal Validation<a href="logistic-regression.html#use-in-internal-validation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Bootstrapping is useful for internal validation of models, such as logistic regression models, in several ways:</p>
 <ul>
 <li><p>Stability Testing: It helps in assessing the stability of the model by examining how much the predictions vary across different bootstrap samples.</p></li>
@@ -219,16 +210,16 @@
 <p>An alternative method would be cross-validation, where the data is repeatedly split up into training and test batches.</p>
 </div>
 </div>
-<div id="nagelkerkes-r²" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Nagelkerke’s R²<a href="logistic-regression.html#nagelkerkes-r²" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="nagelkerkes-r²" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Nagelkerke’s R²<a href="logistic-regression.html#nagelkerkes-r²" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This is a pseudo R-squared measure for logistic regression.</p>
 <p>Nagelkerke’s R² is a modified version of the R-squared statistic adapted for logistic regression. It provides an estimation of the variance explained by the model.</p>
 <p><span class="math display">\[ R_{\text{Nagelkerke}}^2 = \frac{1 - e^{-2/n(L_{\text{model}} - L_0)}}{1 - e^{-2/n(L_{\text{max}} - L_0)}} \]</span></p>
 <p>where <span class="math inline">\(L_{\text{model}}\)</span> is the log-likelihood of the model, <span class="math inline">\(L_0\)</span> is the log-likelihood of the null model, <span class="math inline">\(L_{\text{max}}\)</span> is the log-likelihood of the perfect model, and <span class="math inline">\(n\)</span> is the sample size.</p>
 <p>Nagelkerke’s R² is an adaptation of the Cox &amp; Snell R² that adjusts the scale so the maximum value is 1.</p>
 </div>
-<div id="external-validation-using-hold-out-data" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> External Validation Using Hold-Out Data<a href="logistic-regression.html#external-validation-using-hold-out-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="external-validation-using-hold-out-data" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> External Validation Using Hold-Out Data<a href="logistic-regression.html#external-validation-using-hold-out-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>External validation involves assessing the model’s predictive performance on a separate dataset that was not used during the model building process. This process helps to evaluate how well the model generalizes to new, unseen data, which is crucial for assessing the practical utility of the model.</p>
 
 </div>
@@ -238,7 +229,7 @@
           </div>
         </div>
       </div>
-<a href="multiple-linear-regression-extended.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
