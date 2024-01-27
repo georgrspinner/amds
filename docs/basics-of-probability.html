@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Basics of Probability | Applied Medical Data Science</title>
+  <meta name="description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Basics of Probability | Applied Medical Data Science" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
+  <meta name="github-repo" content="georgrspinner/amds" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Basics of Probability | Applied Medical Data Science" />
+  
+  <meta name="twitter:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
+  
+
+<meta name="author" content="Dr. sc. ETH Dr. med Georg Ralph Spinner" />
+
+
+<meta name="date" content="2024-01-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="logistic-regression.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied Medical Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Basic Concepts of Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#mean-average"><i class="fa fa-check"></i><b>2.1</b> Mean (Average)</a></li>
+<li class="chapter" data-level="2.2" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>2.2</b> Standard Deviation</a></li>
+<li class="chapter" data-level="2.3" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#correlation"><i class="fa fa-check"></i><b>2.3</b> Correlation</a></li>
+<li class="chapter" data-level="2.4" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#root-mean-square-error-rmse"><i class="fa fa-check"></i><b>2.4</b> Root Mean Square Error (RMSE)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>3</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="linear-regression.html"><a href="linear-regression.html#univariate-linear-regression"><i class="fa fa-check"></i><b>3.1</b> Univariate Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="linear-regression.html"><a href="linear-regression.html#variables"><i class="fa fa-check"></i><b>3.1.1</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="linear-regression.html"><a href="linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>3.2</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="linear-regression.html"><a href="linear-regression.html#variables-1"><i class="fa fa-check"></i><b>3.2.1</b> Variables</a></li>
+<li class="chapter" data-level="3.2.2" data-path="linear-regression.html"><a href="linear-regression.html#model-estimation"><i class="fa fa-check"></i><b>3.2.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="linear-regression.html"><a href="linear-regression.html#interpretation"><i class="fa fa-check"></i><b>3.2.3</b> Interpretation</a></li>
+<li class="chapter" data-level="3.2.4" data-path="linear-regression.html"><a href="linear-regression.html#assumptions"><i class="fa fa-check"></i><b>3.2.4</b> Assumptions</a></li>
+<li class="chapter" data-level="3.2.5" data-path="linear-regression.html"><a href="linear-regression.html#goodness-of-fit-r-squared-r²"><i class="fa fa-check"></i><b>3.2.5</b> Goodness-of-Fit: R-squared (R²)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-model"><i class="fa fa-check"></i><b>4.1</b> Logistic Regression Model</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#univariate-logistic-regression"><i class="fa fa-check"></i><b>4.1.1</b> Univariate Logistic Regression</a></li>
+<li class="chapter" data-level="4.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#multivariate-logistic-regression"><i class="fa fa-check"></i><b>4.1.2</b> Multivariate Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#meaning-of-coefficients"><i class="fa fa-check"></i><b>4.2</b> Meaning of Coefficients</a></li>
+<li class="chapter" data-level="4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#roc-and-auc-in-logistic-regression"><i class="fa fa-check"></i><b>4.3</b> ROC and AUC in Logistic Regression</a></li>
+<li class="chapter" data-level="4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#bootstrapping"><i class="fa fa-check"></i><b>4.4</b> Bootstrapping</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#resampling-in-bootstrapping"><i class="fa fa-check"></i><b>4.4.1</b> Resampling in Bootstrapping</a></li>
+<li class="chapter" data-level="4.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#use-in-internal-validation"><i class="fa fa-check"></i><b>4.4.2</b> Use in Internal Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="logistic-regression.html"><a href="logistic-regression.html#nagelkerkes-r²"><i class="fa fa-check"></i><b>4.5</b> Nagelkerke’s R²</a></li>
+<li class="chapter" data-level="4.6" data-path="logistic-regression.html"><a href="logistic-regression.html#external-validation-using-hold-out-data"><i class="fa fa-check"></i><b>4.6</b> External Validation Using Hold-Out Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basics-of-probability.html"><a href="basics-of-probability.html"><i class="fa fa-check"></i><b>5</b> Basics of Probability</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#random-variable"><i class="fa fa-check"></i><b>5.1</b> Random Variable</a></li>
+<li class="chapter" data-level="5.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#events-and-outcomes"><i class="fa fa-check"></i><b>5.2</b> Events and Outcomes</a></li>
+<li class="chapter" data-level="5.3" data-path="basics-of-probability.html"><a href="basics-of-probability.html#probability"><i class="fa fa-check"></i><b>5.3</b> Probability</a></li>
+<li class="chapter" data-level="5.4" data-path="basics-of-probability.html"><a href="basics-of-probability.html#independence"><i class="fa fa-check"></i><b>5.4</b> Independence</a></li>
+<li class="chapter" data-level="5.5" data-path="basics-of-probability.html"><a href="basics-of-probability.html#joint-probability"><i class="fa fa-check"></i><b>5.5</b> Joint Probability</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-analyzing-survey-data"><i class="fa fa-check"></i><b>5.5.1</b> Example: Analyzing Survey Data</a></li>
+<li class="chapter" data-level="5.5.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-joint-probability-from-survey-data"><i class="fa fa-check"></i><b>5.5.2</b> Example: Joint Probability from Survey Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="basics-of-probability.html"><a href="basics-of-probability.html#marginal-probability"><i class="fa fa-check"></i><b>5.6</b> Marginal Probability</a></li>
+<li class="chapter" data-level="5.7" data-path="basics-of-probability.html"><a href="basics-of-probability.html#conditional-probability"><i class="fa fa-check"></i><b>5.7</b> Conditional Probability</a></li>
+<li class="chapter" data-level="5.8" data-path="basics-of-probability.html"><a href="basics-of-probability.html#the-law-of-total-probability"><i class="fa fa-check"></i><b>5.8</b> The Law of Total Probability</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-total-probability"><i class="fa fa-check"></i><b>5.8.1</b> Example: Calculating Total Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="basics-of-probability.html"><a href="basics-of-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>5.9</b> Bayes’ Theorem</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-medical-diagnosis"><i class="fa fa-check"></i><b>5.9.1</b> Example: Medical Diagnosis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="basics-of-probability.html"><a href="basics-of-probability.html#calculating-the-positive-predictive-value-ppv"><i class="fa fa-check"></i><b>5.10</b> Calculating the Positive Predictive Value (PPV)</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-ppv-with-known-sensitivity-and-specificity"><i class="fa fa-check"></i><b>5.10.1</b> Example: Calculating PPV with Known Sensitivity and Specificity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="basics-of-probability.html"><a href="basics-of-probability.html#probability-distributions"><i class="fa fa-check"></i><b>5.11</b> Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-probability-distributions"><i class="fa fa-check"></i><b>5.11.1</b> Discrete Probability Distributions</a></li>
+<li class="chapter" data-level="5.11.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>5.11.2</b> Continuous Probability Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="basics-of-probability.html"><a href="basics-of-probability.html#expectation-in-probability"><i class="fa fa-check"></i><b>5.12</b> Expectation in Probability</a>
+<ul>
+<li class="chapter" data-level="5.12.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-random-variable"><i class="fa fa-check"></i><b>5.12.1</b> Discrete Random Variable</a></li>
+<li class="chapter" data-level="5.12.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-random-variable"><i class="fa fa-check"></i><b>5.12.2</b> Continuous Random Variable</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Medical Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basics-of-probability" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Basics of Probability<a href="basics-of-probability.html#basics-of-probability" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This document covers fundamental concepts in probability, focusing on both discrete and continuous variables.</p>
+<div id="random-variable" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Random Variable<a href="basics-of-probability.html#random-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A random variable is a variable whose possible values are numerical outcomes of a random phenomenon. Or a bit more technical, a random variable represents a set of possible outcomes from a random process.</p>
+<div id="examples-rolling-a-dice-measuring-temperature" class="section level4 hasAnchor" number="5.1.0.1" style="color: gray;">
+<h4><span class="header-section-number">5.1.0.1</span> <strong>Examples: rolling a dice &amp; measuring temperature</strong><a href="basics-of-probability.html#examples-rolling-a-dice-measuring-temperature" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Obviously, rolling a dice leads to a random appearance of one face of the die with a certain number between one and six on it. This is a simple example of a discrete RV.</p>
+<p>However, temperature measurement can also be considered random, because there might be many factors influencing the measurement - think e.g. about body temperature. There, noise might be added by the measurement electronics, such that this measurement must be considered a random process of a continuous RV.</p>
+</div>
+</div>
+<div id="events-and-outcomes" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Events and Outcomes<a href="basics-of-probability.html#events-and-outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In probability, an ‘event’ refers to a set of outcomes from a random process that we are interested in. An ‘outcome’ is a single result from this process.</p>
+<p>Two simple examples of random processes can be simulated in R:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="basics-of-probability.html#cb1-1" tabindex="-1"></a><span class="co"># Event: Tossing a coin</span></span>
+<span id="cb1-2"><a href="basics-of-probability.html#cb1-2" tabindex="-1"></a><span class="co"># Outcome: &#39;Heads&#39; or &#39;Tails&#39;</span></span>
+<span id="cb1-3"><a href="basics-of-probability.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="basics-of-probability.html#cb1-4" tabindex="-1"></a><span class="co"># R code to simulate a coin toss</span></span>
+<span id="cb1-5"><a href="basics-of-probability.html#cb1-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb1-6"><a href="basics-of-probability.html#cb1-6" tabindex="-1"></a>coin_toss <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&#39;Heads&#39;</span>, <span class="st">&#39;Tails&#39;</span>), <span class="at">size =</span> <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-7"><a href="basics-of-probability.html#cb1-7" tabindex="-1"></a><span class="fu">print</span>(coin_toss)</span></code></pre></div>
+<pre><code>## [1] &quot;Heads&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="basics-of-probability.html#cb3-1" tabindex="-1"></a><span class="co"># Event: Rolling a die</span></span>
+<span id="cb3-2"><a href="basics-of-probability.html#cb3-2" tabindex="-1"></a><span class="co"># Outcomes: Any number from 1 to 6</span></span>
+<span id="cb3-3"><a href="basics-of-probability.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="basics-of-probability.html#cb3-4" tabindex="-1"></a><span class="co"># R code to simulate rolling a die</span></span>
+<span id="cb3-5"><a href="basics-of-probability.html#cb3-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb3-6"><a href="basics-of-probability.html#cb3-6" tabindex="-1"></a>die_roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-7"><a href="basics-of-probability.html#cb3-7" tabindex="-1"></a><span class="fu">print</span>(die_roll)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+</div>
+<div id="probability" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Probability<a href="basics-of-probability.html#probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Probability quantifies the likelihood of an event.</p>
+<p>The common Frequentist definition is:</p>
+<p><span class="math display">\[ P(A) = \frac{\text{Number of favorable outcomes}}{\text{Total number of outcomes}} \]</span></p>
+<p>However, in Bayesian statistics probability is defined as the degree of (subjective) belief.</p>
+<p>More general, in the mathematical discipline of probability theory, Kolmogorov’s axioms need to be fulfilled by said probability. They state that probability is a number between zero and one among others. This rather general condition leaves room for interpretations, see the two definitions above.</p>
+<div id="notation" class="section level4 hasAnchor" number="5.3.0.1">
+<h4><span class="header-section-number">5.3.0.1</span> Notation<a href="basics-of-probability.html#notation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The probability of the outcome of a discrete RV is written as <span class="math inline">\(P\)</span> , while the probability of a continuous RV is written in lower-case <span class="math inline">\(p\)</span>.</p>
+</div>
+</div>
+<div id="independence" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Independence<a href="basics-of-probability.html#independence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Two events A and B are independent if the occurrence of A does not affect the probability of B, and vice versa.</p>
+<p><span class="math display">\[ P(A \text{ and } B) = P(A) \times P(B) \]</span></p>
+</div>
+<div id="joint-probability" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Joint Probability<a href="basics-of-probability.html#joint-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Joint probability refers to the probability of two events occurring together.</p>
+<ul>
+<li>For Discrete Variables: <span class="math display">\[ P(A \text{ and } B) = P(A) \times P(B) \text{, for independent events} \]</span></li>
+<li>For Continuous Variables (see below for probability distributions): <span class="math display">\[ f_{X,Y}(x, y) \text{, the joint density function} \]</span></li>
+</ul>
+<div id="contingency-table" class="section level4 hasAnchor" number="5.5.0.1">
+<h4><span class="header-section-number">5.5.0.1</span> Contingency Table<a href="basics-of-probability.html#contingency-table" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A contingency table, also known as a cross-tabulation or crosstab, displays the frequency distribution of variables. They are typically used to analyze the relationship between two categorical variables.</p>
+</div>
+<div id="example-analyzing-survey-data" class="section level3 hasAnchor" number="5.5.1" style="color: gray;">
+<h3><span class="header-section-number">5.5.1</span> Example: Analyzing Survey Data<a href="basics-of-probability.html#example-analyzing-survey-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s consider a survey with two questions: “Do you exercise regularly?” and “Do you eat healthy food?” with responses as “Yes” or “No”.</p>
+<p>This table helps in understanding the relationship between regular exercise and healthy eating habits among survey participants.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="basics-of-probability.html#cb5-1" tabindex="-1"></a><span class="co"># Creating a sample dataset</span></span>
+<span id="cb5-2"><a href="basics-of-probability.html#cb5-2" tabindex="-1"></a>survey_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-3"><a href="basics-of-probability.html#cb5-3" tabindex="-1"></a>  <span class="at">Exercise =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-4"><a href="basics-of-probability.html#cb5-4" tabindex="-1"></a>  <span class="at">HealthyEating =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-5"><a href="basics-of-probability.html#cb5-5" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="basics-of-probability.html#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="basics-of-probability.html#cb5-7" tabindex="-1"></a><span class="co"># Creating a contingency table</span></span>
+<span id="cb5-8"><a href="basics-of-probability.html#cb5-8" tabindex="-1"></a><span class="fu">table</span>(survey_data<span class="sc">$</span>Exercise, survey_data<span class="sc">$</span>HealthyEating)</span></code></pre></div>
+<pre><code>##      
+##       No Yes
+##   No  25  20
+##   Yes 30  25</code></pre>
+</div>
+<p>In a data-set with e.g. two discrete RVs with two levels (binary), the joint probability distribution would be a 2x2 table: two rows and two columns for the two levels of each RV. Note that a normalization by the total responses is necessary to go from the contingency table to the joint probability.</p>
+<div id="example-joint-probability-from-survey-data" class="section level3 hasAnchor" number="5.5.2" style="color: gray;">
+<h3><span class="header-section-number">5.5.2</span> Example: Joint Probability from Survey Data<a href="basics-of-probability.html#example-joint-probability-from-survey-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Assuming a contingency table with categories ‘Exercise’ and ‘HealthyEating’.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="basics-of-probability.html#cb7-1" tabindex="-1"></a><span class="co"># Creating a contingency table</span></span>
+<span id="cb7-2"><a href="basics-of-probability.html#cb7-2" tabindex="-1"></a>survey_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-3"><a href="basics-of-probability.html#cb7-3" tabindex="-1"></a>  <span class="at">Exercise =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-4"><a href="basics-of-probability.html#cb7-4" tabindex="-1"></a>  <span class="at">HealthyEating =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-5"><a href="basics-of-probability.html#cb7-5" tabindex="-1"></a>)</span>
+<span id="cb7-6"><a href="basics-of-probability.html#cb7-6" tabindex="-1"></a>contingency_table <span class="ot">&lt;-</span> <span class="fu">table</span>(survey_data<span class="sc">$</span>Exercise, survey_data<span class="sc">$</span>HealthyEating)</span>
+<span id="cb7-7"><a href="basics-of-probability.html#cb7-7" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="basics-of-probability.html#cb7-8" tabindex="-1"></a><span class="co"># Calculating joint probabilities</span></span>
+<span id="cb7-9"><a href="basics-of-probability.html#cb7-9" tabindex="-1"></a>total_responses <span class="ot">&lt;-</span> <span class="fu">sum</span>(contingency_table)</span>
+<span id="cb7-10"><a href="basics-of-probability.html#cb7-10" tabindex="-1"></a>joint_probability_distribution <span class="ot">&lt;-</span> contingency_table <span class="sc">/</span> total_responses</span>
+<span id="cb7-11"><a href="basics-of-probability.html#cb7-11" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="basics-of-probability.html#cb7-12" tabindex="-1"></a><span class="fu">print</span>(joint_probability_distribution)</span></code></pre></div>
+<pre><code>##      
+##         No  Yes
+##   No  0.19 0.29
+##   Yes 0.22 0.30</code></pre>
+</div>
+</div>
+<div id="marginal-probability" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Marginal Probability<a href="basics-of-probability.html#marginal-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Marginal probability is the probability of an event occurring, irrespective of other events.</p>
+<ul>
+<li>For Discrete Variables: <span class="math display">\[ P(A) = \sum P(A \text{ and } B) \]</span></li>
+<li>For Continuous Variables: <span class="math display">\[ f_X(x) = \int f_{X,Y}(x, y) dy \]</span></li>
+</ul>
+<p>Effectively, this means summing (discrete RV) or integrating (continuous RV) the joint distribution along all other RV(s) apart from one.</p>
+<p>In practice, empirical data from a continuous RV is binned and then summed up to get the empirical marginal probability distribution.</p>
+</div>
+<div id="conditional-probability" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Conditional Probability<a href="basics-of-probability.html#conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Conditional probability is the probability of an event given that another event has occurred. It is defined as following:</p>
+<ul>
+<li>For Discrete Variables: <span class="math display">\[ P(A|B) = \frac{P(A \text{ and } B)}{P(B)} \]</span></li>
+<li>For Continuous Variables: <span class="math display">\[ f_{X|Y}(x|y) = \frac{f_{X,Y}(x, y)}{f_Y(y)} \]</span></li>
+</ul>
+</div>
+<div id="the-law-of-total-probability" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> The Law of Total Probability<a href="basics-of-probability.html#the-law-of-total-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Law of Total Probability is a fundamental rule relating marginal probabilities to conditional probabilities.</p>
+<p>The law states that if we have a set of mutually exclusive and exhaustive events, <span class="math inline">\(B_1, B_2, \ldots, B_n\)</span>, then the total probability of event A can be expressed as:</p>
+<p><span class="math display">\[ P(A) = \sum_{i=1}^{n} P(A | B_i) \cdot P(B_i) \]</span></p>
+<div id="example-calculating-total-probability" class="section level3 hasAnchor" number="5.8.1" style="color: gray;">
+<h3><span class="header-section-number">5.8.1</span> Example: Calculating Total Probability<a href="basics-of-probability.html#example-calculating-total-probability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Assume we have two scenarios, B1 and B2, each with its own probability and a conditional probability of A.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="basics-of-probability.html#cb9-1" tabindex="-1"></a><span class="co"># Define probabilities</span></span>
+<span id="cb9-2"><a href="basics-of-probability.html#cb9-2" tabindex="-1"></a>P_B1 <span class="ot">&lt;-</span> <span class="fl">0.4</span> <span class="co"># Probability of scenario B1</span></span>
+<span id="cb9-3"><a href="basics-of-probability.html#cb9-3" tabindex="-1"></a>P_B2 <span class="ot">&lt;-</span> <span class="fl">0.6</span> <span class="co"># Probability of scenario B2</span></span>
+<span id="cb9-4"><a href="basics-of-probability.html#cb9-4" tabindex="-1"></a>P_A_given_B1 <span class="ot">&lt;-</span> <span class="fl">0.7</span> <span class="co"># Probability of A given B1</span></span>
+<span id="cb9-5"><a href="basics-of-probability.html#cb9-5" tabindex="-1"></a>P_A_given_B2 <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="co"># Probability of A given B2</span></span>
+<span id="cb9-6"><a href="basics-of-probability.html#cb9-6" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="basics-of-probability.html#cb9-7" tabindex="-1"></a><span class="co"># Applying the law of total probability</span></span>
+<span id="cb9-8"><a href="basics-of-probability.html#cb9-8" tabindex="-1"></a>P_A <span class="ot">&lt;-</span> P_A_given_B1 <span class="sc">*</span> P_B1 <span class="sc">+</span> P_A_given_B2 <span class="sc">*</span> P_B2</span>
+<span id="cb9-9"><a href="basics-of-probability.html#cb9-9" tabindex="-1"></a><span class="fu">print</span>(P_A)</span></code></pre></div>
+<pre><code>## [1] 0.4</code></pre>
+<p>This example demonstrates how to use the Law of Total Probability to calculate the overall probability of an event A.</p>
+</div>
+</div>
+<div id="bayes-theorem" class="section level2 hasAnchor" number="5.9">
+<h2><span class="header-section-number">5.9</span> Bayes’ Theorem<a href="basics-of-probability.html#bayes-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Bayes’ Theorem is a fundamental concept in probability theory. It describes the probability of an event, based on prior knowledge of conditions that might be related to the event.</p>
+<p>Bayes’ Theorem is mathematically expressed as:</p>
+<p><span class="math display">\[ P(A|B) = \frac{P(B|A) P(A)}{P(B)} \]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(P(A|B)\)</span> is the probability of event A given that B is true.</li>
+<li><span class="math inline">\(P(B|A)\)</span> is the probability of event B given that A is true.</li>
+<li><span class="math inline">\(P(A)\)</span> and <span class="math inline">\(P(B)\)</span> are the probabilities of observing A and B independently of each other.</li>
+</ul>
+<div id="example-medical-diagnosis" class="section level3 hasAnchor" number="5.9.1" style="color: gray;">
+<h3><span class="header-section-number">5.9.1</span> Example: Medical Diagnosis<a href="basics-of-probability.html#example-medical-diagnosis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider a scenario where we want to calculate the probability of a disease (A) given a positive test result (B), i.e. <span class="math inline">\(P(A|B)\)</span>. This probability is also called the positive predictive value (PPV). PPV is the probability that subjects with a positive test truly have the disease.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="basics-of-probability.html#cb11-1" tabindex="-1"></a><span class="co"># Assuming P(A) is the prevalence of the disease</span></span>
+<span id="cb11-2"><a href="basics-of-probability.html#cb11-2" tabindex="-1"></a><span class="co"># P(B|A) is the sensitivity of the test</span></span>
+<span id="cb11-3"><a href="basics-of-probability.html#cb11-3" tabindex="-1"></a><span class="co"># P(B) is the overall probability of testing positive</span></span>
+<span id="cb11-4"><a href="basics-of-probability.html#cb11-4" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="basics-of-probability.html#cb11-5" tabindex="-1"></a>P_A <span class="ot">&lt;-</span> <span class="fl">0.01</span>  <span class="co"># Prevalence of disease</span></span>
+<span id="cb11-6"><a href="basics-of-probability.html#cb11-6" tabindex="-1"></a>P_B_given_A <span class="ot">&lt;-</span> <span class="fl">0.95</span>  <span class="co"># Sensitivity of test</span></span>
+<span id="cb11-7"><a href="basics-of-probability.html#cb11-7" tabindex="-1"></a>P_B <span class="ot">&lt;-</span> <span class="fl">0.05</span>  <span class="co"># Overall probability of testing positive</span></span>
+<span id="cb11-8"><a href="basics-of-probability.html#cb11-8" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="basics-of-probability.html#cb11-9" tabindex="-1"></a>P_A_given_B <span class="ot">&lt;-</span> (P_B_given_A <span class="sc">*</span> P_A) <span class="sc">/</span> P_B</span>
+<span id="cb11-10"><a href="basics-of-probability.html#cb11-10" tabindex="-1"></a><span class="fu">print</span>(P_A_given_B)</span></code></pre></div>
+<pre><code>## [1] 0.19</code></pre>
+</div>
+</div>
+<div id="calculating-the-positive-predictive-value-ppv" class="section level2 hasAnchor" number="5.10">
+<h2><span class="header-section-number">5.10</span> Calculating the Positive Predictive Value (PPV)<a href="basics-of-probability.html#calculating-the-positive-predictive-value-ppv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here, we consider the scenario of the meidcal test in the example above, i.e. A=disease, B=positive test.</p>
+<p>When the overall probability of testing positive is unknown, PPV can be calculated using prevalence, sensitivity, and specificity.</p>
+<p>Sensitivity, also known as the true positive rate, measures the proportion of actual positives that are correctly identified by the test:</p>
+<p><span class="math display">\[ \text{Sensitivity} = \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}} \]</span></p>
+<p>Specificity, also known as the true negative rate, measures the proportion of actual negatives that are correctly identified by the test:</p>
+<p><span class="math display">\[ \text{Specificity} = \frac{\text{True Negatives}}{\text{True Negatives} + \text{False Positives}} \]</span></p>
+<p>Prevalence is a measure used in epidemiology to describe the proportion of a population found to have a particular condition at a specific time.</p>
+<p>Prevalence is calculated as the number of cases of a disease or condition in a population at a given time divided by the total population.</p>
+<p><span class="math display">\[ \text{Prevalence} = \frac{\text{Number of cases}}{\text{Total population}} \]</span></p>
+<p>PPV can be calculated using Bayes’ Theorem:</p>
+<p><span class="math display">\[ PPV = P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} \]</span></p>
+<p>Here, <span class="math inline">\(P(B)\)</span>, the overall probability of testing positive, can be derived using the law of total probability as:</p>
+<p><span class="math display">\[ P(B) = P(B|A) \cdot P(A) + P(B|\neg A) \cdot P(\neg A) \]</span></p>
+<p>where <span class="math inline">\(P(B|\neg A)\)</span> is the false positive rate (i.e. probability of having a positive test, but not having the disease or simply being healthy), calculated as <span class="math inline">\(1 - \text{specificity}\)</span>.</p>
+<p>Note that <span class="math inline">\(\neg\)</span> means “not”, i.e. <span class="math inline">\(\neg A\)</span> means that event <span class="math inline">\(A\)</span> has not happened.</p>
+<p>Here <span class="math inline">\(P(\neg A) = 1- P(A)\)</span>, because if <span class="math inline">\(A\)</span> has not happened, the probability of it is the complement to the probability of <span class="math inline">\(A\)</span> happening: since probabilities sum up to one, this formula holds. More specifically, <span class="math inline">\(\neg A\)</span> means that no disease is present (i.e. healthy status), which is just <span class="math inline">\(1-\text{prevalence}\)</span>.</p>
+<div id="example-calculating-ppv-with-known-sensitivity-and-specificity" class="section level3 hasAnchor" number="5.10.1">
+<h3><span class="header-section-number">5.10.1</span> Example: Calculating PPV with Known Sensitivity and Specificity<a href="basics-of-probability.html#example-calculating-ppv-with-known-sensitivity-and-specificity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="basics-of-probability.html#cb13-1" tabindex="-1"></a><span class="co"># Sensitivity and Specificity of the test</span></span>
+<span id="cb13-2"><a href="basics-of-probability.html#cb13-2" tabindex="-1"></a>sensitivity <span class="ot">&lt;-</span> <span class="fl">0.95</span>  <span class="co"># P(B|A)</span></span>
+<span id="cb13-3"><a href="basics-of-probability.html#cb13-3" tabindex="-1"></a>specificity <span class="ot">&lt;-</span> <span class="fl">0.90</span>  <span class="co"># 1 - P(B|¬A)</span></span>
+<span id="cb13-4"><a href="basics-of-probability.html#cb13-4" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="basics-of-probability.html#cb13-5" tabindex="-1"></a><span class="co"># Prevalence of the disease</span></span>
+<span id="cb13-6"><a href="basics-of-probability.html#cb13-6" tabindex="-1"></a>prevalence <span class="ot">&lt;-</span> <span class="fl">0.01</span>  <span class="co"># P(A)</span></span>
+<span id="cb13-7"><a href="basics-of-probability.html#cb13-7" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="basics-of-probability.html#cb13-8" tabindex="-1"></a><span class="co"># Calculating P(B)</span></span>
+<span id="cb13-9"><a href="basics-of-probability.html#cb13-9" tabindex="-1"></a>P_B <span class="ot">&lt;-</span> sensitivity <span class="sc">*</span> prevalence <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> specificity) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> prevalence)</span>
+<span id="cb13-10"><a href="basics-of-probability.html#cb13-10" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="basics-of-probability.html#cb13-11" tabindex="-1"></a><span class="co"># Calculating PPV</span></span>
+<span id="cb13-12"><a href="basics-of-probability.html#cb13-12" tabindex="-1"></a>PPV <span class="ot">&lt;-</span> (sensitivity <span class="sc">*</span> prevalence) <span class="sc">/</span> P_B</span>
+<span id="cb13-13"><a href="basics-of-probability.html#cb13-13" tabindex="-1"></a><span class="fu">print</span>(PPV)</span></code></pre></div>
+<pre><code>## [1] 0.0875576</code></pre>
+</div>
+</div>
+<div id="probability-distributions" class="section level2 hasAnchor" number="5.11">
+<h2><span class="header-section-number">5.11</span> Probability Distributions<a href="basics-of-probability.html#probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Probability distributions describe how the values of a RV are distributed.</p>
+<div id="discrete-probability-distributions" class="section level3 hasAnchor" number="5.11.1">
+<h3><span class="header-section-number">5.11.1</span> Discrete Probability Distributions<a href="basics-of-probability.html#discrete-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Discrete distributions describe variables that take specific values (like counts). Note that, for each outcome, the probability distribution assigns a probability.</p>
+<div id="example-binomial-distribution" class="section level4 hasAnchor" number="5.11.1.1" style="color: gray;">
+<h4><span class="header-section-number">5.11.1.1</span> Example: Binomial Distribution<a href="basics-of-probability.html#example-binomial-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="basics-of-probability.html#cb15-1" tabindex="-1"></a><span class="co"># Binomial distribution: number of successes in a fixed number of trials</span></span>
+<span id="cb15-2"><a href="basics-of-probability.html#cb15-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>), <span class="at">type =</span> <span class="st">&quot;h&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Binomial Distribution&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Number of Successes&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>)</span></code></pre></div>
+<p><img src="gitbook-demo_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+</div>
+<div id="continuous-probability-distributions" class="section level3 hasAnchor" number="5.11.2">
+<h3><span class="header-section-number">5.11.2</span> Continuous Probability Distributions<a href="basics-of-probability.html#continuous-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Continuous distributions describe variables that can take any value within a range. They are functions which assign a value to every value of the continuous RV. However, a probability is only defined over a certain interval of the RV by i.e. integrating the probability distribution over that integral. The integral over the whole range of the RV (definition set) mus equal one, because this - and any other- probability can not exceed one.</p>
+<div id="example-normal-distribution" class="section level4 hasAnchor" number="5.11.2.1" style="color: gray;">
+<h4><span class="header-section-number">5.11.2.1</span> Example: Normal Distribution<a href="basics-of-probability.html#example-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="basics-of-probability.html#cb16-1" tabindex="-1"></a><span class="co"># Normal distribution: bell-shaped distribution of a variable</span></span>
+<span id="cb16-2"><a href="basics-of-probability.html#cb16-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">main =</span> <span class="st">&quot;Normal Distribution&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Value&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Density&quot;</span>)</span></code></pre></div>
+<p><img src="gitbook-demo_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="expectation-in-probability" class="section level2 hasAnchor" number="5.12">
+<h2><span class="header-section-number">5.12</span> Expectation in Probability<a href="basics-of-probability.html#expectation-in-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Expectation (or expected value) is a fundamental concept in probability, representing the average value a random variable is expected to take on.</p>
+<div id="discrete-random-variable" class="section level3 hasAnchor" number="5.12.1">
+<h3><span class="header-section-number">5.12.1</span> Discrete Random Variable<a href="basics-of-probability.html#discrete-random-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For a discrete random variable <span class="math inline">\(X\)</span>, the expectation is calculated as:</p>
+<p><span class="math display">\[ E(X) = \sum_{i=1}^{n} x_i P(x_i) \]</span></p>
+<p>where <span class="math inline">\(x_i\)</span> are the possible values of <span class="math inline">\(X\)</span>, and <span class="math inline">\(P(x_i)\)</span> is the probability of <span class="math inline">\(x_i\)</span>.</p>
+<div id="example-expectation-of-a-dice-roll" class="section level4 hasAnchor" number="5.12.1.1" style="color: gray;">
+<h4><span class="header-section-number">5.12.1.1</span> Example: Expectation of a Dice Roll<a href="basics-of-probability.html#example-expectation-of-a-dice-roll" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="basics-of-probability.html#cb17-1" tabindex="-1"></a><span class="co"># Expectation of rolling a fair six-sided dice</span></span>
+<span id="cb17-2"><a href="basics-of-probability.html#cb17-2" tabindex="-1"></a>outcomes <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb17-3"><a href="basics-of-probability.html#cb17-3" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="at">times =</span> <span class="dv">6</span>)</span>
+<span id="cb17-4"><a href="basics-of-probability.html#cb17-4" tabindex="-1"></a>expected_value <span class="ot">&lt;-</span> <span class="fu">sum</span>(outcomes <span class="sc">*</span> probabilities)</span>
+<span id="cb17-5"><a href="basics-of-probability.html#cb17-5" tabindex="-1"></a><span class="fu">print</span>(expected_value)</span></code></pre></div>
+<pre><code>## [1] 3.5</code></pre>
+</div>
+</div>
+<div id="continuous-random-variable" class="section level3 hasAnchor" number="5.12.2">
+<h3><span class="header-section-number">5.12.2</span> Continuous Random Variable<a href="basics-of-probability.html#continuous-random-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For a continuous random variable <span class="math inline">\(X\)</span>, the expectation is given by the integral:</p>
+<p><span class="math display">\[ E(X) = \int_{-\infty}^{\infty} x f(x) dx \]</span></p>
+<p>where <span class="math inline">\(f(x)\)</span> is the probability density function of <span class="math inline">\(X\)</span>.</p>
+<div id="example-expectation-in-normal-distribution" class="section level4 hasAnchor" number="5.12.2.1" style="color: gray;">
+<h4><span class="header-section-number">5.12.2.1</span> Example: Expectation in Normal Distribution<a href="basics-of-probability.html#example-expectation-in-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Note that for the Normal distribution, the mean equals the expectation value, hence there is no calculation needed.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="basics-of-probability.html#cb19-1" tabindex="-1"></a><span class="co"># Assuming a normal distribution with mean = 0 and sd = 1</span></span>
+<span id="cb19-2"><a href="basics-of-probability.html#cb19-2" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb19-3"><a href="basics-of-probability.html#cb19-3" tabindex="-1"></a>expected_value <span class="ot">&lt;-</span> mean</span>
+<span id="cb19-4"><a href="basics-of-probability.html#cb19-4" tabindex="-1"></a><span class="fu">print</span>(expected_value)</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/cjvanlissa/gitbook-demo/edit/master/probability.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["gitbook-demo.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

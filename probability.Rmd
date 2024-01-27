@@ -1,0 +1,322 @@
+# Basics of Probability
+
+This document covers fundamental concepts in probability, focusing on both discrete and continuous variables.
+
+## Random Variable
+
+A random variable is a variable whose possible values are numerical outcomes of a random phenomenon. Or a bit more technical, a random variable represents a set of possible outcomes from a random process.
+
+::: {style="color: gray;"}
+#### **Examples: rolling a dice & measuring temperature**
+
+Obviously, rolling a dice leads to a random appearance of one face of the die with a certain number between one and six on it. This is a simple example of a discrete RV.
+
+However, temperature measurement can also be considered random, because there might be many factors influencing the measurement - think e.g. about body temperature. There, noise might be added by the measurement electronics, such that this measurement must be considered a random process of a continuous RV.
+:::
+
+## Events and Outcomes
+
+In probability, an 'event' refers to a set of outcomes from a random process that we are interested in. An 'outcome' is a single result from this process.
+
+Two simple examples of random processes can be simulated in R:
+
+```{r}
+# Event: Tossing a coin
+# Outcome: 'Heads' or 'Tails'
+
+# R code to simulate a coin toss
+set.seed(123) # for reproducibility
+coin_toss <- sample(c('Heads', 'Tails'), size = 1, replace = TRUE)
+print(coin_toss)
+```
+
+```{r}
+# Event: Rolling a die
+# Outcomes: Any number from 1 to 6
+
+# R code to simulate rolling a die
+set.seed(123) # for reproducibility
+die_roll <- sample(1:6, size = 1, replace = TRUE)
+print(die_roll)
+```
+
+## Probability
+
+Probability quantifies the likelihood of an event.
+
+The common Frequentist definition is:
+
+$$ P(A) = \frac{\text{Number of favorable outcomes}}{\text{Total number of outcomes}} $$
+
+However, in Bayesian statistics probability is defined as the degree of (subjective) belief.
+
+More general, in the mathematical discipline of probability theory, Kolmogorov's axioms need to be fulfilled by said probability. They state that probability is a number between zero and one among others. This rather general condition leaves room for interpretations, see the two definitions above.
+
+#### Notation
+
+The probability of the outcome of a discrete RV is written as $P$ , while the probability of a continuous RV is written in lower-case $p$.
+
+## Independence
+
+Two events A and B are independent if the occurrence of A does not affect the probability of B, and vice versa.
+
+$$ P(A \text{ and } B) = P(A) \times P(B) $$
+
+## Joint Probability
+
+Joint probability refers to the probability of two events occurring together.
+
+-   For Discrete Variables: $$ P(A \text{ and } B) = P(A) \times P(B) \text{, for independent events} $$
+-   For Continuous Variables (see below for probability distributions): $$ f_{X,Y}(x, y) \text{, the joint density function} $$
+
+#### Contingency Table
+
+A contingency table, also known as a cross-tabulation or crosstab, displays the frequency distribution of variables. They are typically used to analyze the relationship between two categorical variables.
+
+::: {style="color: gray;"}
+### Example: Analyzing Survey Data
+
+Let's consider a survey with two questions: "Do you exercise regularly?" and "Do you eat healthy food?" with responses as "Yes" or "No".
+
+This table helps in understanding the relationship between regular exercise and healthy eating habits among survey participants.
+
+```{r}
+# Creating a sample dataset
+survey_data <- data.frame(
+  Exercise = sample(c("Yes", "No"), 100, replace = TRUE),
+  HealthyEating = sample(c("Yes", "No"), 100, replace = TRUE)
+)
+
+# Creating a contingency table
+table(survey_data$Exercise, survey_data$HealthyEating)
+```
+:::
+
+In a data-set with e.g. two discrete RVs with two levels (binary), the joint probability distribution would be a 2x2 table: two rows and two columns for the two levels of each RV. Note that a normalization by the total responses is necessary to go from the contingency table to the joint probability.
+
+::: {style="color: gray;"}
+### Example: Joint Probability from Survey Data
+
+Assuming a contingency table with categories 'Exercise' and 'HealthyEating'.
+
+```{r}
+# Creating a contingency table
+survey_data <- data.frame(
+  Exercise = sample(c("Yes", "No"), 100, replace = TRUE),
+  HealthyEating = sample(c("Yes", "No"), 100, replace = TRUE)
+)
+contingency_table <- table(survey_data$Exercise, survey_data$HealthyEating)
+
+# Calculating joint probabilities
+total_responses <- sum(contingency_table)
+joint_probability_distribution <- contingency_table / total_responses
+
+print(joint_probability_distribution)
+```
+:::
+
+## Marginal Probability
+
+Marginal probability is the probability of an event occurring, irrespective of other events.
+
+-   For Discrete Variables: $$ P(A) = \sum P(A \text{ and } B) $$
+-   For Continuous Variables: $$ f_X(x) = \int f_{X,Y}(x, y) dy $$
+
+Effectively, this means summing (discrete RV) or integrating (continuous RV) the joint distribution along all other RV(s) apart from one.
+
+In practice, empirical data from a continuous RV is binned and then summed up to get the empirical marginal probability distribution.
+
+## Conditional Probability
+
+Conditional probability is the probability of an event given that another event has occurred. It is defined as following:
+
+-   For Discrete Variables: $$ P(A|B) = \frac{P(A \text{ and } B)}{P(B)} $$
+-   For Continuous Variables: $$ f_{X|Y}(x|y) = \frac{f_{X,Y}(x, y)}{f_Y(y)} $$
+
+## The Law of Total Probability
+
+The Law of Total Probability is a fundamental rule relating marginal probabilities to conditional probabilities.
+
+The law states that if we have a set of mutually exclusive and exhaustive events, $B_1, B_2, \ldots, B_n$, then the total probability of event A can be expressed as:
+
+$$ P(A) = \sum_{i=1}^{n} P(A | B_i) \cdot P(B_i) $$
+
+::: {style="color: gray;"}
+### Example: Calculating Total Probability
+
+Assume we have two scenarios, B1 and B2, each with its own probability and a conditional probability of A.
+
+```{r}
+# Define probabilities
+P_B1 <- 0.4 # Probability of scenario B1
+P_B2 <- 0.6 # Probability of scenario B2
+P_A_given_B1 <- 0.7 # Probability of A given B1
+P_A_given_B2 <- 0.2 # Probability of A given B2
+
+# Applying the law of total probability
+P_A <- P_A_given_B1 * P_B1 + P_A_given_B2 * P_B2
+print(P_A)
+```
+
+This example demonstrates how to use the Law of Total Probability to calculate the overall probability of an event A.
+:::
+
+## Bayes' Theorem
+
+Bayes' Theorem is a fundamental concept in probability theory. It describes the probability of an event, based on prior knowledge of conditions that might be related to the event.
+
+Bayes' Theorem is mathematically expressed as:
+
+$$ P(A|B) = \frac{P(B|A) P(A)}{P(B)} $$
+
+where:
+
+-   $P(A|B)$ is the probability of event A given that B is true.
+-   $P(B|A)$ is the probability of event B given that A is true.
+-   $P(A)$ and $P(B)$ are the probabilities of observing A and B independently of each other.
+
+::: {style="color: gray;"}
+### Example: Medical Diagnosis
+
+Consider a scenario where we want to calculate the probability of a disease (A) given a positive test result (B), i.e. $P(A|B)$. This probability is also called the positive predictive value (PPV). PPV is the probability that subjects with a positive test truly have the disease.
+
+```{r}
+# Assuming P(A) is the prevalence of the disease
+# P(B|A) is the sensitivity of the test
+# P(B) is the overall probability of testing positive
+
+P_A <- 0.01  # Prevalence of disease
+P_B_given_A <- 0.95  # Sensitivity of test
+P_B <- 0.05  # Overall probability of testing positive
+
+P_A_given_B <- (P_B_given_A * P_A) / P_B
+print(P_A_given_B)
+```
+:::
+
+## Calculating the Positive Predictive Value (PPV)
+
+Here, we consider the scenario of the meidcal test in the example above, i.e. A=disease, B=positive test.
+
+When the overall probability of testing positive is unknown, PPV can be calculated using prevalence, sensitivity, and specificity.
+
+Sensitivity, also known as the true positive rate, measures the proportion of actual positives that are correctly identified by the test:
+
+$$ \text{Sensitivity} = \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}} $$
+
+Specificity, also known as the true negative rate, measures the proportion of actual negatives that are correctly identified by the test:
+
+$$ \text{Specificity} = \frac{\text{True Negatives}}{\text{True Negatives} + \text{False Positives}} $$
+
+Prevalence is a measure used in epidemiology to describe the proportion of a population found to have a particular condition at a specific time.
+
+Prevalence is calculated as the number of cases of a disease or condition in a population at a given time divided by the total population.
+
+$$ \text{Prevalence} = \frac{\text{Number of cases}}{\text{Total population}} $$
+
+PPV can be calculated using Bayes' Theorem:
+
+$$ PPV = P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} $$
+
+Here, $P(B)$, the overall probability of testing positive, can be derived using the law of total probability as:
+
+$$ P(B) = P(B|A) \cdot P(A) + P(B|\neg A) \cdot P(\neg A) $$
+
+where $P(B|\neg A)$ is the false positive rate (i.e. probability of having a positive test, but not having the disease or simply being healthy), calculated as $1 - \text{specificity}$.
+
+Note that $\neg$ means "not", i.e. $\neg A$ means that event $A$ has not happened.
+
+Here $P(\neg A) = 1- P(A)$, because if $A$ has not happened, the probability of it is the complement to the probability of $A$ happening: since probabilities sum up to one, this formula holds. More specifically, $\neg A$ means that no disease is present (i.e. healthy status), which is just $1-\text{prevalence}$.
+
+### Example: Calculating PPV with Known Sensitivity and Specificity
+
+```{r}
+# Sensitivity and Specificity of the test
+sensitivity <- 0.95  # P(B|A)
+specificity <- 0.90  # 1 - P(B|¬A)
+
+# Prevalence of the disease
+prevalence <- 0.01  # P(A)
+
+# Calculating P(B)
+P_B <- sensitivity * prevalence + (1 - specificity) * (1 - prevalence)
+
+# Calculating PPV
+PPV <- (sensitivity * prevalence) / P_B
+print(PPV)
+```
+
+## Probability Distributions
+
+Probability distributions describe how the values of a RV are distributed.
+
+### Discrete Probability Distributions
+
+Discrete distributions describe variables that take specific values (like counts). Note that, for each outcome, the probability distribution assigns a probability.
+
+::: {style="color: gray;"}
+#### Example: Binomial Distribution
+
+```{r}
+# Binomial distribution: number of successes in a fixed number of trials
+plot(dbinom(0:10, size = 10, prob = 0.5), type = "h", main = "Binomial Distribution", xlab = "Number of Successes", ylab = "Probability")
+```
+:::
+
+### Continuous Probability Distributions
+
+Continuous distributions describe variables that can take any value within a range. They are functions which assign a value to every value of the continuous RV. However, a probability is only defined over a certain interval of the RV by i.e. integrating the probability distribution over that integral. The integral over the whole range of the RV (definition set) mus equal one, because this - and any other- probability can not exceed one.
+
+::: {style="color: gray;"}
+#### Example: Normal Distribution
+
+```{r}
+# Normal distribution: bell-shaped distribution of a variable
+curve(dnorm(x, mean = 0, sd = 1), from = -4, to = 4, main = "Normal Distribution", xlab = "Value", ylab = "Density")
+```
+:::
+
+## Expectation in Probability
+
+Expectation (or expected value) is a fundamental concept in probability, representing the average value a random variable is expected to take on.
+
+### Discrete Random Variable
+
+For a discrete random variable $X$, the expectation is calculated as:
+
+$$ E(X) = \sum_{i=1}^{n} x_i P(x_i) $$
+
+where $x_i$ are the possible values of $X$, and $P(x_i)$ is the probability of $x_i$.
+
+::: {style="color: gray;"}
+#### Example: Expectation of a Dice Roll
+
+```{r}
+# Expectation of rolling a fair six-sided dice
+outcomes <- 1:6
+probabilities <- rep(1/6, times = 6)
+expected_value <- sum(outcomes * probabilities)
+print(expected_value)
+```
+:::
+
+### Continuous Random Variable
+
+For a continuous random variable $X$, the expectation is given by the integral:
+
+$$ E(X) = \int_{-\infty}^{\infty} x f(x) dx $$
+
+where $f(x)$ is the probability density function of $X$.
+
+::: {style="color: gray;"}
+#### Example: Expectation in Normal Distribution
+
+Note that for the Normal distribution, the mean equals the expectation value, hence there is no calculation needed.
+
+```{r}
+# Assuming a normal distribution with mean = 0 and sd = 1
+mean <- 0
+expected_value <- mean
+print(expected_value)
+```
+:::
