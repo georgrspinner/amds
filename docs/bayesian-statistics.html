@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Bayesian Statistics | Applied Medical Data Science</title>
+  <meta name="description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Bayesian Statistics | Applied Medical Data Science" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
+  <meta name="github-repo" content="georgrspinner/amds" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Bayesian Statistics | Applied Medical Data Science" />
+  
+  <meta name="twitter:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
+  
+
+<meta name="author" content="Dr. sc. ETH Dr. med Georg Ralph Spinner" />
+
+
+<meta name="date" content="2024-02-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="basics-of-probability.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied Medical Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Basic Concepts of Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#mean-average"><i class="fa fa-check"></i><b>2.1</b> Mean (Average)</a></li>
+<li class="chapter" data-level="2.2" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>2.2</b> Standard Deviation</a></li>
+<li class="chapter" data-level="2.3" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#correlation"><i class="fa fa-check"></i><b>2.3</b> Correlation</a></li>
+<li class="chapter" data-level="2.4" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#root-mean-square-error-rmse"><i class="fa fa-check"></i><b>2.4</b> Root Mean Square Error (RMSE)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>3</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="linear-regression.html"><a href="linear-regression.html#univariate-linear-regression"><i class="fa fa-check"></i><b>3.1</b> Univariate Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="linear-regression.html"><a href="linear-regression.html#variables"><i class="fa fa-check"></i><b>3.1.1</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="linear-regression.html"><a href="linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>3.2</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="linear-regression.html"><a href="linear-regression.html#variables-1"><i class="fa fa-check"></i><b>3.2.1</b> Variables</a></li>
+<li class="chapter" data-level="3.2.2" data-path="linear-regression.html"><a href="linear-regression.html#model-estimation"><i class="fa fa-check"></i><b>3.2.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="linear-regression.html"><a href="linear-regression.html#interpretation"><i class="fa fa-check"></i><b>3.2.3</b> Interpretation</a></li>
+<li class="chapter" data-level="3.2.4" data-path="linear-regression.html"><a href="linear-regression.html#assumptions"><i class="fa fa-check"></i><b>3.2.4</b> Assumptions</a></li>
+<li class="chapter" data-level="3.2.5" data-path="linear-regression.html"><a href="linear-regression.html#goodness-of-fit-r-squared-r²"><i class="fa fa-check"></i><b>3.2.5</b> Goodness-of-Fit: R-squared (R²)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-model"><i class="fa fa-check"></i><b>4.1</b> Logistic Regression Model</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#univariate-logistic-regression"><i class="fa fa-check"></i><b>4.1.1</b> Univariate Logistic Regression</a></li>
+<li class="chapter" data-level="4.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#multivariate-logistic-regression"><i class="fa fa-check"></i><b>4.1.2</b> Multivariate Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#meaning-of-coefficients"><i class="fa fa-check"></i><b>4.2</b> Meaning of Coefficients</a></li>
+<li class="chapter" data-level="4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#roc-and-auc-in-logistic-regression"><i class="fa fa-check"></i><b>4.3</b> ROC and AUC in Logistic Regression</a></li>
+<li class="chapter" data-level="4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#bootstrapping"><i class="fa fa-check"></i><b>4.4</b> Bootstrapping</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#resampling-in-bootstrapping"><i class="fa fa-check"></i><b>4.4.1</b> Resampling in Bootstrapping</a></li>
+<li class="chapter" data-level="4.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#use-in-internal-validation"><i class="fa fa-check"></i><b>4.4.2</b> Use in Internal Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="logistic-regression.html"><a href="logistic-regression.html#nagelkerkes-r²"><i class="fa fa-check"></i><b>4.5</b> Nagelkerke’s R²</a></li>
+<li class="chapter" data-level="4.6" data-path="logistic-regression.html"><a href="logistic-regression.html#external-validation-using-hold-out-data"><i class="fa fa-check"></i><b>4.6</b> External Validation Using Hold-Out Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basics-of-probability.html"><a href="basics-of-probability.html"><i class="fa fa-check"></i><b>5</b> Basics of Probability</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#random-variable"><i class="fa fa-check"></i><b>5.1</b> Random Variable</a></li>
+<li class="chapter" data-level="5.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#events-and-outcomes"><i class="fa fa-check"></i><b>5.2</b> Events and Outcomes</a></li>
+<li class="chapter" data-level="5.3" data-path="basics-of-probability.html"><a href="basics-of-probability.html#probability"><i class="fa fa-check"></i><b>5.3</b> Probability</a></li>
+<li class="chapter" data-level="5.4" data-path="basics-of-probability.html"><a href="basics-of-probability.html#independence"><i class="fa fa-check"></i><b>5.4</b> Independence</a></li>
+<li class="chapter" data-level="5.5" data-path="basics-of-probability.html"><a href="basics-of-probability.html#joint-probability"><i class="fa fa-check"></i><b>5.5</b> Joint Probability</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-analyzing-survey-data"><i class="fa fa-check"></i><b>5.5.1</b> Example: Analyzing Survey Data</a></li>
+<li class="chapter" data-level="5.5.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-joint-probability-from-survey-data"><i class="fa fa-check"></i><b>5.5.2</b> Example: Joint Probability from Survey Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="basics-of-probability.html"><a href="basics-of-probability.html#marginal-probability"><i class="fa fa-check"></i><b>5.6</b> Marginal Probability</a></li>
+<li class="chapter" data-level="5.7" data-path="basics-of-probability.html"><a href="basics-of-probability.html#conditional-probability"><i class="fa fa-check"></i><b>5.7</b> Conditional Probability</a></li>
+<li class="chapter" data-level="5.8" data-path="basics-of-probability.html"><a href="basics-of-probability.html#the-law-of-total-probability"><i class="fa fa-check"></i><b>5.8</b> The Law of Total Probability</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-total-probability"><i class="fa fa-check"></i><b>5.8.1</b> Example: Calculating Total Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="basics-of-probability.html"><a href="basics-of-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>5.9</b> Bayes’ Theorem</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-medical-diagnosis"><i class="fa fa-check"></i><b>5.9.1</b> Example: Medical Diagnosis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="basics-of-probability.html"><a href="basics-of-probability.html#calculating-the-positive-predictive-value-ppv"><i class="fa fa-check"></i><b>5.10</b> Calculating the Positive Predictive Value (PPV)</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-ppv-with-known-sensitivity-and-specificity"><i class="fa fa-check"></i><b>5.10.1</b> Example: Calculating PPV with Known Sensitivity and Specificity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="basics-of-probability.html"><a href="basics-of-probability.html#probability-distributions"><i class="fa fa-check"></i><b>5.11</b> Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-probability-distributions"><i class="fa fa-check"></i><b>5.11.1</b> Discrete Probability Distributions</a></li>
+<li class="chapter" data-level="5.11.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>5.11.2</b> Continuous Probability Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="basics-of-probability.html"><a href="basics-of-probability.html#expectation-in-probability"><i class="fa fa-check"></i><b>5.12</b> Expectation in Probability</a>
+<ul>
+<li class="chapter" data-level="5.12.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-random-variable"><i class="fa fa-check"></i><b>5.12.1</b> Discrete Random Variable</a></li>
+<li class="chapter" data-level="5.12.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-random-variable"><i class="fa fa-check"></i><b>5.12.2</b> Continuous Random Variable</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html"><i class="fa fa-check"></i><b>6</b> Bayesian Statistics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#likelihood"><i class="fa fa-check"></i><b>6.1</b> Likelihood</a></li>
+<li class="chapter" data-level="6.2" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>6.2</b> Maximum Likelihood Estimation</a></li>
+<li class="chapter" data-level="6.3" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#prior"><i class="fa fa-check"></i><b>6.3</b> Prior</a></li>
+<li class="chapter" data-level="6.4" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#posterior"><i class="fa fa-check"></i><b>6.4</b> Posterior</a></li>
+<li class="chapter" data-level="6.5" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#bayesian-inference"><i class="fa fa-check"></i><b>6.5</b> Bayesian inference</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#analytically"><i class="fa fa-check"></i><b>6.5.1</b> Analytically</a></li>
+<li class="chapter" data-level="6.5.2" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#maximum-a-posteriori-map-estimate"><i class="fa fa-check"></i><b>6.5.2</b> Maximum-a-posteriori (MAP) estimate</a></li>
+<li class="chapter" data-level="6.5.3" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#markov-chain-monte-carlo-mcmc-sampling"><i class="fa fa-check"></i><b>6.5.3</b> Markov chain Monte Carlo (MCMC) sampling</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Medical Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bayesian-statistics" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Bayesian Statistics<a href="bayesian-statistics.html#bayesian-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Bayesian statistics involves updating our beliefs in the light of new data as stated by the Bayes’ theorem. Moreover, RVs are assumed to follow some probability distribution in the framework of Bayesian statistics, hence such approaches are also called probabilistic.</p>
+<p>In the following we look at the main building blocks for Bayesian inference: Likelihood, Prior, and Posterior</p>
+<div id="likelihood" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Likelihood<a href="bayesian-statistics.html#likelihood" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The likelihood in both Bayesian and Frequentist analysis represents how probable the observed data is given certain values of the model parameters:</p>
+<p><span class="math display">\[ \text{Likelihood} = L = P(Data | Parameters) \]</span></p>
+<div id="example-single-data-point-of-gaussian-distributed-rv" class="section level4 hasAnchor" number="6.1.0.1" style="color: gray;">
+<h4><span class="header-section-number">6.1.0.1</span> <strong>Example: single data point of Gaussian distributed RV</strong><a href="bayesian-statistics.html#example-single-data-point-of-gaussian-distributed-rv" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Assume that the data follows a Gaussian distribution, i.e. <span class="math inline">\(P=N(x|\mu,\sigma)\)</span> and we observe a single data point. The likelihood of observing a data point <span class="math inline">\(x\)</span> given a Gaussian distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> is then simply:</p>
+<p><span class="math display">\[ P(x | \mu, \sigma) = N(x|\mu,\sigma) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]</span></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="bayesian-statistics.html#cb1-1" tabindex="-1"></a><span class="co"># Single data point</span></span>
+<span id="cb1-2"><a href="bayesian-statistics.html#cb1-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fl">4.5</span> </span>
+<span id="cb1-3"><a href="bayesian-statistics.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="bayesian-statistics.html#cb1-4" tabindex="-1"></a><span class="co"># Mean and standard deviation of the Gaussian distribution</span></span>
+<span id="cb1-5"><a href="bayesian-statistics.html#cb1-5" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb1-6"><a href="bayesian-statistics.html#cb1-6" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-7"><a href="bayesian-statistics.html#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="bayesian-statistics.html#cb1-8" tabindex="-1"></a><span class="co"># Calculate the likelihood</span></span>
+<span id="cb1-9"><a href="bayesian-statistics.html#cb1-9" tabindex="-1"></a>likelihood <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> mu, <span class="at">sd =</span> sigma)</span>
+<span id="cb1-10"><a href="bayesian-statistics.html#cb1-10" tabindex="-1"></a><span class="fu">print</span>(likelihood)</span></code></pre></div>
+<pre><code>## [1] 0.3520653</code></pre>
+</div>
+</div>
+<div id="maximum-likelihood-estimation" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Maximum Likelihood Estimation<a href="bayesian-statistics.html#maximum-likelihood-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Maximum Likelihood Estimation (MLE) is a method (in Frequentist statistics) to estimate the parameters that maximize the likelihood function. In the example above, this would be <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> (if they weren’t given).</p>
+<div id="example-mle-for-linear-regression-model" class="section level4 hasAnchor" number="6.2.0.1" style="color: gray;">
+<h4><span class="header-section-number">6.2.0.1</span> <strong>Example: MLE for Linear Regression Model</strong><a href="bayesian-statistics.html#example-mle-for-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Let’s revisit linear regression. Of course, this problem can be solved using the least-squares estimator. However, it is an instructive example for MLE.</p>
+<p>A linear regression model can be expressed as:</p>
+<p><span class="math display">\[ y_i = \beta_0 + \beta_1 x_i + \epsilon_i \]</span></p>
+<p>where <span class="math inline">\(y_i\)</span> is the response, <span class="math inline">\(x_i\)</span> is the predictor, <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are coefficients, and <span class="math inline">\(\epsilon_i\)</span> is the error term.</p>
+<p>If the latter is a Gaussian error term, the probabilistic formulation of the likelihood is:</p>
+<p><span class="math display">\[L(\beta_0, \beta_1, \sigma^2)
+= \prod_{i=1}^{n} P(y_i | \beta_0, \beta_1, \sigma^2)
+= \prod_{i=1}^{n} N(y_i | \beta_0 + \beta_1 x_i, \sigma^2)
+\\
+= \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(y_i - (\beta_0 + \beta_1 x_i))^2}{2\sigma^2}\right)\]</span></p>
+<p>Here:</p>
+<ul>
+<li><p><span class="math inline">\(L(\beta_0, \beta_1, \sigma^2)\)</span> is the likelihood of the parameters <span class="math inline">\(\beta_0, \beta_1\)</span> and <span class="math inline">\(\sigma^2\)</span></p></li>
+<li><p><span class="math inline">\(y_i\)</span> represents the observed values.</p></li>
+<li><p><span class="math inline">\(x_i\)</span> represents the predictor values.</p></li>
+<li><p><span class="math inline">\(\beta_0, \beta_1\)</span> are the parameters of the linear model.</p></li>
+<li><p><span class="math inline">\(\sigma^2\)</span> is the variance of the error term.</p></li>
+</ul>
+<p>In order to solve for the unknowns (<span class="math inline">\(\beta_0, \beta_1\)</span> and <span class="math inline">\(\sigma\)</span>), an optimization problem needs to be solved: the likelihood must be maximized under variation of the unknowns. Besides using numerical approaches, there exists an analytic solution: after taking the log and deriving the gradient, the least-squares-solution is found - which is to be expected.</p>
+</div>
+<p>The (Frequentist) MLE methods do not require any prior information about the parameters to be estimated. It may be advantageous to use constraints or special starting points for non-linear problems, though.</p>
+</div>
+<div id="prior" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Prior<a href="bayesian-statistics.html#prior" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the framework of Bayesian statistics, all variables follow some probability distribution - even the ones which are to be estimated. Hence, there needs to be an a priori specification of our prior knowledge about these parameters.</p>
+<p>This prior distribution hence represents our beliefs about the parameters before observing the data.</p>
+<div id="example-unifrom-prior-for-linear-regression-model" class="section level4 hasAnchor" number="6.3.0.1" style="color: gray;">
+<h4><span class="header-section-number">6.3.0.1</span> <strong>Example: Unifrom prior for Linear Regression Model</strong><a href="bayesian-statistics.html#example-unifrom-prior-for-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Suppose, we know nothing about the parameters to be estimated in a linear regression problem (see also example above). Then we would choose flat priors, i.e. a constant probability distribution, also called uniform <span class="math inline">\(U\)</span>. In a probabilistic formulation this would be:</p>
+<ul>
+<li><span class="math inline">\(\beta_0 \sim U(-\infty, +\infty)\)</span></li>
+<li><span class="math inline">\(\beta_1 \sim U(-\infty, +\infty)\)</span></li>
+<li><span class="math inline">\(\sigma \sim U(-\infty, +\infty)\)</span></li>
+</ul>
+<p>This would mean, that there is nothing known about the parameters a priori. In principle, we would find the same results under this prior as just using MLE. In practice, such a prior would lead to numerical problems due to its unbounded support. In the following, we will explore this topic.</p>
+</div>
+</div>
+<div id="posterior" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Posterior<a href="bayesian-statistics.html#posterior" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The posterior distribution combines the likelihood and the prior to give updated beliefs about the parameters after observing the data via Bayes’ theorem:</p>
+<p><span class="math display">\[ P(\theta | \text{data}) = \frac{P(\text{data} | \theta) \times P(\theta)}{P(\text{data})} \]</span></p>
+<ul>
+<li><span class="math inline">\(P(\theta | \text{data})\)</span> is the posterior distribution of the parameter <span class="math inline">\(\theta\)</span>.</li>
+<li><span class="math inline">\(P(\text{data} | \theta)\)</span> is the likelihood of the data given the parameter <span class="math inline">\(\theta\)</span>.</li>
+<li><span class="math inline">\(P(\theta)\)</span> is the prior distribution of <span class="math inline">\(\theta\)</span>.</li>
+<li><span class="math inline">\(P(\text{data})\)</span> is the marginal likelihood of the data.</li>
+</ul>
+<p>Note how the posterior is proportional to the prior and likelihood, indicating the influence of the a priori knwolegde in addition to the data. For given data, the marginal likelihood of the data is a constant.</p>
+<div id="example-normal-prior-and-likelihood-with-resulting-posterior" class="section level4 hasAnchor" number="6.4.0.1" style="color: gray;">
+<h4><span class="header-section-number">6.4.0.1</span> <strong>Example: Normal prior and likelihood with resulting posterior</strong><a href="bayesian-statistics.html#example-normal-prior-and-likelihood-with-resulting-posterior" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Consider this simple example of a Normal prior and a Normal likelihood. The resulting posterior is then the product of the two.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="bayesian-statistics.html#cb3-1" tabindex="-1"></a><span class="co"># Load necessary library</span></span>
+<span id="cb3-2"><a href="bayesian-statistics.html#cb3-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a href="bayesian-statistics.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="bayesian-statistics.html#cb3-4" tabindex="-1"></a><span class="co"># Define the prior distribution (Normal distribution)</span></span>
+<span id="cb3-5"><a href="bayesian-statistics.html#cb3-5" tabindex="-1"></a>prior <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="bayesian-statistics.html#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="bayesian-statistics.html#cb3-7" tabindex="-1"></a><span class="co"># Define the likelihood function (Normal distribution)</span></span>
+<span id="cb3-8"><a href="bayesian-statistics.html#cb3-8" tabindex="-1"></a>likelihood <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb3-9"><a href="bayesian-statistics.html#cb3-9" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="bayesian-statistics.html#cb3-10" tabindex="-1"></a><span class="co"># Define a range of values for x</span></span>
+<span id="cb3-11"><a href="bayesian-statistics.html#cb3-11" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">6</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb3-12"><a href="bayesian-statistics.html#cb3-12" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="bayesian-statistics.html#cb3-13" tabindex="-1"></a><span class="co"># Calculate the prior, likelihood, and posterior</span></span>
+<span id="cb3-14"><a href="bayesian-statistics.html#cb3-14" tabindex="-1"></a>prior_values <span class="ot">&lt;-</span> <span class="fu">prior</span>(x_values)</span>
+<span id="cb3-15"><a href="bayesian-statistics.html#cb3-15" tabindex="-1"></a>likelihood_values <span class="ot">&lt;-</span> <span class="fu">likelihood</span>(x_values)</span>
+<span id="cb3-16"><a href="bayesian-statistics.html#cb3-16" tabindex="-1"></a>posterior_values <span class="ot">&lt;-</span> prior_values <span class="sc">*</span> likelihood_values  <span class="co"># Not normalized</span></span>
+<span id="cb3-17"><a href="bayesian-statistics.html#cb3-17" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="bayesian-statistics.html#cb3-18" tabindex="-1"></a><span class="co"># Create a data frame for plotting</span></span>
+<span id="cb3-19"><a href="bayesian-statistics.html#cb3-19" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x_values, <span class="at">Prior =</span> prior_values, <span class="at">Likelihood =</span> likelihood_values, <span class="at">Posterior =</span> posterior_values)</span>
+<span id="cb3-20"><a href="bayesian-statistics.html#cb3-20" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="bayesian-statistics.html#cb3-21" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb3-22"><a href="bayesian-statistics.html#cb3-22" tabindex="-1"></a><span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
+<span id="cb3-23"><a href="bayesian-statistics.html#cb3-23" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Prior, <span class="at">color =</span> <span class="st">&quot;Prior&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb3-24"><a href="bayesian-statistics.html#cb3-24" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Likelihood, <span class="at">color =</span> <span class="st">&quot;Likelihood&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb3-25"><a href="bayesian-statistics.html#cb3-25" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Posterior, <span class="at">color =</span> <span class="st">&quot;Posterior&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb3-26"><a href="bayesian-statistics.html#cb3-26" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Prior, Likelihood, and Posterior&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Distribution&quot;</span>) <span class="sc">+</span></span>
+<span id="cb3-27"><a href="bayesian-statistics.html#cb3-27" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="gitbook-demo_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+</div>
+<div id="bayesian-inference" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Bayesian inference<a href="bayesian-statistics.html#bayesian-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Bayesian inference is a method of statistical inference (such as e.g. MLE) in which Bayes’ theorem is used to update the probability estimate for a hypothesis as more evidence or information becomes available. A frequent application is the estimation or inference of parameters given some data. There are however more applications.</p>
+<p>In principle there are three options to perform Bayesian inference:</p>
+<div id="analytically" class="section level3 hasAnchor" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Analytically<a href="bayesian-statistics.html#analytically" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are some simple but relevant cases in which analytic solutions exist. This is especially the case if the prior and the posterior are “conjugate”, i.e. in the same distribution family. See e.g. <a href="https://en.wikipedia.org/wiki/Conjugate_prior" class="uri">https://en.wikipedia.org/wiki/Conjugate_prior</a> for a list.</p>
+</div>
+<div id="maximum-a-posteriori-map-estimate" class="section level3 hasAnchor" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Maximum-a-posteriori (MAP) estimate<a href="bayesian-statistics.html#maximum-a-posteriori-map-estimate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This approach is similar to MLE: the parameters of the posterior (containing both likelihood and prior) are varied in such a way that the posterior is maximized. This optimization problem can be solved numerically and can sometimes be the only option to tackle a complex problem. The results is a point estimate, i.e. not a distribution, but a single number for each parameter to estimate.</p>
+</div>
+<div id="markov-chain-monte-carlo-mcmc-sampling" class="section level3 hasAnchor" number="6.5.3">
+<h3><span class="header-section-number">6.5.3</span> Markov chain Monte Carlo (MCMC) sampling<a href="bayesian-statistics.html#markov-chain-monte-carlo-mcmc-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Markov Chain Monte Carlo (MCMC) methods are a set of algorithms used in Bayesian statistics to generate samples from the posterior distribution when it’s difficult to sample directly.</p>
+<div id="concept" class="section level4 hasAnchor" number="6.5.3.1">
+<h4><span class="header-section-number">6.5.3.1</span> Concept<a href="bayesian-statistics.html#concept" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>MCMC works by constructing a Markov Chain that has the desired distribution as its equilibrium distribution. Through iterative sampling, it approximates the posterior distribution.</p>
+</div>
+<div id="steps" class="section level4 hasAnchor" number="6.5.3.2">
+<h4><span class="header-section-number">6.5.3.2</span> Steps<a href="bayesian-statistics.html#steps" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Start with Initial Guess</strong>: Begin with an initial parameter value.</li>
+<li><strong>Iterative Sampling</strong>: Generate a chain of samples where each sample depends only on the previous one (Markov Chain).</li>
+<li><strong>Convergence</strong>: After many iterations, the samples converge to the target posterior distribution.</li>
+</ol>
+</div>
+<div id="usage-in-bayesian-inference" class="section level4 hasAnchor" number="6.5.3.3">
+<h4><span class="header-section-number">6.5.3.3</span> Usage in Bayesian Inference<a href="bayesian-statistics.html#usage-in-bayesian-inference" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In Bayesian inference, MCMC is used to approximate the posterior distribution when analytic computation is not feasible. More concretely, the samples produced by the MCMC algorithm are approximately samples from the actual -but unknown- posterior. Hence, this method allows to handle almost arbitrarily complex problems.</p>
+<p>In a bit more detail, the concept of MCMC in Bayesian inference is as follows:</p>
+<p>Bayes’ theorem as above states <span class="math display">\[ P(\theta | \text{data}) = \frac{P(\text{data} | \theta) \times P(\theta)}{P(\text{data})} \]</span>For a fixed set of data, <span class="math inline">\(P(\text{data})\)</span> is a constant and can be ignored such that :<span class="math display">\[ P(\theta | \text{data}) \sim P(\text{data} | \theta) \times P(\theta) \]</span></p>
+<p>The expectation of the unknown parameter(s) under the posterior is then: <span class="math display">\[ E(\theta | \text{data}) = \int_{-\infty}^{\infty} \theta \times P(\theta | \text{data})  d\theta \sim \int_{-\infty}^{\infty} \theta \times P(\text{data} | \theta) \times P(\theta)  d\theta\]</span></p>
+<p>This integral is typically not analytically tractable. Besides potential MAP algorithms, MCMC provides a convenient method to handle this integral. MCMC replaces the integration with a sum of samples from the Markov chain, which are (approximately) distributed like the posterior:</p>
+<p><span class="math display">\[ E(\theta | \text{data}) \sim \int_{-\infty}^{\infty} \theta \times P(\text{data} | \theta) \times P(\theta)  d\theta \approx \frac{1}{N} \sum_{s=1}^{N} \hat\theta_{i}\]</span> Here, <span class="math inline">\(N\)</span> samples <span class="math inline">\(\hat\theta_{i}\)</span> are drawn by the MCMC algorithm.</p>
+</div>
+<div id="jags" class="section level4 hasAnchor" number="6.5.3.4">
+<h4><span class="header-section-number">6.5.3.4</span> JAGS<a href="bayesian-statistics.html#jags" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Such MCMC algorithms are provided for example in <a href="https://mcmc-jags.sourceforge.io/">JAGS</a> (“Just Another Gibbs Sampler”), provided also as R-package <a href="https://cran.r-project.org/package=rjags">rjags</a>.</p>
+<p>JAGS requires a txt-file with the model specification: all unknown variables must be specified either as following a probability distribution (e.g. priors for regression coefficients) or as in a analytic relation with another variable (e.g. the mean of a distribution might depend on regression coefficients).</p>
+<p>The JAGS language is similar to R and code is typically rather short: only the definition of all variables is required. Interestingly, the order of declarations plays no role, making JAGS a declarative (but not programmatic) language.</p>
+<p>JAGS is especially fast if conjugate distributions are used. For example, if a Normal distribution is used, the (prior) distribution of the standard deviation should be conjugate. JAGS uses the inverse of the standard deviation, the so-called precision. The distribution, which the precision follows would then be a Gamma-distribution. If the latter is desired to be wide, the parameters of this distribution must be set accordingly small, e.g. 0.01.</p>
+<div id="example-logistic-regression" class="section level5 hasAnchor" number="6.5.3.4.1" style="color: gray;">
+<h5><span class="header-section-number">6.5.3.4.1</span> <strong>Example: Logistic regression</strong><a href="bayesian-statistics.html#example-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Consider this simple JAGS model as an example of logistic regression.</p>
+<p>The data Y is specified to follow a Bernoulli distribution with a single parameter p (probabilities are <span class="math inline">\(1-p\)</span> for <span class="math inline">\(x=0\)</span> and <span class="math inline">\(p\)</span> for <span class="math inline">\(x=1\)</span>). The logit of p is then analytically defined. Note that JAGS allows this formulation for convenience, where only the logit of a variable is defined, instead of the variable itself.</p>
+<p>Priors for the two regression coefficients beta[1] and beta[2] are actually very wide, almost uniform, Normal distributions. JAGS does not provide uniform distributions. Hence, this workaround is required. Note that JAGS uses the inverse of the standard deviation (the precision) as parameter in the Normal distribution.</p>
+<pre><code>model {
+  for (i in 1:N) {
+    Y[i] ~ dbern(p[i])
+    logit(p[i]) &lt;- beta[1] + beta[2] * X[i]
+  }
+
+  beta[1] ~ dnorm(0, 0.01)
+  beta[2] ~ dnorm(0, 0.01)
+}</code></pre>
+<p>When JAGS is provided with data (and some parameters), it can be run to provide MCMC samples.</p>
+</div>
+<div id="convergence-checks" class="section level5 hasAnchor" number="6.5.3.4.2">
+<h5><span class="header-section-number">6.5.3.4.2</span> Convergence checks<a href="bayesian-statistics.html#convergence-checks" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Virtually all MCMC methods require a so-called “burn-in” period, where the algorithm adapts to the model and the data. This means, that these first samples must be discarded.</p>
+<p>After that, the actual sampling commences and these samples should be usable.</p>
+<p>In practice, the number of samples <span class="math inline">\(N\)</span> needs to be “large enough” such that the approximation of MCMC sampling holds. This can be checked using e.g. the following methods. Note, that typically multiple Markov chains are used for both speed-up (parallelization) and convergence check (often combined with different/random starting points).</p>
+<div id="visual-inspection" class="section level6 hasAnchor" number="6.5.3.4.2.1">
+<h6><span class="header-section-number">6.5.3.4.2.1</span> Visual inspection<a href="bayesian-statistics.html#visual-inspection" class="anchor-section" aria-label="Anchor link to header"></a></h6>
+<p>The sequence of samples should look like a “fat caterpillar”, i.e. no drift of the mean and good coverage of the values around the mean.</p>
+</div>
+<div id="gelman-and-rubins-r-statistic" class="section level6 hasAnchor" number="6.5.3.4.2.2">
+<h6><span class="header-section-number">6.5.3.4.2.2</span> Gelman and Rubin’s R statistic<a href="bayesian-statistics.html#gelman-and-rubins-r-statistic" class="anchor-section" aria-label="Anchor link to header"></a></h6>
+<p>If multiple Markov chains are used, <a href="https://en.wikipedia.org/wiki/Gelman-Rubin_statistic">Gelman and Rubin’s R statistic</a> can be calculated. It should be below approx. 1.1 for the parameters to infer.</p>
+<p>If there are doubts whether these checks are passed, the burn-in and/or sampling length must be increased.</p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basics-of-probability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/cjvanlissa/gitbook-demo/edit/master/bayesian-statistics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["gitbook-demo.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
