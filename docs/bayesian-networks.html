@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Bayesian Networks | Applied Medical Data Science</title>
+  <meta name="description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Bayesian Networks | Applied Medical Data Science" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
+  <meta name="github-repo" content="georgrspinner/amds" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Bayesian Networks | Applied Medical Data Science" />
+  
+  <meta name="twitter:description" content="A compendium on Applied Medical Data Science (AMDS) with a focus on Bayesian methods." />
+  
+
+<meta name="author" content="Dr. sc. ETH Dr. med Georg Ralph Spinner" />
+
+
+<meta name="date" content="2024-02-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="bayesian-statistics.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied Medical Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Basic Concepts of Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#mean-average"><i class="fa fa-check"></i><b>2.1</b> Mean (Average)</a></li>
+<li class="chapter" data-level="2.2" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>2.2</b> Standard Deviation</a></li>
+<li class="chapter" data-level="2.3" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#correlation"><i class="fa fa-check"></i><b>2.3</b> Correlation</a></li>
+<li class="chapter" data-level="2.4" data-path="basic-concepts-of-descriptive-statistics.html"><a href="basic-concepts-of-descriptive-statistics.html#root-mean-square-error-rmse"><i class="fa fa-check"></i><b>2.4</b> Root Mean Square Error (RMSE)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>3</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="linear-regression.html"><a href="linear-regression.html#univariate-linear-regression"><i class="fa fa-check"></i><b>3.1</b> Univariate Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="linear-regression.html"><a href="linear-regression.html#variables"><i class="fa fa-check"></i><b>3.1.1</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="linear-regression.html"><a href="linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>3.2</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="linear-regression.html"><a href="linear-regression.html#variables-1"><i class="fa fa-check"></i><b>3.2.1</b> Variables</a></li>
+<li class="chapter" data-level="3.2.2" data-path="linear-regression.html"><a href="linear-regression.html#model-estimation"><i class="fa fa-check"></i><b>3.2.2</b> Model Estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="linear-regression.html"><a href="linear-regression.html#interpretation"><i class="fa fa-check"></i><b>3.2.3</b> Interpretation</a></li>
+<li class="chapter" data-level="3.2.4" data-path="linear-regression.html"><a href="linear-regression.html#assumptions"><i class="fa fa-check"></i><b>3.2.4</b> Assumptions</a></li>
+<li class="chapter" data-level="3.2.5" data-path="linear-regression.html"><a href="linear-regression.html#goodness-of-fit-r-squared-r²"><i class="fa fa-check"></i><b>3.2.5</b> Goodness-of-Fit: R-squared (R²)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-model"><i class="fa fa-check"></i><b>4.1</b> Logistic Regression Model</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#univariate-logistic-regression"><i class="fa fa-check"></i><b>4.1.1</b> Univariate Logistic Regression</a></li>
+<li class="chapter" data-level="4.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#multivariate-logistic-regression"><i class="fa fa-check"></i><b>4.1.2</b> Multivariate Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#meaning-of-coefficients"><i class="fa fa-check"></i><b>4.2</b> Meaning of Coefficients</a></li>
+<li class="chapter" data-level="4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#roc-and-auc-in-logistic-regression"><i class="fa fa-check"></i><b>4.3</b> ROC and AUC in Logistic Regression</a></li>
+<li class="chapter" data-level="4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#bootstrapping"><i class="fa fa-check"></i><b>4.4</b> Bootstrapping</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#resampling-in-bootstrapping"><i class="fa fa-check"></i><b>4.4.1</b> Resampling in Bootstrapping</a></li>
+<li class="chapter" data-level="4.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#use-in-internal-validation"><i class="fa fa-check"></i><b>4.4.2</b> Use in Internal Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="logistic-regression.html"><a href="logistic-regression.html#nagelkerkes-r²"><i class="fa fa-check"></i><b>4.5</b> Nagelkerke’s R²</a></li>
+<li class="chapter" data-level="4.6" data-path="logistic-regression.html"><a href="logistic-regression.html#external-validation-using-hold-out-data"><i class="fa fa-check"></i><b>4.6</b> External Validation Using Hold-Out Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basics-of-probability.html"><a href="basics-of-probability.html"><i class="fa fa-check"></i><b>5</b> Basics of Probability</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#random-variable"><i class="fa fa-check"></i><b>5.1</b> Random Variable</a></li>
+<li class="chapter" data-level="5.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#events-and-outcomes"><i class="fa fa-check"></i><b>5.2</b> Events and Outcomes</a></li>
+<li class="chapter" data-level="5.3" data-path="basics-of-probability.html"><a href="basics-of-probability.html#probability"><i class="fa fa-check"></i><b>5.3</b> Probability</a></li>
+<li class="chapter" data-level="5.4" data-path="basics-of-probability.html"><a href="basics-of-probability.html#independence"><i class="fa fa-check"></i><b>5.4</b> Independence</a></li>
+<li class="chapter" data-level="5.5" data-path="basics-of-probability.html"><a href="basics-of-probability.html#joint-probability"><i class="fa fa-check"></i><b>5.5</b> Joint Probability</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-analyzing-survey-data"><i class="fa fa-check"></i><b>5.5.1</b> Example: Analyzing Survey Data</a></li>
+<li class="chapter" data-level="5.5.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-joint-probability-from-survey-data"><i class="fa fa-check"></i><b>5.5.2</b> Example: Joint Probability from Survey Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="basics-of-probability.html"><a href="basics-of-probability.html#marginal-probability"><i class="fa fa-check"></i><b>5.6</b> Marginal Probability</a></li>
+<li class="chapter" data-level="5.7" data-path="basics-of-probability.html"><a href="basics-of-probability.html#conditional-probability"><i class="fa fa-check"></i><b>5.7</b> Conditional Probability</a></li>
+<li class="chapter" data-level="5.8" data-path="basics-of-probability.html"><a href="basics-of-probability.html#chain-rule-of-probability"><i class="fa fa-check"></i><b>5.8</b> Chain Rule of Probability</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#two-events-a-and-b"><i class="fa fa-check"></i><b>5.8.1</b> Two Events: A and B</a></li>
+<li class="chapter" data-level="5.8.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#three-events-a-b-and-c"><i class="fa fa-check"></i><b>5.8.2</b> Three Events: A, B and C</a></li>
+<li class="chapter" data-level="5.8.3" data-path="basics-of-probability.html"><a href="basics-of-probability.html#general-case-n-events"><i class="fa fa-check"></i><b>5.8.3</b> General Case: n Events</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="basics-of-probability.html"><a href="basics-of-probability.html#the-law-of-total-probability"><i class="fa fa-check"></i><b>5.9</b> The Law of Total Probability</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-total-probability"><i class="fa fa-check"></i><b>5.9.1</b> Example: Calculating Total Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="basics-of-probability.html"><a href="basics-of-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>5.10</b> Bayes’ Theorem</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-medical-diagnosis"><i class="fa fa-check"></i><b>5.10.1</b> Example: Medical Diagnosis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="basics-of-probability.html"><a href="basics-of-probability.html#calculating-the-positive-predictive-value-ppv"><i class="fa fa-check"></i><b>5.11</b> Calculating the Positive Predictive Value (PPV)</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-ppv-with-known-sensitivity-and-specificity"><i class="fa fa-check"></i><b>5.11.1</b> Example: Calculating PPV with Known Sensitivity and Specificity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="basics-of-probability.html"><a href="basics-of-probability.html#probability-distributions"><i class="fa fa-check"></i><b>5.12</b> Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.12.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-probability-distributions"><i class="fa fa-check"></i><b>5.12.1</b> Discrete Probability Distributions</a></li>
+<li class="chapter" data-level="5.12.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>5.12.2</b> Continuous Probability Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="basics-of-probability.html"><a href="basics-of-probability.html#expectation-in-probability"><i class="fa fa-check"></i><b>5.13</b> Expectation in Probability</a>
+<ul>
+<li class="chapter" data-level="5.13.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-random-variable"><i class="fa fa-check"></i><b>5.13.1</b> Discrete Random Variable</a></li>
+<li class="chapter" data-level="5.13.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-random-variable"><i class="fa fa-check"></i><b>5.13.2</b> Continuous Random Variable</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html"><i class="fa fa-check"></i><b>6</b> Bayesian Statistics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#likelihood"><i class="fa fa-check"></i><b>6.1</b> Likelihood</a></li>
+<li class="chapter" data-level="6.2" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>6.2</b> Maximum Likelihood Estimation</a></li>
+<li class="chapter" data-level="6.3" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#prior"><i class="fa fa-check"></i><b>6.3</b> Prior</a></li>
+<li class="chapter" data-level="6.4" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#posterior"><i class="fa fa-check"></i><b>6.4</b> Posterior</a></li>
+<li class="chapter" data-level="6.5" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#bayesian-inference"><i class="fa fa-check"></i><b>6.5</b> Bayesian inference</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#analytically"><i class="fa fa-check"></i><b>6.5.1</b> Analytically</a></li>
+<li class="chapter" data-level="6.5.2" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#maximum-a-posteriori-map-estimate"><i class="fa fa-check"></i><b>6.5.2</b> Maximum-a-posteriori (MAP) estimate</a></li>
+<li class="chapter" data-level="6.5.3" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#markov-chain-monte-carlo-mcmc-sampling"><i class="fa fa-check"></i><b>6.5.3</b> Markov chain Monte Carlo (MCMC) sampling</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bayesian-networks.html"><a href="bayesian-networks.html"><i class="fa fa-check"></i><b>7</b> Bayesian Networks</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="bayesian-networks.html"><a href="bayesian-networks.html#mathematical-representation"><i class="fa fa-check"></i><b>7.1</b> Mathematical Representation</a></li>
+<li class="chapter" data-level="7.2" data-path="bayesian-networks.html"><a href="bayesian-networks.html#graphical-representation"><i class="fa fa-check"></i><b>7.2</b> Graphical representation</a></li>
+<li class="chapter" data-level="7.3" data-path="bayesian-networks.html"><a href="bayesian-networks.html#discrete-bayesian-networks"><i class="fa fa-check"></i><b>7.3</b> Discrete Bayesian Networks</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="bayesian-networks.html"><a href="bayesian-networks.html#conditional-probability-tables"><i class="fa fa-check"></i><b>7.3.1</b> Conditional Probability Tables</a></li>
+<li class="chapter" data-level="7.3.2" data-path="bayesian-networks.html"><a href="bayesian-networks.html#example-cpt-of-weather-and-picnic"><i class="fa fa-check"></i><b>7.3.2</b> Example: CPT of Weather and Picnic</a></li>
+<li class="chapter" data-level="7.3.3" data-path="bayesian-networks.html"><a href="bayesian-networks.html#example-discrete-bn-of-sprinkler-wet-grass-and-rain"><i class="fa fa-check"></i><b>7.3.3</b> Example: Discrete BN of sprinkler, wet grass and rain</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="bayesian-networks.html"><a href="bayesian-networks.html#continuous-gaussian-bayesian-networks"><i class="fa fa-check"></i><b>7.4</b> Continuous (Gaussian) Bayesian Networks</a></li>
+<li class="chapter" data-level="7.5" data-path="bayesian-networks.html"><a href="bayesian-networks.html#conditional-gaussian-bayesian-networks-cgbns"><i class="fa fa-check"></i><b>7.5</b> Conditional Gaussian Bayesian Networks (CGBNs)</a></li>
+<li class="chapter" data-level="7.6" data-path="bayesian-networks.html"><a href="bayesian-networks.html#structure-learning"><i class="fa fa-check"></i><b>7.6</b> Structure Learning</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="bayesian-networks.html"><a href="bayesian-networks.html#a-priori-knowledge"><i class="fa fa-check"></i><b>7.6.1</b> A priori knowledge</a></li>
+<li class="chapter" data-level="7.6.2" data-path="bayesian-networks.html"><a href="bayesian-networks.html#score-based-methods"><i class="fa fa-check"></i><b>7.6.2</b> <strong>Score-Based Methods</strong></a></li>
+<li class="chapter" data-level="7.6.3" data-path="bayesian-networks.html"><a href="bayesian-networks.html#constraint-based-methods"><i class="fa fa-check"></i><b>7.6.3</b> Constraint-Based Methods</a></li>
+<li class="chapter" data-level="7.6.4" data-path="bayesian-networks.html"><a href="bayesian-networks.html#definition"><i class="fa fa-check"></i><b>7.6.4</b> Definition</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Medical Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bayesian-networks" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Bayesian Networks<a href="bayesian-networks.html#bayesian-networks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Bayesian Networks (BNs) are models that represent a set of variables and their conditional dependencies.</p>
+<p>Mathematically, they encode the conditional (in-)dependence structure of multiple variables, which are jointly distributed.</p>
+<p>BNs are also called probabilistic graphical models: probabilistic because each variable is modeled as a RV which follows some “local” probability distribution and graphical because they can (mostly, but not always) be represented as so-called directed acyclical graphs (DAGs).</p>
+<p>They can be understood both within the frameworks of Frequentist and Bayesian statistics. Hence, a more descriptive term could also be “conditional probability networks”, which is not used however.</p>
+<p>BNs are powerful tools for modeling complex systems, enabling the computation of conditional probabilities and facilitating decision-making under uncertainty.</p>
+<div id="mathematical-representation" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Mathematical Representation<a href="bayesian-networks.html#mathematical-representation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The joint probability distribution of a set of variables <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> in a Bayesian Network can be factorized as:</p>
+<p><span class="math display">\[ P(X_1, X_2, \ldots, X_n) = \prod_{i=1}^{n} P(X_i | \text{Pa}(X_i)) \]</span></p>
+<p>where <span class="math inline">\(\text{Pa}(X_i)\)</span> denotes the set of parent nodes of <span class="math inline">\(X_i\)</span>.</p>
+<p>Note that this rather simple looking formula states that the joint distribution <span class="math inline">\(P(X_1, X_2, \ldots, X_n)\)</span>can be factorized into a product of conditional probability distributions <span class="math inline">\(P(X_i | \text{Pa}(X_i))\)</span>, because there are independencies between variables.</p>
+<p>This is not clear a priori in many applications, because there might be some dependency between all variables, if nor further prior knowledge is given. In contrast, such a decomposition into a product is more obvious if the BN is defined a priori purely by expert or domain knowledge.</p>
+</div>
+<div id="graphical-representation" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Graphical representation<a href="bayesian-networks.html#graphical-representation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A BN can also often be identified with a DAG, which is a handy graphical representation to investigate and also present to the uninitiated for an intuitive understanding.</p>
+<p>In this graph, nodes represent random variables, and edges denote conditional dependencies. The directionality of the edges indicates the direction of dependency. Each node is associated with a probability function that takes, as input, a particular set of values for the node’s parent variables and gives the probability of the variable represented by the node. This structure allows for efficient representation and computation of joint probabilities across the network’s variables.</p>
+<p>Nodes without incoming arcs are called “root” nodes, while nodes acting upon other variables are their respective “parents”, while the variables which are acted upon are their “child” nodes.</p>
+<p>It should be noted however, that there are some BNs, which cannot be represented as DAGs, but these are fringe cases. In the following, we assume that each considered BN can be represented with a DAG.</p>
+</div>
+<div id="discrete-bayesian-networks" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Discrete Bayesian Networks<a href="bayesian-networks.html#discrete-bayesian-networks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Discrete BNs represent probabilistic relationships among a set of discrete variables. Each node in the corresponding DAG corresponds to a discrete variable, and edges denote probabilistic dependencies between variables. The relationships are quantified by conditional probability tables (CPTs), which define the probability distribution of each node given its parents.</p>
+<p>Discrete BNs are widely used for modeling systems where variables take on finite, discrete states, such as binary or categorical outcomes.</p>
+<div id="conditional-probability-tables" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Conditional Probability Tables<a href="bayesian-networks.html#conditional-probability-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>CPTs are essential in Discrete BNs for specifying the relationship between a node and its parents. Each entry in a CPT represents the probability of a node assuming a particular value, given the values of its parent nodes.</p>
+</div>
+<div id="example-cpt-of-weather-and-picnic" class="section level3 hasAnchor" number="7.3.2" style="color: gray;">
+<h3><span class="header-section-number">7.3.2</span> Example: CPT of Weather and Picnic<a href="bayesian-networks.html#example-cpt-of-weather-and-picnic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Imagine a simple BN with two nodes: Weather (Sunny, Rainy) and Decision to have a Picnic (Yes, No). The CPT for Picnic, given Weather, might look like this:</p>
+<ul>
+<li><strong>Weather</strong>: Sunny
+<ul>
+<li>Picnic: Yes (Probability = 0.7)</li>
+<li>Picnic: No (Probability = 0.3)</li>
+</ul></li>
+<li><strong>Weather</strong>: Rainy
+<ul>
+<li>Picnic: Yes (Probability = 0.1)</li>
+<li>Picnic: No (Probability = 0.9)</li>
+</ul></li>
+</ul>
+<p>This CPT quantifies how likely we are to go on a picnic depending on the weather and as table, looks like the following:</p>
+<table>
+<caption>CPT of Weather and Picnic</caption>
+<thead>
+<tr class="header">
+<th>Picnic⤓</th>
+<th>Weather</th>
+<th>Weather</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Sunny</td>
+<td>Rainy</td>
+</tr>
+<tr class="even">
+<td>Yes</td>
+<td>0.7</td>
+<td>0.1</td>
+</tr>
+<tr class="odd">
+<td>No</td>
+<td>0.3</td>
+<td>0.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-discrete-bn-of-sprinkler-wet-grass-and-rain" class="section level3 hasAnchor" number="7.3.3" style="color: gray;">
+<h3><span class="header-section-number">7.3.3</span> Example: Discrete BN of sprinkler, wet grass and rain<a href="bayesian-networks.html#example-discrete-bn-of-sprinkler-wet-grass-and-rain" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A simple, yet illustrative example of a discrete BN from <a href="https://en.wikipedia.org/wiki/Bayesian_network#Example" class="uri">https://en.wikipedia.org/wiki/Bayesian_network#Example</a> showcases all relevant aspects of discrete BNs.</p>
+<p>First, we notice that in the DAG below, there are three nodes/variables, each with a CPT: the rain variable (<span class="math inline">\(R\)</span>) is binary and has no parents, hence, the CPT has two entries. The binary sprinkler variable (<span class="math inline">\(S\)</span>) has one binary parent and the CPT has hence four entries. The binary grass wet variable (<span class="math inline">\(G\)</span>) hast two parents, each binary, such that the CPT has <span class="math inline">\(2\cdot 2\cdot 2 = 8\)</span> entries. So there is a probability given for each parent configuration of each node. The arrows indicate the direction of influence between the variables.</p>
+<p>Looking at the BN from a probabilistic perspective, we first note that there is a joint distribution <span class="math inline">\(P(G,S,R)\)</span>. This distribution factors according to the DAG into <span class="math inline">\(P(G,S,R)=P(G|S,R)P(S|R)P(R)\)</span></p>
+<p><a href="https://en.wikipedia.org/wiki/File:SimpleBayesNet.svg"><img src="images/1920px-SimpleBayesNet.svg.png" alt="DAG of discrete BN, source: https://en.wikipedia.org/wiki/File:SimpleBayesNet.svg" /></a></p>
+<p>This BN can now be queried. This means that one can derive probabilities for certain events. For example, suppose we are interested in the probability of rain, given that the grass is wet <span class="math inline">\(P(R=TRUE|G=TRUE)\)</span>. This can not be read directly from the CPT, but instead must becalculated according to the ruls of probability. According to the definition of conditional probability, this can be calculated to: <span class="math inline">\(P(R=TRUE\|G=TRUE) = \frac{P(G=TRUE, R=TRUE)}{P(G=TRUE)}\)</span>. Both the nominator and the denominator are marginal distributions: in the nominator, <span class="math inline">\(S\)</span> is “marginalized out”, while in the denominator, <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> are “marginalized out. Hence, in order to calculate the probabilities, a summation over the states of the”marginalized out” variable(s) is required. There, the values from the CPTs are used. In practice, such calculations are performed by software libraries.</p>
+</div>
+</div>
+<div id="continuous-gaussian-bayesian-networks" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Continuous (Gaussian) Bayesian Networks<a href="bayesian-networks.html#continuous-gaussian-bayesian-networks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Continuous BNs deal with continuous variables, unlike their discrete counterparts which manage categorical variables. These networks are powerful tools for modeling complex relationships among a set of continuous variables, enabling the representation of probabilistic dependencies and uncertainties in a graphical manner. The key component of continuous BNs is the Conditional Probability Distribution (CPD), which, for continuous variables, often takes the form of Gaussian distributions or linear Gaussian models.</p>
+<p>The general form of a Gaussian distribution for a variable <span class="math inline">\(X\)</span> is given by:</p>
+<p><span class="math display">\[
+p(X) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(X-\mu)^2}{2\sigma^2}\right)
+\]</span></p>
+<p>where <span class="math inline">\(\mu\)</span> is the mean and <span class="math inline">\(\sigma^2\)</span> is the variance of the distribution.</p>
+<p>For a continuous BN, the conditional probability of a child node given its parent nodes is often modeled using a linear combination of the parent nodes plus a Gaussian noise. This can be represented as:</p>
+<p><span class="math display">\[
+X = \alpha + \beta_1 Pa_1 + \beta_2 Pa_2 + \ldots + \beta_n Pa_n + \epsilon
+\]</span></p>
+<p>where <span class="math inline">\(X\)</span> is the child node, <span class="math inline">\(Pa_1, Pa_2, \ldots, Pa_n\)</span> are the parent nodes, <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta_i\)</span> are coefficients, and <span class="math inline">\(\epsilon\)</span> is a Gaussian noise term with mean 0 and some variance <span class="math inline">\(\sigma^2\)</span>. So, “locally” for each variable, there is a multiple linear regression model present.</p>
+<p>These models allow for the representation and inference of continuous quantities in a network structure, making continuous BNs particularly useful in fields such as medical decision-making, where many variables of interest (e.g., blood pressure, cholesterol levels) are continuous in nature. Note that however, all variables must be continuous and most often follow a Gaussian distribution, which is not the case in every (medical) application.</p>
+</div>
+<div id="conditional-gaussian-bayesian-networks-cgbns" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Conditional Gaussian Bayesian Networks (CGBNs)<a href="bayesian-networks.html#conditional-gaussian-bayesian-networks-cgbns" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Conditional Gaussian Bayesian Networks (CGBNs) are a specialized form of BNs designed to model relationships between mixed data types, specifically handling both continuous and discrete variables within the same framework. CGBNs combine the characteristics of discrete BNs, which manage categorical variables, with those of continuous BNs, which deal with continuous variables, thus offering a versatile tool for representing complex probabilistic relationships in mixed data sets.</p>
+<p>The structure of a CGBN includes nodes representing both types of variables, and edges indicating probabilistic dependencies. The CPDs in CGBNs are defined differently for continuous and discrete nodes:</p>
+<ol style="list-style-type: decimal">
+<li><p>For discrete nodes, CPDs are typically specified using tables of probabilities (i.e. CPTs), like in discrete BNs. This means, that discrete nodes can only have discrete parents and no continuous ones.</p></li>
+<li><p>For continuous nodes, CPDs are modeled using Conditional Gaussian distributions, where the mean and the variance of a Gaussian distribution are functions of the parents’ values. Specifically, the conditional distribution of a continuous variable given discrete and continuous parents is given by:</p></li>
+</ol>
+<p><span class="math display">\[
+X | (Pa_{discrete}, Pa_{continuous}) \sim \mathcal{N}(\mu + \sum_{i} \beta_i Pa_{continuous,i}, \sigma^2)
+\]</span></p>
+<p>where <span class="math inline">\(\mathcal{N}\)</span> denotes the Gaussian distribution, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> are parameters that depend on the discrete parents <span class="math inline">\(Pa_{discrete}\)</span>, and <span class="math inline">\(\beta_i\)</span> are coefficients for the linear combination of continuous parent variables <span class="math inline">\(Pa_{continuous,i}\)</span>.</p>
+<p>This formulation allows CGBNs to dynamically adjust the parameters of the Gaussian distributions based on the states of discrete variables, enabling the modeling of complex interactions between continuous and discrete variables in a unified framework. CGBNs are particularly useful in domains where data is inherently mixed, such as in medical diagnostics, where both categorical (e.g., presence or absence of a symptom) and continuous (e.g., blood pressure levels) variables are important. Note however, that there is an inprotant limitation: discrete parents can only have discrete parents! This is limiting in some applications, especially many applications of logistic regression, where the target is discrete (i.e. categorical or simple binary), but the predictors are mixed.</p>
+</div>
+<div id="structure-learning" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Structure Learning<a href="bayesian-networks.html#structure-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Structure learning (SL) in BNs refers to the process of determining the optimal network structure—that is, the set of nodes (variables) and edges (dependencies) between these nodes—based on a given dataset. The goal is to discover the graphical model that best represents the probabilistic relationships among the variables, without necessarily having prior knowledge of how these variables interact. SL is crucial in many fields, including genetics, economics, and particularly in medicine, where understanding the complex interdependencies between various factors can inform better decision-making and predictive models.</p>
+<p>There are mainly three approaches to structure learning:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Score-Based Methods</strong>: These methods evaluate how well a given network structure fits the data using a scoring function, such as Bayesian Information Criterion (BIC) or Akaike Information Criterion (AIC). The search over possible structures is typically performed using heuristic search algorithms (e.g., hill climbing, simulated annealing) due to the combinatorial nature of the problem. The objective is to find the network structure that maximizes (or minimizes, depending on the scoring rule) the scoring function.</p></li>
+<li><p><strong>Constraint-Based Methods</strong>: These methods start with an assumption that no edges exist between any pairs of nodes and then systematically test these assumptions using statistical tests (e.g., chi-square test, conditional independence tests) to determine if an edge should exist based on the data. This approach can identify the independence and conditional independence relationships between variables, which in turn helps to infer the network structure. The PC algorithm is a well-known example of a constraint-based method.</p></li>
+<li><p><strong>Hybrid Methods</strong>: Hybrid approaches combine score-based and constraint-based methods to take advantage of both strategies. Initially, constraint-based methods may be used to establish a rough outline of the network by identifying clearly independent relationships, reducing the search space. Then, score-based methods refine this structure by optimizing a scoring criterion. This approach can lead to more accurate models by efficiently navigating the search space and considering both statistical tests and fitting criteria.</p></li>
+</ol>
+<p>SL is a challenging task due to the exponential number of possible network structures that grow with the number of variables. Moreover, the presence of latent variables (unobserved or hidden variables) and feedback loops can further complicate the learning process. Advanced techniques, including those that incorporate domain knowledge or use machine learning algorithms, are continually being developed to address these challenges and improve the accuracy and efficiency of structure learning in BNs.</p>
+<p>Score-based methods for structure learning in BNs involve finding the network structure that best fits the given data according to a specific scoring criterion. The objective is to evaluate and compare the goodness-of-fit of different network structures and select the one that optimizes the scoring function.</p>
+<div id="a-priori-knowledge" class="section level3 hasAnchor" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> A priori knowledge<a href="bayesian-networks.html#a-priori-knowledge" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Often, there is some prior knowledge available via e.g. previous studies, domain or expert knowledge. This can be integrated in a straightforward and transparent way into BN SL.</p>
+<p>The simplest and most frequently used way is to a priori enforce arcs, which is also called “whitelisting” and a priori banning arcs, which is also called “blacklisting”.</p>
+</div>
+<div id="score-based-methods" class="section level3 hasAnchor" number="7.6.2">
+<h3><span class="header-section-number">7.6.2</span> <strong>Score-Based Methods</strong><a href="bayesian-networks.html#score-based-methods" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A popular scoring criterion is the Bayesian Information Criterion (BIC), defined as:</p>
+<p><span class="math display">\[
+\text{BIC} = \log P(D | G, \hat{\theta}_G) - \frac{\log N}{2} |G|
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><p><span class="math inline">\(D\)</span> is the observed data,</p></li>
+<li><p><span class="math inline">\(G\)</span> represents a candidate network structure,</p></li>
+<li><p><span class="math inline">\(\hat{\theta}_G\)</span> are the maximum likelihood estimates of the parameters of network <span class="math inline">\(G\)</span>,</p></li>
+<li><p><span class="math inline">\(N\)</span> is the number of data points, and</p></li>
+<li><p><span class="math inline">\(|G|\)</span> is the number of parameters in the model, which serves as a penalty term to prevent overfitting by complex models.</p></li>
+</ul>
+<p>The BIC score consists of two parts: the likelihood of the data given the model, which rewards models that fit the data well, and a penalty term that discourages overly complex models. The goal is to maximize the BIC score, balancing model fit and complexity.</p>
+<div style="color: gray;">
+<p><strong>Example</strong>: BIC for simple BN</p>
+<p>Consider a simple dataset with three variables: A, B, and C, where we want to learn the network structure. We might consider two candidate structures:</p>
+<ol style="list-style-type: decimal">
+<li>A structure where A causes B, and B causes C (A -&gt; B -&gt; C).</li>
+<li>A structure where A causes C, and C causes B (A -&gt; C -&gt; B).</li>
+</ol>
+<p>Using the BIC scoring criterion, we compute the BIC score for each structure based on the dataset. Suppose the BIC scores are:</p>
+<ul>
+<li>BIC(Structure 1) = -300</li>
+<li>BIC(Structure 2) = -290</li>
+</ul>
+<p>Since we aim to maximize the BIC score (or minimize the negative BIC), Structure 1 (A -&gt; B -&gt; C) is preferred over Structure 2 because it has a higher BIC score, indicating a better balance of model fit to data and model simplicity.</p>
+</div>
+<p>Score-based methods are computationally intensive due to the need to evaluate a large number of possible structures, especially as the number of variables increases. Therefore, heuristic search algorithms like hill climbing or genetic algorithms are often used to explore the space of possible structures efficiently.</p>
+</div>
+<div id="constraint-based-methods" class="section level3 hasAnchor" number="7.6.3">
+<h3><span class="header-section-number">7.6.3</span> Constraint-Based Methods<a href="bayesian-networks.html#constraint-based-methods" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Constraint-Based Methods for SL in BNs focus on identifying the conditional independencies between variables within the data. These methods infer the network structure by testing for statistical independence between variables, under the assumption that if two variables are conditionally independent given a set of other variables, there should be no direct edge between them in the network.</p>
+<p>The process typically involves three main steps:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Independence Tests</strong>: Apply statistical tests (e.g., chi-square test, mutual information) to identify pairs of variables that are independent or conditionally independent given a set of other variables.</p></li>
+<li><p><strong>Graph Construction</strong>: Based on the results of the independence tests, construct a graph where nodes represent variables and edges are absent between conditionally independent variables. Initially, a fully connected graph is often used, and edges are removed as independence is discovered.</p></li>
+<li><p><strong>Orientation Rules</strong>: Apply a set of rules to determine the direction of the edges between variables. This step may not fully determine the direction of all edges, leading to a partially directed acyclic graph (PDAG).</p></li>
+</ol>
+<p>A well-known algorithm that follows this approach is the PC (Peter-Clark) Algorithm. The PC Algorithm starts by constructing a fully connected undirected graph and then systematically tests for conditional independence between each pair of variables, given subsets of other variables. As conditional independencies are found, edges are removed from the graph. Finally, a series of rules are applied to orient the remaining edges, as much as possible, to infer causal relationships.</p>
+<div style="color: gray;">
+<p><strong>Example: conditional independence for a simple BN</strong></p>
+<p>Suppose we have three variables: A, B, and C. Through independence tests, we find that:</p>
+<ul>
+<li><p>A and B are conditionally independent given C.</p></li>
+<li><p>A and C are not conditionally independent given any subset of variables.</p></li>
+<li><p>B and C are not conditionally independent given any subset of variables.</p></li>
+</ul>
+<p>Based on these findings, the initial fully connected graph would have the edge between A and B removed, reflecting their conditional independence given C. The final network structure would then have edges from C to A and C to B, assuming additional orientation rules do not contradict this arrangement.</p>
+</div>
+<p>Constraint-Based Methods are particularly appealing when dealing with large datasets, as they can significantly reduce the computational complexity by eliminating edges early in the process. However, the accuracy of these methods heavily depends on the power of the statistical tests used and the sample size of the data.</p>
+<p>Conditional independence testing is a statistical process used to determine whether two variables are independent of each other, given the presence of one or more other variables. This concept is central to many statistical methods, including structure learning in Bayesian Networks (BNs), where it helps to identify the connections (or lack thereof) between variables.</p>
+</div>
+<div id="definition" class="section level3 hasAnchor" number="7.6.4">
+<h3><span class="header-section-number">7.6.4</span> Definition<a href="bayesian-networks.html#definition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Two variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, are conditionally independent given a third variable <span class="math inline">\(Z\)</span> if the probability distribution of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, conditioned on <span class="math inline">\(Z\)</span>, is the product of their individual distributions conditioned on <span class="math inline">\(Z\)</span>. Formally, this can be stated as:</p>
+<p><span class="math display">\[ P(X, Y | Z) = P(X | Z) \cdot P(Y | Z) \]</span></p>
+<p>Equivalently, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are conditionally independent given <span class="math inline">\(Z\)</span> if and only if:</p>
+<p><span class="math display">\[ P(X | Y, Z) = P(X | Z) \]</span></p>
+<p>or</p>
+<p><span class="math display">\[ P(Y | X, Z) = P(Y | Z) \]</span></p>
+<p>This means that knowing <span class="math inline">\(Y\)</span>, in addition to <span class="math inline">\(Z\)</span>, does not provide any additional information about <span class="math inline">\(X\)</span> and vice versa.</p>
+<div id="testing-conditional-independence" class="section level4 hasAnchor" number="7.6.4.1">
+<h4><span class="header-section-number">7.6.4.1</span> Testing Conditional Independence<a href="bayesian-networks.html#testing-conditional-independence" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To test for conditional independence between two variables given a third, various statistical tests can be used, depending on the nature of the data (e.g., continuous, discrete):</p>
+<ul>
+<li><p>For <strong>continuous variables</strong>, partial correlation tests are commonly used. The partial correlation between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, controlling for <span class="math inline">\(Z\)</span>, measures the strength and direction of a linear relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> when the linear effect of <span class="math inline">\(Z\)</span> on both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> has been removed.</p></li>
+<li><p>For <strong>discrete variables</strong>, the chi-square test of independence can be adapted to test for conditional independence by considering the contingency tables of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> at each level of <span class="math inline">\(Z\)</span>.</p></li>
+</ul>
+<p>Conditional independence tests are crucial for building accurate and meaningful models, especially in BN where understanding the dependencies and independencies among variables is fundamental to the network’s structure. These tests guide the addition or removal of edges between nodes, reflecting the underlying probabilistic relationships. Examples for such tests are:</p>
+<div id="partial-correlation" class="section level5 hasAnchor" number="7.6.4.1.1">
+<h5><span class="header-section-number">7.6.4.1.1</span> Partial Correlation<a href="bayesian-networks.html#partial-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>The partial correlation between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, given <span class="math inline">\(Z\)</span>, can be calculated using the formula:</p>
+<p><span class="math display">\[ r_{xy.z} = \frac{r_{xy} - r_{xz}r_{yz}}{\sqrt{(1-r_{xz}^2)(1-r_{yz}^2)}} \]</span></p>
+<p>where:</p>
+<ul>
+<li><p><span class="math inline">\(r_{xy}\)</span> is the correlation coefficient between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>,</p></li>
+<li><p><span class="math inline">\(r_{xz}\)</span> is the correlation coefficient between <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span>,</p></li>
+<li><p><span class="math inline">\(r_{yz}\)</span> is the correlation coefficient between <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span>.</p></li>
+</ul>
+</div>
+<div id="chi-square-test" class="section level5 hasAnchor" number="7.6.4.1.2">
+<h5><span class="header-section-number">7.6.4.1.2</span> Chi-Square Test<a href="bayesian-networks.html#chi-square-test" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>In the context of discrete variables, the conditional independence can be tested by calculating a chi-square statistic for each level of <span class="math inline">\(Z\)</span>, and then combining these statistics to get an overall test.</p>
+</div>
+<div id="decision-rule" class="section level5 hasAnchor" number="7.6.4.1.3">
+<h5><span class="header-section-number">7.6.4.1.3</span> Decision rule<a href="bayesian-networks.html#decision-rule" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>In practice, when using statistical tests like the chi-square test for conditional independence in the process of SL for BNs, a significance level (denoted as <span class="math inline">\(\alpha\)</span>) is chosen to decide whether to include or exclude an arc (edge) between nodes (variables) in the network. The significance level represents the probability of rejecting the null hypothesis when it is true, essentially controlling the rate of false positives (Type I errors).</p>
+<p>Here’s how it works in the context of the chi-square test for conditional independence:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Null Hypothesis (</strong><span class="math inline">\(H_0\)</span>​<strong>)</strong>: The null hypothesis for the chi-square test of conditional independence states that two variables are independent, given the conditioning set. In the context of BNs, this translates to there being no direct arc between the two variables in the network.</p></li>
+<li><p><strong>Alternative Hypothesis (</strong><span class="math inline">\(H_1\)</span>​<strong>)</strong>: The alternative hypothesis suggests that the two variables are not conditionally independent, implying that an arc should exist between them in the network.</p></li>
+<li><p><strong>Significance Level (</strong><span class="math inline">\(alpha\)</span>​<strong>)</strong>: The significance level is predetermined by the researcher and is often set at 0.05 (5%), although other values like 0.01 (1%) or 0.10 (10%) can be used depending on the desired stringency. This level represents the threshold for determining whether the observed data deviate significantly from what would be expected under the null hypothesis.</p></li>
+<li><p><strong>P-value</strong>: The chi-square test results in a p-value, which represents the probability of observing the test statistic or something more extreme, assuming the null hypothesis is true.</p></li>
+<li><p><strong>Decision Rule</strong>:</p>
+<ul>
+<li><p>If the p-value is less than or equal to the significance level (<span class="math inline">\(p\leq \alpha\)</span>), the null hypothesis is rejected, suggesting there is sufficient evidence to believe the variables are not conditionally independent, and an arc should be included in the BN.</p></li>
+<li><p>If the p-value is greater than the significance level (<span class="math inline">\(p&gt; \alpha\)</span>), the null hypothesis cannot be rejected, indicating the data do not provide sufficient evidence to conclude the variables are dependent, and hence, an arc should not be included in the BN.</p></li>
+</ul></li>
+</ol>
+<p>By applying this threshold, researchers can systematically determine which arcs to include in the BN, thus constructing a model that reflects the significant dependencies observed in the data. This approach helps to balance model complexity with the risk of including spurious relationships, aiming to create a network that accurately captures the underlying probabilistic structure of the domain being modeled.</p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="bayesian-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/cjvanlissa/gitbook-demo/edit/master/bayesian-networks.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["gitbook-demo.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

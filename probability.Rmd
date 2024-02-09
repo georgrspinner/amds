@@ -133,6 +133,30 @@ Conditional probability is the probability of an event given that another event 
 -   For Discrete Variables: $$ P(A|B) = \frac{P(A \text{ and } B)}{P(B)} $$
 -   For Continuous Variables: $$ f_{X|Y}(x|y) = \frac{f_{X,Y}(x, y)}{f_Y(y)} $$
 
+## Chain Rule of Probability
+
+The chain rule, also known as the general product rule, allows us to express the joint probability of a sequence of events.
+
+### Two Events: A and B
+
+For two events, A and B, the joint probability is:
+
+$$ P(A, B) =  P(A | B) \cdot P(B) $$
+
+### Three Events: A, B and C
+
+For three events, A, B and C, the joint probability is:
+
+$$ P(A, B, C) = P(A | B, C) \cdot P(B,C) \cdot P(B |C) \cdot P(C)$$
+
+### General Case: n Events
+
+For a sequence of n events $X_1, X_2, \ldots, X_n$, the joint probability is:
+
+$$ P(X_1, X_2, \ldots, X_n) = P(X_1) \cdot P(X_2 | X_1) \cdot P(X_3 | X_1, X_2) \cdot \ldots \cdot P(X_n | X_1, X_2, \ldots, X_{n-1}) $$
+
+This formula demonstrates how the probability of a sequence of events can be decomposed into a product of conditional probabilities.
+
 ## The Law of Total Probability
 
 The Law of Total Probability is a fundamental rule relating marginal probabilities to conditional probabilities.

@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. sc. ETH Dr. med Georg Ralph Spinner" />
 
 
-<meta name="date" content="2024-01-27" />
+<meta name="date" content="2024-02-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="logistic-regression.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="bayesian-statistics.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -189,27 +189,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="basics-of-probability.html"><a href="basics-of-probability.html#marginal-probability"><i class="fa fa-check"></i><b>5.6</b> Marginal Probability</a></li>
 <li class="chapter" data-level="5.7" data-path="basics-of-probability.html"><a href="basics-of-probability.html#conditional-probability"><i class="fa fa-check"></i><b>5.7</b> Conditional Probability</a></li>
-<li class="chapter" data-level="5.8" data-path="basics-of-probability.html"><a href="basics-of-probability.html#the-law-of-total-probability"><i class="fa fa-check"></i><b>5.8</b> The Law of Total Probability</a>
+<li class="chapter" data-level="5.8" data-path="basics-of-probability.html"><a href="basics-of-probability.html#chain-rule-of-probability"><i class="fa fa-check"></i><b>5.8</b> Chain Rule of Probability</a>
 <ul>
-<li class="chapter" data-level="5.8.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-total-probability"><i class="fa fa-check"></i><b>5.8.1</b> Example: Calculating Total Probability</a></li>
+<li class="chapter" data-level="5.8.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#two-events-a-and-b"><i class="fa fa-check"></i><b>5.8.1</b> Two Events: A and B</a></li>
+<li class="chapter" data-level="5.8.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#three-events-a-b-and-c"><i class="fa fa-check"></i><b>5.8.2</b> Three Events: A, B and C</a></li>
+<li class="chapter" data-level="5.8.3" data-path="basics-of-probability.html"><a href="basics-of-probability.html#general-case-n-events"><i class="fa fa-check"></i><b>5.8.3</b> General Case: n Events</a></li>
 </ul></li>
-<li class="chapter" data-level="5.9" data-path="basics-of-probability.html"><a href="basics-of-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>5.9</b> Bayes’ Theorem</a>
+<li class="chapter" data-level="5.9" data-path="basics-of-probability.html"><a href="basics-of-probability.html#the-law-of-total-probability"><i class="fa fa-check"></i><b>5.9</b> The Law of Total Probability</a>
 <ul>
-<li class="chapter" data-level="5.9.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-medical-diagnosis"><i class="fa fa-check"></i><b>5.9.1</b> Example: Medical Diagnosis</a></li>
+<li class="chapter" data-level="5.9.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-total-probability"><i class="fa fa-check"></i><b>5.9.1</b> Example: Calculating Total Probability</a></li>
 </ul></li>
-<li class="chapter" data-level="5.10" data-path="basics-of-probability.html"><a href="basics-of-probability.html#calculating-the-positive-predictive-value-ppv"><i class="fa fa-check"></i><b>5.10</b> Calculating the Positive Predictive Value (PPV)</a>
+<li class="chapter" data-level="5.10" data-path="basics-of-probability.html"><a href="basics-of-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>5.10</b> Bayes’ Theorem</a>
 <ul>
-<li class="chapter" data-level="5.10.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-ppv-with-known-sensitivity-and-specificity"><i class="fa fa-check"></i><b>5.10.1</b> Example: Calculating PPV with Known Sensitivity and Specificity</a></li>
+<li class="chapter" data-level="5.10.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-medical-diagnosis"><i class="fa fa-check"></i><b>5.10.1</b> Example: Medical Diagnosis</a></li>
 </ul></li>
-<li class="chapter" data-level="5.11" data-path="basics-of-probability.html"><a href="basics-of-probability.html#probability-distributions"><i class="fa fa-check"></i><b>5.11</b> Probability Distributions</a>
+<li class="chapter" data-level="5.11" data-path="basics-of-probability.html"><a href="basics-of-probability.html#calculating-the-positive-predictive-value-ppv"><i class="fa fa-check"></i><b>5.11</b> Calculating the Positive Predictive Value (PPV)</a>
 <ul>
-<li class="chapter" data-level="5.11.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-probability-distributions"><i class="fa fa-check"></i><b>5.11.1</b> Discrete Probability Distributions</a></li>
-<li class="chapter" data-level="5.11.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>5.11.2</b> Continuous Probability Distributions</a></li>
+<li class="chapter" data-level="5.11.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-ppv-with-known-sensitivity-and-specificity"><i class="fa fa-check"></i><b>5.11.1</b> Example: Calculating PPV with Known Sensitivity and Specificity</a></li>
 </ul></li>
-<li class="chapter" data-level="5.12" data-path="basics-of-probability.html"><a href="basics-of-probability.html#expectation-in-probability"><i class="fa fa-check"></i><b>5.12</b> Expectation in Probability</a>
+<li class="chapter" data-level="5.12" data-path="basics-of-probability.html"><a href="basics-of-probability.html#probability-distributions"><i class="fa fa-check"></i><b>5.12</b> Probability Distributions</a>
 <ul>
-<li class="chapter" data-level="5.12.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-random-variable"><i class="fa fa-check"></i><b>5.12.1</b> Discrete Random Variable</a></li>
-<li class="chapter" data-level="5.12.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-random-variable"><i class="fa fa-check"></i><b>5.12.2</b> Continuous Random Variable</a></li>
+<li class="chapter" data-level="5.12.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-probability-distributions"><i class="fa fa-check"></i><b>5.12.1</b> Discrete Probability Distributions</a></li>
+<li class="chapter" data-level="5.12.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>5.12.2</b> Continuous Probability Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="basics-of-probability.html"><a href="basics-of-probability.html#expectation-in-probability"><i class="fa fa-check"></i><b>5.13</b> Expectation in Probability</a>
+<ul>
+<li class="chapter" data-level="5.13.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-random-variable"><i class="fa fa-check"></i><b>5.13.1</b> Discrete Random Variable</a></li>
+<li class="chapter" data-level="5.13.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-random-variable"><i class="fa fa-check"></i><b>5.13.2</b> Continuous Random Variable</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html"><i class="fa fa-check"></i><b>6</b> Bayesian Statistics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#likelihood"><i class="fa fa-check"></i><b>6.1</b> Likelihood</a></li>
+<li class="chapter" data-level="6.2" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>6.2</b> Maximum Likelihood Estimation</a></li>
+<li class="chapter" data-level="6.3" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#prior"><i class="fa fa-check"></i><b>6.3</b> Prior</a></li>
+<li class="chapter" data-level="6.4" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#posterior"><i class="fa fa-check"></i><b>6.4</b> Posterior</a></li>
+<li class="chapter" data-level="6.5" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#bayesian-inference"><i class="fa fa-check"></i><b>6.5</b> Bayesian inference</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#analytically"><i class="fa fa-check"></i><b>6.5.1</b> Analytically</a></li>
+<li class="chapter" data-level="6.5.2" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#maximum-a-posteriori-map-estimate"><i class="fa fa-check"></i><b>6.5.2</b> Maximum-a-posteriori (MAP) estimate</a></li>
+<li class="chapter" data-level="6.5.3" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#markov-chain-monte-carlo-mcmc-sampling"><i class="fa fa-check"></i><b>6.5.3</b> Markov chain Monte Carlo (MCMC) sampling</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bayesian-networks.html"><a href="bayesian-networks.html"><i class="fa fa-check"></i><b>7</b> Bayesian Networks</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="bayesian-networks.html"><a href="bayesian-networks.html#mathematical-representation"><i class="fa fa-check"></i><b>7.1</b> Mathematical Representation</a></li>
+<li class="chapter" data-level="7.2" data-path="bayesian-networks.html"><a href="bayesian-networks.html#graphical-representation"><i class="fa fa-check"></i><b>7.2</b> Graphical representation</a></li>
+<li class="chapter" data-level="7.3" data-path="bayesian-networks.html"><a href="bayesian-networks.html#discrete-bayesian-networks"><i class="fa fa-check"></i><b>7.3</b> Discrete Bayesian Networks</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="bayesian-networks.html"><a href="bayesian-networks.html#conditional-probability-tables"><i class="fa fa-check"></i><b>7.3.1</b> Conditional Probability Tables</a></li>
+<li class="chapter" data-level="7.3.2" data-path="bayesian-networks.html"><a href="bayesian-networks.html#example-cpt-of-weather-and-picnic"><i class="fa fa-check"></i><b>7.3.2</b> Example: CPT of Weather and Picnic</a></li>
+<li class="chapter" data-level="7.3.3" data-path="bayesian-networks.html"><a href="bayesian-networks.html#example-discrete-bn-of-sprinkler-wet-grass-and-rain"><i class="fa fa-check"></i><b>7.3.3</b> Example: Discrete BN of sprinkler, wet grass and rain</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="bayesian-networks.html"><a href="bayesian-networks.html#continuous-gaussian-bayesian-networks"><i class="fa fa-check"></i><b>7.4</b> Continuous (Gaussian) Bayesian Networks</a></li>
+<li class="chapter" data-level="7.5" data-path="bayesian-networks.html"><a href="bayesian-networks.html#conditional-gaussian-bayesian-networks-cgbns"><i class="fa fa-check"></i><b>7.5</b> Conditional Gaussian Bayesian Networks (CGBNs)</a></li>
+<li class="chapter" data-level="7.6" data-path="bayesian-networks.html"><a href="bayesian-networks.html#structure-learning"><i class="fa fa-check"></i><b>7.6</b> Structure Learning</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="bayesian-networks.html"><a href="bayesian-networks.html#a-priori-knowledge"><i class="fa fa-check"></i><b>7.6.1</b> A priori knowledge</a></li>
+<li class="chapter" data-level="7.6.2" data-path="bayesian-networks.html"><a href="bayesian-networks.html#score-based-methods"><i class="fa fa-check"></i><b>7.6.2</b> <strong>Score-Based Methods</strong></a></li>
+<li class="chapter" data-level="7.6.3" data-path="bayesian-networks.html"><a href="bayesian-networks.html#constraint-based-methods"><i class="fa fa-check"></i><b>7.6.3</b> Constraint-Based Methods</a></li>
+<li class="chapter" data-level="7.6.4" data-path="bayesian-networks.html"><a href="bayesian-networks.html#definition"><i class="fa fa-check"></i><b>7.6.4</b> Definition</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -351,13 +390,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>For Continuous Variables: <span class="math display">\[ f_{X|Y}(x|y) = \frac{f_{X,Y}(x, y)}{f_Y(y)} \]</span></li>
 </ul>
 </div>
-<div id="the-law-of-total-probability" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> The Law of Total Probability<a href="basics-of-probability.html#the-law-of-total-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="chain-rule-of-probability" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> Chain Rule of Probability<a href="basics-of-probability.html#chain-rule-of-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The chain rule, also known as the general product rule, allows us to express the joint probability of a sequence of events.</p>
+<div id="two-events-a-and-b" class="section level3 hasAnchor" number="5.8.1">
+<h3><span class="header-section-number">5.8.1</span> Two Events: A and B<a href="basics-of-probability.html#two-events-a-and-b" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For two events, A and B, the joint probability is:</p>
+<p><span class="math display">\[ P(A, B) =  P(A | B) \cdot P(B) \]</span></p>
+</div>
+<div id="three-events-a-b-and-c" class="section level3 hasAnchor" number="5.8.2">
+<h3><span class="header-section-number">5.8.2</span> Three Events: A, B and C<a href="basics-of-probability.html#three-events-a-b-and-c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For three events, A, B and C, the joint probability is:</p>
+<p><span class="math display">\[ P(A, B, C) = P(A | B, C) \cdot P(B,C) \cdot P(B |C) \cdot P(C)\]</span></p>
+</div>
+<div id="general-case-n-events" class="section level3 hasAnchor" number="5.8.3">
+<h3><span class="header-section-number">5.8.3</span> General Case: n Events<a href="basics-of-probability.html#general-case-n-events" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For a sequence of n events <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span>, the joint probability is:</p>
+<p><span class="math display">\[ P(X_1, X_2, \ldots, X_n) = P(X_1) \cdot P(X_2 | X_1) \cdot P(X_3 | X_1, X_2) \cdot \ldots \cdot P(X_n | X_1, X_2, \ldots, X_{n-1}) \]</span></p>
+<p>This formula demonstrates how the probability of a sequence of events can be decomposed into a product of conditional probabilities.</p>
+</div>
+</div>
+<div id="the-law-of-total-probability" class="section level2 hasAnchor" number="5.9">
+<h2><span class="header-section-number">5.9</span> The Law of Total Probability<a href="basics-of-probability.html#the-law-of-total-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The Law of Total Probability is a fundamental rule relating marginal probabilities to conditional probabilities.</p>
 <p>The law states that if we have a set of mutually exclusive and exhaustive events, <span class="math inline">\(B_1, B_2, \ldots, B_n\)</span>, then the total probability of event A can be expressed as:</p>
 <p><span class="math display">\[ P(A) = \sum_{i=1}^{n} P(A | B_i) \cdot P(B_i) \]</span></p>
-<div id="example-calculating-total-probability" class="section level3 hasAnchor" number="5.8.1" style="color: gray;">
-<h3><span class="header-section-number">5.8.1</span> Example: Calculating Total Probability<a href="basics-of-probability.html#example-calculating-total-probability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-calculating-total-probability" class="section level3 hasAnchor" number="5.9.1" style="color: gray;">
+<h3><span class="header-section-number">5.9.1</span> Example: Calculating Total Probability<a href="basics-of-probability.html#example-calculating-total-probability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Assume we have two scenarios, B1 and B2, each with its own probability and a conditional probability of A.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="basics-of-probability.html#cb9-1" tabindex="-1"></a><span class="co"># Define probabilities</span></span>
 <span id="cb9-2"><a href="basics-of-probability.html#cb9-2" tabindex="-1"></a>P_B1 <span class="ot">&lt;-</span> <span class="fl">0.4</span> <span class="co"># Probability of scenario B1</span></span>
@@ -372,8 +431,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This example demonstrates how to use the Law of Total Probability to calculate the overall probability of an event A.</p>
 </div>
 </div>
-<div id="bayes-theorem" class="section level2 hasAnchor" number="5.9">
-<h2><span class="header-section-number">5.9</span> Bayes’ Theorem<a href="basics-of-probability.html#bayes-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bayes-theorem" class="section level2 hasAnchor" number="5.10">
+<h2><span class="header-section-number">5.10</span> Bayes’ Theorem<a href="basics-of-probability.html#bayes-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Bayes’ Theorem is a fundamental concept in probability theory. It describes the probability of an event, based on prior knowledge of conditions that might be related to the event.</p>
 <p>Bayes’ Theorem is mathematically expressed as:</p>
 <p><span class="math display">\[ P(A|B) = \frac{P(B|A) P(A)}{P(B)} \]</span></p>
@@ -383,8 +442,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(P(B|A)\)</span> is the probability of event B given that A is true.</li>
 <li><span class="math inline">\(P(A)\)</span> and <span class="math inline">\(P(B)\)</span> are the probabilities of observing A and B independently of each other.</li>
 </ul>
-<div id="example-medical-diagnosis" class="section level3 hasAnchor" number="5.9.1" style="color: gray;">
-<h3><span class="header-section-number">5.9.1</span> Example: Medical Diagnosis<a href="basics-of-probability.html#example-medical-diagnosis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-medical-diagnosis" class="section level3 hasAnchor" number="5.10.1" style="color: gray;">
+<h3><span class="header-section-number">5.10.1</span> Example: Medical Diagnosis<a href="basics-of-probability.html#example-medical-diagnosis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Consider a scenario where we want to calculate the probability of a disease (A) given a positive test result (B), i.e. <span class="math inline">\(P(A|B)\)</span>. This probability is also called the positive predictive value (PPV). PPV is the probability that subjects with a positive test truly have the disease.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="basics-of-probability.html#cb11-1" tabindex="-1"></a><span class="co"># Assuming P(A) is the prevalence of the disease</span></span>
 <span id="cb11-2"><a href="basics-of-probability.html#cb11-2" tabindex="-1"></a><span class="co"># P(B|A) is the sensitivity of the test</span></span>
@@ -399,8 +458,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 0.19</code></pre>
 </div>
 </div>
-<div id="calculating-the-positive-predictive-value-ppv" class="section level2 hasAnchor" number="5.10">
-<h2><span class="header-section-number">5.10</span> Calculating the Positive Predictive Value (PPV)<a href="basics-of-probability.html#calculating-the-positive-predictive-value-ppv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="calculating-the-positive-predictive-value-ppv" class="section level2 hasAnchor" number="5.11">
+<h2><span class="header-section-number">5.11</span> Calculating the Positive Predictive Value (PPV)<a href="basics-of-probability.html#calculating-the-positive-predictive-value-ppv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here, we consider the scenario of the meidcal test in the example above, i.e. A=disease, B=positive test.</p>
 <p>When the overall probability of testing positive is unknown, PPV can be calculated using prevalence, sensitivity, and specificity.</p>
 <p>Sensitivity, also known as the true positive rate, measures the proportion of actual positives that are correctly identified by the test:</p>
@@ -417,8 +476,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>where <span class="math inline">\(P(B|\neg A)\)</span> is the false positive rate (i.e. probability of having a positive test, but not having the disease or simply being healthy), calculated as <span class="math inline">\(1 - \text{specificity}\)</span>.</p>
 <p>Note that <span class="math inline">\(\neg\)</span> means “not”, i.e. <span class="math inline">\(\neg A\)</span> means that event <span class="math inline">\(A\)</span> has not happened.</p>
 <p>Here <span class="math inline">\(P(\neg A) = 1- P(A)\)</span>, because if <span class="math inline">\(A\)</span> has not happened, the probability of it is the complement to the probability of <span class="math inline">\(A\)</span> happening: since probabilities sum up to one, this formula holds. More specifically, <span class="math inline">\(\neg A\)</span> means that no disease is present (i.e. healthy status), which is just <span class="math inline">\(1-\text{prevalence}\)</span>.</p>
-<div id="example-calculating-ppv-with-known-sensitivity-and-specificity" class="section level3 hasAnchor" number="5.10.1">
-<h3><span class="header-section-number">5.10.1</span> Example: Calculating PPV with Known Sensitivity and Specificity<a href="basics-of-probability.html#example-calculating-ppv-with-known-sensitivity-and-specificity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-calculating-ppv-with-known-sensitivity-and-specificity" class="section level3 hasAnchor" number="5.11.1">
+<h3><span class="header-section-number">5.11.1</span> Example: Calculating PPV with Known Sensitivity and Specificity<a href="basics-of-probability.html#example-calculating-ppv-with-known-sensitivity-and-specificity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="basics-of-probability.html#cb13-1" tabindex="-1"></a><span class="co"># Sensitivity and Specificity of the test</span></span>
 <span id="cb13-2"><a href="basics-of-probability.html#cb13-2" tabindex="-1"></a>sensitivity <span class="ot">&lt;-</span> <span class="fl">0.95</span>  <span class="co"># P(B|A)</span></span>
 <span id="cb13-3"><a href="basics-of-probability.html#cb13-3" tabindex="-1"></a>specificity <span class="ot">&lt;-</span> <span class="fl">0.90</span>  <span class="co"># 1 - P(B|¬A)</span></span>
@@ -435,40 +494,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 0.0875576</code></pre>
 </div>
 </div>
-<div id="probability-distributions" class="section level2 hasAnchor" number="5.11">
-<h2><span class="header-section-number">5.11</span> Probability Distributions<a href="basics-of-probability.html#probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="probability-distributions" class="section level2 hasAnchor" number="5.12">
+<h2><span class="header-section-number">5.12</span> Probability Distributions<a href="basics-of-probability.html#probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Probability distributions describe how the values of a RV are distributed.</p>
-<div id="discrete-probability-distributions" class="section level3 hasAnchor" number="5.11.1">
-<h3><span class="header-section-number">5.11.1</span> Discrete Probability Distributions<a href="basics-of-probability.html#discrete-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="discrete-probability-distributions" class="section level3 hasAnchor" number="5.12.1">
+<h3><span class="header-section-number">5.12.1</span> Discrete Probability Distributions<a href="basics-of-probability.html#discrete-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Discrete distributions describe variables that take specific values (like counts). Note that, for each outcome, the probability distribution assigns a probability.</p>
-<div id="example-binomial-distribution" class="section level4 hasAnchor" number="5.11.1.1" style="color: gray;">
-<h4><span class="header-section-number">5.11.1.1</span> Example: Binomial Distribution<a href="basics-of-probability.html#example-binomial-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="example-binomial-distribution" class="section level4 hasAnchor" number="5.12.1.1" style="color: gray;">
+<h4><span class="header-section-number">5.12.1.1</span> Example: Binomial Distribution<a href="basics-of-probability.html#example-binomial-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="basics-of-probability.html#cb15-1" tabindex="-1"></a><span class="co"># Binomial distribution: number of successes in a fixed number of trials</span></span>
 <span id="cb15-2"><a href="basics-of-probability.html#cb15-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>), <span class="at">type =</span> <span class="st">&quot;h&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Binomial Distribution&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Number of Successes&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Probability&quot;</span>)</span></code></pre></div>
 <p><img src="gitbook-demo_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 </div>
-<div id="continuous-probability-distributions" class="section level3 hasAnchor" number="5.11.2">
-<h3><span class="header-section-number">5.11.2</span> Continuous Probability Distributions<a href="basics-of-probability.html#continuous-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="continuous-probability-distributions" class="section level3 hasAnchor" number="5.12.2">
+<h3><span class="header-section-number">5.12.2</span> Continuous Probability Distributions<a href="basics-of-probability.html#continuous-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Continuous distributions describe variables that can take any value within a range. They are functions which assign a value to every value of the continuous RV. However, a probability is only defined over a certain interval of the RV by i.e. integrating the probability distribution over that integral. The integral over the whole range of the RV (definition set) mus equal one, because this - and any other- probability can not exceed one.</p>
-<div id="example-normal-distribution" class="section level4 hasAnchor" number="5.11.2.1" style="color: gray;">
-<h4><span class="header-section-number">5.11.2.1</span> Example: Normal Distribution<a href="basics-of-probability.html#example-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="example-normal-distribution" class="section level4 hasAnchor" number="5.12.2.1" style="color: gray;">
+<h4><span class="header-section-number">5.12.2.1</span> Example: Normal Distribution<a href="basics-of-probability.html#example-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="basics-of-probability.html#cb16-1" tabindex="-1"></a><span class="co"># Normal distribution: bell-shaped distribution of a variable</span></span>
 <span id="cb16-2"><a href="basics-of-probability.html#cb16-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">main =</span> <span class="st">&quot;Normal Distribution&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Value&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Density&quot;</span>)</span></code></pre></div>
 <p><img src="gitbook-demo_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 </div>
 </div>
-<div id="expectation-in-probability" class="section level2 hasAnchor" number="5.12">
-<h2><span class="header-section-number">5.12</span> Expectation in Probability<a href="basics-of-probability.html#expectation-in-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="expectation-in-probability" class="section level2 hasAnchor" number="5.13">
+<h2><span class="header-section-number">5.13</span> Expectation in Probability<a href="basics-of-probability.html#expectation-in-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Expectation (or expected value) is a fundamental concept in probability, representing the average value a random variable is expected to take on.</p>
-<div id="discrete-random-variable" class="section level3 hasAnchor" number="5.12.1">
-<h3><span class="header-section-number">5.12.1</span> Discrete Random Variable<a href="basics-of-probability.html#discrete-random-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="discrete-random-variable" class="section level3 hasAnchor" number="5.13.1">
+<h3><span class="header-section-number">5.13.1</span> Discrete Random Variable<a href="basics-of-probability.html#discrete-random-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For a discrete random variable <span class="math inline">\(X\)</span>, the expectation is calculated as:</p>
 <p><span class="math display">\[ E(X) = \sum_{i=1}^{n} x_i P(x_i) \]</span></p>
 <p>where <span class="math inline">\(x_i\)</span> are the possible values of <span class="math inline">\(X\)</span>, and <span class="math inline">\(P(x_i)\)</span> is the probability of <span class="math inline">\(x_i\)</span>.</p>
-<div id="example-expectation-of-a-dice-roll" class="section level4 hasAnchor" number="5.12.1.1" style="color: gray;">
-<h4><span class="header-section-number">5.12.1.1</span> Example: Expectation of a Dice Roll<a href="basics-of-probability.html#example-expectation-of-a-dice-roll" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="example-expectation-of-a-dice-roll" class="section level4 hasAnchor" number="5.13.1.1" style="color: gray;">
+<h4><span class="header-section-number">5.13.1.1</span> Example: Expectation of a Dice Roll<a href="basics-of-probability.html#example-expectation-of-a-dice-roll" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="basics-of-probability.html#cb17-1" tabindex="-1"></a><span class="co"># Expectation of rolling a fair six-sided dice</span></span>
 <span id="cb17-2"><a href="basics-of-probability.html#cb17-2" tabindex="-1"></a>outcomes <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
 <span id="cb17-3"><a href="basics-of-probability.html#cb17-3" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="at">times =</span> <span class="dv">6</span>)</span>
@@ -477,13 +536,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 3.5</code></pre>
 </div>
 </div>
-<div id="continuous-random-variable" class="section level3 hasAnchor" number="5.12.2">
-<h3><span class="header-section-number">5.12.2</span> Continuous Random Variable<a href="basics-of-probability.html#continuous-random-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="continuous-random-variable" class="section level3 hasAnchor" number="5.13.2">
+<h3><span class="header-section-number">5.13.2</span> Continuous Random Variable<a href="basics-of-probability.html#continuous-random-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For a continuous random variable <span class="math inline">\(X\)</span>, the expectation is given by the integral:</p>
 <p><span class="math display">\[ E(X) = \int_{-\infty}^{\infty} x f(x) dx \]</span></p>
 <p>where <span class="math inline">\(f(x)\)</span> is the probability density function of <span class="math inline">\(X\)</span>.</p>
-<div id="example-expectation-in-normal-distribution" class="section level4 hasAnchor" number="5.12.2.1" style="color: gray;">
-<h4><span class="header-section-number">5.12.2.1</span> Example: Expectation in Normal Distribution<a href="basics-of-probability.html#example-expectation-in-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="example-expectation-in-normal-distribution" class="section level4 hasAnchor" number="5.13.2.1" style="color: gray;">
+<h4><span class="header-section-number">5.13.2.1</span> Example: Expectation in Normal Distribution<a href="basics-of-probability.html#example-expectation-in-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Note that for the Normal distribution, the mean equals the expectation value, hence there is no calculation needed.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="basics-of-probability.html#cb19-1" tabindex="-1"></a><span class="co"># Assuming a normal distribution with mean = 0 and sd = 1</span></span>
 <span id="cb19-2"><a href="basics-of-probability.html#cb19-2" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="dv">0</span></span>
@@ -501,7 +560,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bayesian-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

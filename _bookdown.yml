@@ -5,6 +5,7 @@ rmd_files: ["index.Rmd",
             "logistic-regression.Rmd",
             "probability.Rmd",
             "bayesian-statistics.Rmd",
+            "bayesian-networks.Rmd",
             "references.Rmd"]
 output_dir: "docs"
 language:

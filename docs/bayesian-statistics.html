@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. sc. ETH Dr. med Georg Ralph Spinner" />
 
 
-<meta name="date" content="2024-02-01" />
+<meta name="date" content="2024-02-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="basics-of-probability.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="bayesian-networks.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -189,27 +189,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="basics-of-probability.html"><a href="basics-of-probability.html#marginal-probability"><i class="fa fa-check"></i><b>5.6</b> Marginal Probability</a></li>
 <li class="chapter" data-level="5.7" data-path="basics-of-probability.html"><a href="basics-of-probability.html#conditional-probability"><i class="fa fa-check"></i><b>5.7</b> Conditional Probability</a></li>
-<li class="chapter" data-level="5.8" data-path="basics-of-probability.html"><a href="basics-of-probability.html#the-law-of-total-probability"><i class="fa fa-check"></i><b>5.8</b> The Law of Total Probability</a>
+<li class="chapter" data-level="5.8" data-path="basics-of-probability.html"><a href="basics-of-probability.html#chain-rule-of-probability"><i class="fa fa-check"></i><b>5.8</b> Chain Rule of Probability</a>
 <ul>
-<li class="chapter" data-level="5.8.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-total-probability"><i class="fa fa-check"></i><b>5.8.1</b> Example: Calculating Total Probability</a></li>
+<li class="chapter" data-level="5.8.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#two-events-a-and-b"><i class="fa fa-check"></i><b>5.8.1</b> Two Events: A and B</a></li>
+<li class="chapter" data-level="5.8.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#three-events-a-b-and-c"><i class="fa fa-check"></i><b>5.8.2</b> Three Events: A, B and C</a></li>
+<li class="chapter" data-level="5.8.3" data-path="basics-of-probability.html"><a href="basics-of-probability.html#general-case-n-events"><i class="fa fa-check"></i><b>5.8.3</b> General Case: n Events</a></li>
 </ul></li>
-<li class="chapter" data-level="5.9" data-path="basics-of-probability.html"><a href="basics-of-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>5.9</b> Bayes’ Theorem</a>
+<li class="chapter" data-level="5.9" data-path="basics-of-probability.html"><a href="basics-of-probability.html#the-law-of-total-probability"><i class="fa fa-check"></i><b>5.9</b> The Law of Total Probability</a>
 <ul>
-<li class="chapter" data-level="5.9.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-medical-diagnosis"><i class="fa fa-check"></i><b>5.9.1</b> Example: Medical Diagnosis</a></li>
+<li class="chapter" data-level="5.9.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-total-probability"><i class="fa fa-check"></i><b>5.9.1</b> Example: Calculating Total Probability</a></li>
 </ul></li>
-<li class="chapter" data-level="5.10" data-path="basics-of-probability.html"><a href="basics-of-probability.html#calculating-the-positive-predictive-value-ppv"><i class="fa fa-check"></i><b>5.10</b> Calculating the Positive Predictive Value (PPV)</a>
+<li class="chapter" data-level="5.10" data-path="basics-of-probability.html"><a href="basics-of-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>5.10</b> Bayes’ Theorem</a>
 <ul>
-<li class="chapter" data-level="5.10.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-ppv-with-known-sensitivity-and-specificity"><i class="fa fa-check"></i><b>5.10.1</b> Example: Calculating PPV with Known Sensitivity and Specificity</a></li>
+<li class="chapter" data-level="5.10.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-medical-diagnosis"><i class="fa fa-check"></i><b>5.10.1</b> Example: Medical Diagnosis</a></li>
 </ul></li>
-<li class="chapter" data-level="5.11" data-path="basics-of-probability.html"><a href="basics-of-probability.html#probability-distributions"><i class="fa fa-check"></i><b>5.11</b> Probability Distributions</a>
+<li class="chapter" data-level="5.11" data-path="basics-of-probability.html"><a href="basics-of-probability.html#calculating-the-positive-predictive-value-ppv"><i class="fa fa-check"></i><b>5.11</b> Calculating the Positive Predictive Value (PPV)</a>
 <ul>
-<li class="chapter" data-level="5.11.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-probability-distributions"><i class="fa fa-check"></i><b>5.11.1</b> Discrete Probability Distributions</a></li>
-<li class="chapter" data-level="5.11.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>5.11.2</b> Continuous Probability Distributions</a></li>
+<li class="chapter" data-level="5.11.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#example-calculating-ppv-with-known-sensitivity-and-specificity"><i class="fa fa-check"></i><b>5.11.1</b> Example: Calculating PPV with Known Sensitivity and Specificity</a></li>
 </ul></li>
-<li class="chapter" data-level="5.12" data-path="basics-of-probability.html"><a href="basics-of-probability.html#expectation-in-probability"><i class="fa fa-check"></i><b>5.12</b> Expectation in Probability</a>
+<li class="chapter" data-level="5.12" data-path="basics-of-probability.html"><a href="basics-of-probability.html#probability-distributions"><i class="fa fa-check"></i><b>5.12</b> Probability Distributions</a>
 <ul>
-<li class="chapter" data-level="5.12.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-random-variable"><i class="fa fa-check"></i><b>5.12.1</b> Discrete Random Variable</a></li>
-<li class="chapter" data-level="5.12.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-random-variable"><i class="fa fa-check"></i><b>5.12.2</b> Continuous Random Variable</a></li>
+<li class="chapter" data-level="5.12.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-probability-distributions"><i class="fa fa-check"></i><b>5.12.1</b> Discrete Probability Distributions</a></li>
+<li class="chapter" data-level="5.12.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>5.12.2</b> Continuous Probability Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="basics-of-probability.html"><a href="basics-of-probability.html#expectation-in-probability"><i class="fa fa-check"></i><b>5.13</b> Expectation in Probability</a>
+<ul>
+<li class="chapter" data-level="5.13.1" data-path="basics-of-probability.html"><a href="basics-of-probability.html#discrete-random-variable"><i class="fa fa-check"></i><b>5.13.1</b> Discrete Random Variable</a></li>
+<li class="chapter" data-level="5.13.2" data-path="basics-of-probability.html"><a href="basics-of-probability.html#continuous-random-variable"><i class="fa fa-check"></i><b>5.13.2</b> Continuous Random Variable</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html"><i class="fa fa-check"></i><b>6</b> Bayesian Statistics</a>
@@ -223,6 +229,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5.1" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#analytically"><i class="fa fa-check"></i><b>6.5.1</b> Analytically</a></li>
 <li class="chapter" data-level="6.5.2" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#maximum-a-posteriori-map-estimate"><i class="fa fa-check"></i><b>6.5.2</b> Maximum-a-posteriori (MAP) estimate</a></li>
 <li class="chapter" data-level="6.5.3" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html#markov-chain-monte-carlo-mcmc-sampling"><i class="fa fa-check"></i><b>6.5.3</b> Markov chain Monte Carlo (MCMC) sampling</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bayesian-networks.html"><a href="bayesian-networks.html"><i class="fa fa-check"></i><b>7</b> Bayesian Networks</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="bayesian-networks.html"><a href="bayesian-networks.html#mathematical-representation"><i class="fa fa-check"></i><b>7.1</b> Mathematical Representation</a></li>
+<li class="chapter" data-level="7.2" data-path="bayesian-networks.html"><a href="bayesian-networks.html#graphical-representation"><i class="fa fa-check"></i><b>7.2</b> Graphical representation</a></li>
+<li class="chapter" data-level="7.3" data-path="bayesian-networks.html"><a href="bayesian-networks.html#discrete-bayesian-networks"><i class="fa fa-check"></i><b>7.3</b> Discrete Bayesian Networks</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="bayesian-networks.html"><a href="bayesian-networks.html#conditional-probability-tables"><i class="fa fa-check"></i><b>7.3.1</b> Conditional Probability Tables</a></li>
+<li class="chapter" data-level="7.3.2" data-path="bayesian-networks.html"><a href="bayesian-networks.html#example-cpt-of-weather-and-picnic"><i class="fa fa-check"></i><b>7.3.2</b> Example: CPT of Weather and Picnic</a></li>
+<li class="chapter" data-level="7.3.3" data-path="bayesian-networks.html"><a href="bayesian-networks.html#example-discrete-bn-of-sprinkler-wet-grass-and-rain"><i class="fa fa-check"></i><b>7.3.3</b> Example: Discrete BN of sprinkler, wet grass and rain</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="bayesian-networks.html"><a href="bayesian-networks.html#continuous-gaussian-bayesian-networks"><i class="fa fa-check"></i><b>7.4</b> Continuous (Gaussian) Bayesian Networks</a></li>
+<li class="chapter" data-level="7.5" data-path="bayesian-networks.html"><a href="bayesian-networks.html#conditional-gaussian-bayesian-networks-cgbns"><i class="fa fa-check"></i><b>7.5</b> Conditional Gaussian Bayesian Networks (CGBNs)</a></li>
+<li class="chapter" data-level="7.6" data-path="bayesian-networks.html"><a href="bayesian-networks.html#structure-learning"><i class="fa fa-check"></i><b>7.6</b> Structure Learning</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="bayesian-networks.html"><a href="bayesian-networks.html#a-priori-knowledge"><i class="fa fa-check"></i><b>7.6.1</b> A priori knowledge</a></li>
+<li class="chapter" data-level="7.6.2" data-path="bayesian-networks.html"><a href="bayesian-networks.html#score-based-methods"><i class="fa fa-check"></i><b>7.6.2</b> <strong>Score-Based Methods</strong></a></li>
+<li class="chapter" data-level="7.6.3" data-path="bayesian-networks.html"><a href="bayesian-networks.html#constraint-based-methods"><i class="fa fa-check"></i><b>7.6.3</b> Constraint-Based Methods</a></li>
+<li class="chapter" data-level="7.6.4" data-path="bayesian-networks.html"><a href="bayesian-networks.html#definition"><i class="fa fa-check"></i><b>7.6.4</b> Definition</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -441,7 +467,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="basics-of-probability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bayesian-networks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

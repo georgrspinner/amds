@@ -1,0 +1,280 @@
+# Bayesian Networks
+
+Bayesian Networks (BNs) are models that represent a set of variables and their conditional dependencies.
+
+Mathematically, they encode the conditional (in-)dependence structure of multiple variables, which are jointly distributed.
+
+BNs are also called probabilistic graphical models: probabilistic because each variable is modeled as a RV which follows some "local" probability distribution and graphical because they can (mostly, but not always) be represented as so-called directed acyclical graphs (DAGs).
+
+They can be understood both within the frameworks of Frequentist and Bayesian statistics. Hence, a more descriptive term could also be "conditional probability networks", which is not used however.
+
+BNs are powerful tools for modeling complex systems, enabling the computation of conditional probabilities and facilitating decision-making under uncertainty.
+
+## Mathematical Representation
+
+The joint probability distribution of a set of variables $X_1, X_2, \ldots, X_n$ in a Bayesian Network can be factorized as:
+
+$$ P(X_1, X_2, \ldots, X_n) = \prod_{i=1}^{n} P(X_i | \text{Pa}(X_i)) $$
+
+where $\text{Pa}(X_i)$ denotes the set of parent nodes of $X_i$.
+
+Note that this rather simple looking formula states that the joint distribution $P(X_1, X_2, \ldots, X_n)$can be factorized into a product of conditional probability distributions $P(X_i | \text{Pa}(X_i))$, because there are independencies between variables.
+
+This is not clear a priori in many applications, because there might be some dependency between all variables, if nor further prior knowledge is given. In contrast, such a decomposition into a product is more obvious if the BN is defined a priori purely by expert or domain knowledge.
+
+## Graphical representation
+
+A BN can also often be identified with a DAG, which is a handy graphical representation to investigate and also present to the uninitiated for an intuitive understanding.
+
+In this graph, nodes represent random variables, and edges denote conditional dependencies. The directionality of the edges indicates the direction of dependency. Each node is associated with a probability function that takes, as input, a particular set of values for the node's parent variables and gives the probability of the variable represented by the node. This structure allows for efficient representation and computation of joint probabilities across the network's variables.
+
+Nodes without incoming arcs are called "root" nodes, while nodes acting upon other variables are their respective "parents", while the variables which are acted upon are their "child" nodes.
+
+It should be noted however, that there are some BNs, which cannot be represented as DAGs, but these are fringe cases. In the following, we assume that each considered BN can be represented with a DAG.
+
+## Discrete Bayesian Networks
+
+Discrete BNs represent probabilistic relationships among a set of discrete variables. Each node in the corresponding DAG corresponds to a discrete variable, and edges denote probabilistic dependencies between variables. The relationships are quantified by conditional probability tables (CPTs), which define the probability distribution of each node given its parents.
+
+Discrete BNs are widely used for modeling systems where variables take on finite, discrete states, such as binary or categorical outcomes.
+
+### Conditional Probability Tables
+
+CPTs are essential in Discrete BNs for specifying the relationship between a node and its parents. Each entry in a CPT represents the probability of a node assuming a particular value, given the values of its parent nodes.
+
+::: {style="color: gray;"}
+### Example: CPT of Weather and Picnic
+
+Imagine a simple BN with two nodes: Weather (Sunny, Rainy) and Decision to have a Picnic (Yes, No). The CPT for Picnic, given Weather, might look like this:
+
+-   **Weather**: Sunny
+    -   Picnic: Yes (Probability = 0.7)
+    -   Picnic: No (Probability = 0.3)
+-   **Weather**: Rainy
+    -   Picnic: Yes (Probability = 0.1)
+    -   Picnic: No (Probability = 0.9)
+
+This CPT quantifies how likely we are to go on a picnic depending on the weather and as table, looks like the following:
+
+| Picnic⤓ | Weather | Weather |
+|---------|---------|---------|
+|         | Sunny   | Rainy   |
+| Yes     | 0.7     | 0.1     |
+| No      | 0.3     | 0.9     |
+
+: CPT of Weather and Picnic
+:::
+
+::: {style="color: gray;"}
+### Example: Discrete BN of sprinkler, wet grass and rain
+
+A simple, yet illustrative example of a discrete BN from <https://en.wikipedia.org/wiki/Bayesian_network#Example> showcases all relevant aspects of discrete BNs.
+
+First, we notice that in the DAG below, there are three nodes/variables, each with a CPT: the rain variable ($R$) is binary and has no parents, hence, the CPT has two entries. The binary sprinkler variable ($S$) has one binary parent and the CPT has hence four entries. The binary grass wet variable ($G$) hast two parents, each binary, such that the CPT has $2\cdot 2\cdot 2 = 8$ entries. So there is a probability given for each parent configuration of each node. The arrows indicate the direction of influence between the variables.
+
+Looking at the BN from a probabilistic perspective, we first note that there is a joint distribution $P(G,S,R)$. This distribution factors according to the DAG into $P(G,S,R)=P(G|S,R)P(S|R)P(R)$
+
+[![DAG of discrete BN, source: https://en.wikipedia.org/wiki/File:SimpleBayesNet.svg](images/1920px-SimpleBayesNet.svg.png)](https://en.wikipedia.org/wiki/File:SimpleBayesNet.svg)
+
+This BN can now be queried. This means that one can derive probabilities for certain events. For example, suppose we are interested in the probability of rain, given that the grass is wet $P(R=TRUE|G=TRUE)$. This can not be read directly from the CPT, but instead must becalculated according to the ruls of probability. According to the definition of conditional probability, this can be calculated to: $P(R=TRUE\|G=TRUE) = \frac{P(G=TRUE, R=TRUE)}{P(G=TRUE)}$. Both the nominator and the denominator are marginal distributions: in the nominator, $S$ is "marginalized out", while in the denominator, $R$ and $S$ are "marginalized out. Hence, in order to calculate the probabilities, a summation over the states of the"marginalized out" variable(s) is required. There, the values from the CPTs are used. In practice, such calculations are performed by software libraries.
+:::
+
+## Continuous (Gaussian) Bayesian Networks
+
+Continuous BNs deal with continuous variables, unlike their discrete counterparts which manage categorical variables. These networks are powerful tools for modeling complex relationships among a set of continuous variables, enabling the representation of probabilistic dependencies and uncertainties in a graphical manner. The key component of continuous BNs is the Conditional Probability Distribution (CPD), which, for continuous variables, often takes the form of Gaussian distributions or linear Gaussian models.
+
+The general form of a Gaussian distribution for a variable $X$ is given by:
+
+$$
+p(X) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(X-\mu)^2}{2\sigma^2}\right)
+$$
+
+where $\mu$ is the mean and $\sigma^2$ is the variance of the distribution.
+
+For a continuous BN, the conditional probability of a child node given its parent nodes is often modeled using a linear combination of the parent nodes plus a Gaussian noise. This can be represented as:
+
+$$
+X = \alpha + \beta_1 Pa_1 + \beta_2 Pa_2 + \ldots + \beta_n Pa_n + \epsilon
+$$
+
+where $X$ is the child node, $Pa_1, Pa_2, \ldots, Pa_n$ are the parent nodes, $\alpha$ and $\beta_i$ are coefficients, and $\epsilon$ is a Gaussian noise term with mean 0 and some variance $\sigma^2$. So, "locally" for each variable, there is a multiple linear regression model present.
+
+These models allow for the representation and inference of continuous quantities in a network structure, making continuous BNs particularly useful in fields such as medical decision-making, where many variables of interest (e.g., blood pressure, cholesterol levels) are continuous in nature. Note that however, all variables must be continuous and most often follow a Gaussian distribution, which is not the case in every (medical) application.
+
+## Conditional Gaussian Bayesian Networks (CGBNs)
+
+Conditional Gaussian Bayesian Networks (CGBNs) are a specialized form of BNs designed to model relationships between mixed data types, specifically handling both continuous and discrete variables within the same framework. CGBNs combine the characteristics of discrete BNs, which manage categorical variables, with those of continuous BNs, which deal with continuous variables, thus offering a versatile tool for representing complex probabilistic relationships in mixed data sets.
+
+The structure of a CGBN includes nodes representing both types of variables, and edges indicating probabilistic dependencies. The CPDs in CGBNs are defined differently for continuous and discrete nodes:
+
+1.  For discrete nodes, CPDs are typically specified using tables of probabilities (i.e. CPTs), like in discrete BNs. This means, that discrete nodes can only have discrete parents and no continuous ones.
+
+2.  For continuous nodes, CPDs are modeled using Conditional Gaussian distributions, where the mean and the variance of a Gaussian distribution are functions of the parents' values. Specifically, the conditional distribution of a continuous variable given discrete and continuous parents is given by:
+
+$$
+X | (Pa_{discrete}, Pa_{continuous}) \sim \mathcal{N}(\mu + \sum_{i} \beta_i Pa_{continuous,i}, \sigma^2)
+$$
+
+where $\mathcal{N}$ denotes the Gaussian distribution, $\mu$ and $\sigma^2$ are parameters that depend on the discrete parents $Pa_{discrete}$, and $\beta_i$ are coefficients for the linear combination of continuous parent variables $Pa_{continuous,i}$.
+
+This formulation allows CGBNs to dynamically adjust the parameters of the Gaussian distributions based on the states of discrete variables, enabling the modeling of complex interactions between continuous and discrete variables in a unified framework. CGBNs are particularly useful in domains where data is inherently mixed, such as in medical diagnostics, where both categorical (e.g., presence or absence of a symptom) and continuous (e.g., blood pressure levels) variables are important. Note however, that there is an inprotant limitation: discrete parents can only have discrete parents! This is limiting in some applications, especially many applications of logistic regression, where the target is discrete (i.e. categorical or simple binary), but the predictors are mixed.
+
+## Structure Learning
+
+Structure learning (SL) in BNs refers to the process of determining the optimal network structure---that is, the set of nodes (variables) and edges (dependencies) between these nodes---based on a given dataset. The goal is to discover the graphical model that best represents the probabilistic relationships among the variables, without necessarily having prior knowledge of how these variables interact. SL is crucial in many fields, including genetics, economics, and particularly in medicine, where understanding the complex interdependencies between various factors can inform better decision-making and predictive models.
+
+There are mainly three approaches to structure learning:
+
+1.  **Score-Based Methods**: These methods evaluate how well a given network structure fits the data using a scoring function, such as Bayesian Information Criterion (BIC) or Akaike Information Criterion (AIC). The search over possible structures is typically performed using heuristic search algorithms (e.g., hill climbing, simulated annealing) due to the combinatorial nature of the problem. The objective is to find the network structure that maximizes (or minimizes, depending on the scoring rule) the scoring function.
+
+2.  **Constraint-Based Methods**: These methods start with an assumption that no edges exist between any pairs of nodes and then systematically test these assumptions using statistical tests (e.g., chi-square test, conditional independence tests) to determine if an edge should exist based on the data. This approach can identify the independence and conditional independence relationships between variables, which in turn helps to infer the network structure. The PC algorithm is a well-known example of a constraint-based method.
+
+3.  **Hybrid Methods**: Hybrid approaches combine score-based and constraint-based methods to take advantage of both strategies. Initially, constraint-based methods may be used to establish a rough outline of the network by identifying clearly independent relationships, reducing the search space. Then, score-based methods refine this structure by optimizing a scoring criterion. This approach can lead to more accurate models by efficiently navigating the search space and considering both statistical tests and fitting criteria.
+
+SL is a challenging task due to the exponential number of possible network structures that grow with the number of variables. Moreover, the presence of latent variables (unobserved or hidden variables) and feedback loops can further complicate the learning process. Advanced techniques, including those that incorporate domain knowledge or use machine learning algorithms, are continually being developed to address these challenges and improve the accuracy and efficiency of structure learning in BNs.
+
+Score-based methods for structure learning in BNs involve finding the network structure that best fits the given data according to a specific scoring criterion. The objective is to evaluate and compare the goodness-of-fit of different network structures and select the one that optimizes the scoring function.
+
+### A priori knowledge
+
+Often, there is some prior knowledge available via e.g. previous studies, domain or expert knowledge. This can be integrated in a straightforward and transparent way into BN SL.
+
+The simplest and most frequently used way is to a priori enforce arcs, which is also called "whitelisting" and a priori banning arcs, which is also called "blacklisting".
+
+### **Score-Based Methods**
+
+A popular scoring criterion is the Bayesian Information Criterion (BIC), defined as:
+
+$$
+\text{BIC} = \log P(D | G, \hat{\theta}_G) - \frac{\log N}{2} |G|
+$$
+
+where:
+
+-   $D$ is the observed data,
+
+-   $G$ represents a candidate network structure,
+
+-   $\hat{\theta}_G$ are the maximum likelihood estimates of the parameters of network $G$,
+
+-   $N$ is the number of data points, and
+
+-   $|G|$ is the number of parameters in the model, which serves as a penalty term to prevent overfitting by complex models.
+
+The BIC score consists of two parts: the likelihood of the data given the model, which rewards models that fit the data well, and a penalty term that discourages overly complex models. The goal is to maximize the BIC score, balancing model fit and complexity.
+
+::: {style="color: gray;"}
+**Example**: BIC for simple BN
+
+Consider a simple dataset with three variables: A, B, and C, where we want to learn the network structure. We might consider two candidate structures:
+
+1.  A structure where A causes B, and B causes C (A -\> B -\> C).
+2.  A structure where A causes C, and C causes B (A -\> C -\> B).
+
+Using the BIC scoring criterion, we compute the BIC score for each structure based on the dataset. Suppose the BIC scores are:
+
+-   BIC(Structure 1) = -300
+-   BIC(Structure 2) = -290
+
+Since we aim to maximize the BIC score (or minimize the negative BIC), Structure 1 (A -\> B -\> C) is preferred over Structure 2 because it has a higher BIC score, indicating a better balance of model fit to data and model simplicity.
+:::
+
+Score-based methods are computationally intensive due to the need to evaluate a large number of possible structures, especially as the number of variables increases. Therefore, heuristic search algorithms like hill climbing or genetic algorithms are often used to explore the space of possible structures efficiently.
+
+### Constraint-Based Methods
+
+Constraint-Based Methods for SL in BNs focus on identifying the conditional independencies between variables within the data. These methods infer the network structure by testing for statistical independence between variables, under the assumption that if two variables are conditionally independent given a set of other variables, there should be no direct edge between them in the network.
+
+The process typically involves three main steps:
+
+1.  **Independence Tests**: Apply statistical tests (e.g., chi-square test, mutual information) to identify pairs of variables that are independent or conditionally independent given a set of other variables.
+
+2.  **Graph Construction**: Based on the results of the independence tests, construct a graph where nodes represent variables and edges are absent between conditionally independent variables. Initially, a fully connected graph is often used, and edges are removed as independence is discovered.
+
+3.  **Orientation Rules**: Apply a set of rules to determine the direction of the edges between variables. This step may not fully determine the direction of all edges, leading to a partially directed acyclic graph (PDAG).
+
+A well-known algorithm that follows this approach is the PC (Peter-Clark) Algorithm. The PC Algorithm starts by constructing a fully connected undirected graph and then systematically tests for conditional independence between each pair of variables, given subsets of other variables. As conditional independencies are found, edges are removed from the graph. Finally, a series of rules are applied to orient the remaining edges, as much as possible, to infer causal relationships.
+
+::: {style="color: gray;"}
+**Example: conditional independence for a simple BN**
+
+Suppose we have three variables: A, B, and C. Through independence tests, we find that:
+
+-   A and B are conditionally independent given C.
+
+-   A and C are not conditionally independent given any subset of variables.
+
+-   B and C are not conditionally independent given any subset of variables.
+
+Based on these findings, the initial fully connected graph would have the edge between A and B removed, reflecting their conditional independence given C. The final network structure would then have edges from C to A and C to B, assuming additional orientation rules do not contradict this arrangement.
+:::
+
+Constraint-Based Methods are particularly appealing when dealing with large datasets, as they can significantly reduce the computational complexity by eliminating edges early in the process. However, the accuracy of these methods heavily depends on the power of the statistical tests used and the sample size of the data.
+
+Conditional independence testing is a statistical process used to determine whether two variables are independent of each other, given the presence of one or more other variables. This concept is central to many statistical methods, including structure learning in Bayesian Networks (BNs), where it helps to identify the connections (or lack thereof) between variables.
+
+### Definition
+
+Two variables, $X$ and $Y$, are conditionally independent given a third variable $Z$ if the probability distribution of $X$ and $Y$, conditioned on $Z$, is the product of their individual distributions conditioned on $Z$. Formally, this can be stated as:
+
+$$ P(X, Y | Z) = P(X | Z) \cdot P(Y | Z) $$
+
+Equivalently, $X$ and $Y$ are conditionally independent given $Z$ if and only if:
+
+$$ P(X | Y, Z) = P(X | Z) $$
+
+or
+
+$$ P(Y | X, Z) = P(Y | Z) $$
+
+This means that knowing $Y$, in addition to $Z$, does not provide any additional information about $X$ and vice versa.
+
+#### Testing Conditional Independence
+
+To test for conditional independence between two variables given a third, various statistical tests can be used, depending on the nature of the data (e.g., continuous, discrete):
+
+-   For **continuous variables**, partial correlation tests are commonly used. The partial correlation between $X$ and $Y$, controlling for $Z$, measures the strength and direction of a linear relationship between $X$ and $Y$ when the linear effect of $Z$ on both $X$ and $Y$ has been removed.
+
+-   For **discrete variables**, the chi-square test of independence can be adapted to test for conditional independence by considering the contingency tables of $X$ and $Y$ at each level of $Z$.
+
+Conditional independence tests are crucial for building accurate and meaningful models, especially in BN where understanding the dependencies and independencies among variables is fundamental to the network's structure. These tests guide the addition or removal of edges between nodes, reflecting the underlying probabilistic relationships. Examples for such tests are:
+
+##### Partial Correlation
+
+The partial correlation between $X$ and $Y$, given $Z$, can be calculated using the formula:
+
+$$ r_{xy.z} = \frac{r_{xy} - r_{xz}r_{yz}}{\sqrt{(1-r_{xz}^2)(1-r_{yz}^2)}} $$
+
+where:
+
+-   $r_{xy}$ is the correlation coefficient between $X$ and $Y$,
+
+-   $r_{xz}$ is the correlation coefficient between $X$ and $Z$,
+
+-   $r_{yz}$ is the correlation coefficient between $Y$ and $Z$.
+
+##### Chi-Square Test
+
+In the context of discrete variables, the conditional independence can be tested by calculating a chi-square statistic for each level of $Z$, and then combining these statistics to get an overall test.
+
+##### Decision rule
+
+In practice, when using statistical tests like the chi-square test for conditional independence in the process of SL for BNs, a significance level (denoted as $\alpha$) is chosen to decide whether to include or exclude an arc (edge) between nodes (variables) in the network. The significance level represents the probability of rejecting the null hypothesis when it is true, essentially controlling the rate of false positives (Type I errors).
+
+Here's how it works in the context of the chi-square test for conditional independence:
+
+1.  **Null Hypothesis (**$H_0$​**)**: The null hypothesis for the chi-square test of conditional independence states that two variables are independent, given the conditioning set. In the context of BNs, this translates to there being no direct arc between the two variables in the network.
+
+2.  **Alternative Hypothesis (**$H_1$​**)**: The alternative hypothesis suggests that the two variables are not conditionally independent, implying that an arc should exist between them in the network.
+
+3.  **Significance Level (**$alpha$​**)**: The significance level is predetermined by the researcher and is often set at 0.05 (5%), although other values like 0.01 (1%) or 0.10 (10%) can be used depending on the desired stringency. This level represents the threshold for determining whether the observed data deviate significantly from what would be expected under the null hypothesis.
+
+4.  **P-value**: The chi-square test results in a p-value, which represents the probability of observing the test statistic or something more extreme, assuming the null hypothesis is true.
+
+5.  **Decision Rule**:
+
+    -   If the p-value is less than or equal to the significance level ($p\leq \alpha$), the null hypothesis is rejected, suggesting there is sufficient evidence to believe the variables are not conditionally independent, and an arc should be included in the BN.
+
+    -   If the p-value is greater than the significance level ($p> \alpha$), the null hypothesis cannot be rejected, indicating the data do not provide sufficient evidence to conclude the variables are dependent, and hence, an arc should not be included in the BN.
+
+By applying this threshold, researchers can systematically determine which arcs to include in the BN, thus constructing a model that reflects the significant dependencies observed in the data. This approach helps to balance model complexity with the risk of including spurious relationships, aiming to create a network that accurately captures the underlying probabilistic structure of the domain being modeled.
